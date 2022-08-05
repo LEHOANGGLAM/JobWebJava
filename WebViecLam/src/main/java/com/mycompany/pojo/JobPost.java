@@ -37,7 +37,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "JobPost.findAll", query = "SELECT j FROM JobPost j"),
     @NamedQuery(name = "JobPost.findById", query = "SELECT j FROM JobPost j WHERE j.id = :id"),
     @NamedQuery(name = "JobPost.findByCreatedDate", query = "SELECT j FROM JobPost j WHERE j.createdDate = :createdDate"),
-    @NamedQuery(name = "JobPost.findByIsActive", query = "SELECT j FROM JobPost j WHERE j.isActive = :isActive")})
+    @NamedQuery(name = "JobPost.findByIsActive", query = "SELECT j FROM JobPost j WHERE j.isActive = :isActive"),
+    @NamedQuery(name = "JobPost.findByJobMinSalary", query = "SELECT j FROM JobPost j WHERE j.jobMinSalary = :jobMinSalary"),
+    @NamedQuery(name = "JobPost.findByJobMaxSalary", query = "SELECT j FROM JobPost j WHERE j.jobMaxSalary = :jobMaxSalary"),
+    @NamedQuery(name = "JobPost.findByYearExperRequire", query = "SELECT j FROM JobPost j WHERE j.yearExperRequire = :yearExperRequire")})
 public class JobPost implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,6 +66,12 @@ public class JobPost implements Serializable {
     @Size(max = 65535)
     @Column(name = "job_title")
     private String jobTitle;
+    @Column(name = "job_min_salary")
+    private Integer jobMinSalary;
+    @Column(name = "job_max_salary")
+    private Integer jobMaxSalary;
+    @Column(name = "year_exper_require")
+    private Integer yearExperRequire;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobPost")
     private Set<JobPostActivity> jobPostActivitySet;
     @JoinColumn(name = "posted_by_id", referencedColumnName = "id")
@@ -130,6 +139,30 @@ public class JobPost implements Serializable {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    public Integer getJobMinSalary() {
+        return jobMinSalary;
+    }
+
+    public void setJobMinSalary(Integer jobMinSalary) {
+        this.jobMinSalary = jobMinSalary;
+    }
+
+    public Integer getJobMaxSalary() {
+        return jobMaxSalary;
+    }
+
+    public void setJobMaxSalary(Integer jobMaxSalary) {
+        this.jobMaxSalary = jobMaxSalary;
+    }
+
+    public Integer getYearExperRequire() {
+        return yearExperRequire;
+    }
+
+    public void setYearExperRequire(Integer yearExperRequire) {
+        this.yearExperRequire = yearExperRequire;
     }
 
     @XmlTransient

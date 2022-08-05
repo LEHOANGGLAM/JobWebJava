@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Employer.findAll", query = "SELECT e FROM Employer e"),
     @NamedQuery(name = "Employer.findById", query = "SELECT e FROM Employer e WHERE e.id = :id"),
-    @NamedQuery(name = "Employer.findByEmployerName", query = "SELECT e FROM Employer e WHERE e.employerName = :employerName"),
+    @NamedQuery(name = "Employer.findByCompanyName", query = "SELECT e FROM Employer e WHERE e.companyName = :companyName"),
     @NamedQuery(name = "Employer.findByProfileDescription", query = "SELECT e FROM Employer e WHERE e.profileDescription = :profileDescription"),
     @NamedQuery(name = "Employer.findByCreatedDate", query = "SELECT e FROM Employer e WHERE e.createdDate = :createdDate")})
 public class Employer implements Serializable {
@@ -46,8 +46,8 @@ public class Employer implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Size(max = 100)
-    @Column(name = "employer_name")
-    private String employerName;
+    @Column(name = "company_name")
+    private String companyName;
     @Size(max = 1000)
     @Column(name = "profile_description")
     private String profileDescription;
@@ -75,12 +75,12 @@ public class Employer implements Serializable {
         this.id = id;
     }
 
-    public String getEmployerName() {
-        return employerName;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setEmployerName(String employerName) {
-        this.employerName = employerName;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getProfileDescription() {

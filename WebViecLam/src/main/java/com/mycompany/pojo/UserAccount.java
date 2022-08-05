@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByDateOfBirth", query = "SELECT u FROM UserAccount u WHERE u.dateOfBirth = :dateOfBirth"),
     @NamedQuery(name = "UserAccount.findByGender", query = "SELECT u FROM UserAccount u WHERE u.gender = :gender"),
     @NamedQuery(name = "UserAccount.findByContactNumber", query = "SELECT u FROM UserAccount u WHERE u.contactNumber = :contactNumber"),
-    @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate")})
+    @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate"),
+    @NamedQuery(name = "UserAccount.findByUserName", query = "SELECT u FROM UserAccount u WHERE u.userName = :userName")})
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -71,6 +72,9 @@ public class UserAccount implements Serializable {
     @Column(name = "registration_date")
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
+    @Size(max = 45)
+    @Column(name = "user_name")
+    private String userName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     private Set<JobPostActivity> jobPostActivitySet;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
@@ -146,6 +150,14 @@ public class UserAccount implements Serializable {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @XmlTransient
