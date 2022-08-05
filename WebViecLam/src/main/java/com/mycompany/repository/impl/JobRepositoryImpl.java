@@ -4,17 +4,20 @@
  */
 package com.mycompany.repository.impl;
 
+import com.mycompany.pojo.Employer;
+import com.mycompany.pojo.JobLocation;
 import com.mycompany.pojo.JobPost;
 import com.mycompany.repository.JobReposiroty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.Query;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -37,11 +40,40 @@ public class JobRepositoryImpl implements JobReposiroty {
     private Environment env;
 
     @Override
-    public List<JobPost> getJobs() {
-        Session s = this.sessionFactory.getObject().getCurrentSession();
-        Query q = s.createQuery("From JobPost");
+    public List<Object[]> getJobs() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
 
-        return q.getResultList();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+
+        Root<JobPost> jRoot = q.from(JobPost.class);
+        Root<JobLocation> jLocaRoot = q.from(JobLocation.class);
+        Root<Employer> eRoot = q.from(Employer.class);
+
+        q.where(b.and(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+                    b.equal(jRoot.get("postedById"), eRoot.get("id"))));
+       
+        
+        q = q.multiselect(
+                jRoot.get("jobTitle"),
+                jRoot.get("jobMinSalary"),
+                jRoot.get("jobMaxSalary"),
+                jRoot.get("yearExperRequire"),
+                jRoot.get("createdDate"),
+                jLocaRoot.get("streetAddress"),
+                jLocaRoot.get("city"),
+                eRoot.get("companyName")
+        );
+        
+
+        Query createQuery = session.createQuery(q);
+        List<Object[]> kq = createQuery.getResultList();
+
+        kq.forEach(k -> {
+            System.out.printf("%s - city, %s - Title\n ", k[0], k[1]);
+        });
+
+        return kq;
 
     }
 

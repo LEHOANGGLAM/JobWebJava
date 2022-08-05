@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface JobService {
 
-    List<JobPost> getJobs();
+    List<Object[]> getJobs();
 //
 //    int countJobPosts();
 }

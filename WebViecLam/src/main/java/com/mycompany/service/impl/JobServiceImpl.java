@@ -23,7 +23,7 @@ public class JobServiceImpl implements JobService {
     private JobReposiroty jobReposiroty;
 
     @Override
-    public List<JobPost> getJobs(){
+    public List<Object[]> getJobs(){
         return this.jobReposiroty.getJobs(); //, page
     }
 

@@ -49,18 +49,19 @@
                                     </div>
                                     <div class="job-tittle job-tittle2">
                                         <a href="#">
-                                            <h4>${j.jobTitle}</h4>
+                                            <h4>${j[0]}</h4>
                                         </a>
                                         <ul>
-                                            <li>Creative Agency</li>
-                                            <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                            <li>$3500 - $4000</li>
+                                            <li>${j[7]}</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
+                                            <li>${j[1]} - ${j[2]}$</li>                                                                               
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="items-link items-link2 f-right">
-                                    <a href="job_details.html">Full Time</a>
-                                    <span>7 hours ago</span>
+                                    <a href="job_details.html">Watch</a>
+                                    <span> <fmt:formatDate type="date" dateStyle = "short" 
+                                                    pattern="yyyy-MM-dd" value="${j[4]}" /></span>
                                 </div>
                             </div>
                         </c:forEach>

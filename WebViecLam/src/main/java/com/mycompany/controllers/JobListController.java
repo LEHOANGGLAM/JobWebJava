@@ -30,8 +30,7 @@ public class JobListController {
     private Environment env;
 
     @RequestMapping("/joblist")
-    public String list( Model model, 
-            @RequestParam Map<String, String> params) {
+    public String list( Model model) {
      
         
         
