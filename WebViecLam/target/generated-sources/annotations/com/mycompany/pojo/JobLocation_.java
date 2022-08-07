@@ -6,11 +6,10 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-05T01:55:23")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-07T03:50:09")
 @StaticMetamodel(JobLocation.class)
 public class JobLocation_ { 
 
-    public static volatile SingularAttribute<JobLocation, String> streetAddress;
     public static volatile SingularAttribute<JobLocation, String> city;
     public static volatile SetAttribute<JobLocation, JobPost> jobPostSet;
     public static volatile SingularAttribute<JobLocation, Integer> id;

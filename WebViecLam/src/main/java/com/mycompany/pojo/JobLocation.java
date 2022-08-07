@@ -29,7 +29,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "JobLocation.findAll", query = "SELECT j FROM JobLocation j"),
     @NamedQuery(name = "JobLocation.findById", query = "SELECT j FROM JobLocation j WHERE j.id = :id"),
-    @NamedQuery(name = "JobLocation.findByStreetAddress", query = "SELECT j FROM JobLocation j WHERE j.streetAddress = :streetAddress"),
     @NamedQuery(name = "JobLocation.findByCity", query = "SELECT j FROM JobLocation j WHERE j.city = :city")})
 public class JobLocation implements Serializable {
 
@@ -39,9 +38,6 @@ public class JobLocation implements Serializable {
     @NotNull
     @Column(name = "id")
     private Integer id;
-    @Size(max = 100)
-    @Column(name = "street_address")
-    private String streetAddress;
     @Size(max = 50)
     @Column(name = "city")
     private String city;
@@ -61,14 +57,6 @@ public class JobLocation implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getStreetAddress() {
-        return streetAddress;
-    }
-
-    public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
     }
 
     public String getCity() {

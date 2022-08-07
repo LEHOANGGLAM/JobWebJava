@@ -11,9 +11,10 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,7 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,14 +41,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByDateOfBirth", query = "SELECT u FROM UserAccount u WHERE u.dateOfBirth = :dateOfBirth"),
     @NamedQuery(name = "UserAccount.findByGender", query = "SELECT u FROM UserAccount u WHERE u.gender = :gender"),
     @NamedQuery(name = "UserAccount.findByContactNumber", query = "SELECT u FROM UserAccount u WHERE u.contactNumber = :contactNumber"),
+    @NamedQuery(name = "UserAccount.findByUserImage", query = "SELECT u FROM UserAccount u WHERE u.userImage = :userImage"),
     @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate"),
     @NamedQuery(name = "UserAccount.findByUserName", query = "SELECT u FROM UserAccount u WHERE u.userName = :userName")})
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -61,14 +62,15 @@ public class UserAccount implements Serializable {
     @Column(name = "date_of_birth")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
+    @Size(max = 10)
     @Column(name = "gender")
-    private Boolean gender;
+    private String gender;
     @Size(max = 10)
     @Column(name = "contact_number")
     private String contactNumber;
-    @Lob
+    @Size(max = 45)
     @Column(name = "user_image")
-    private byte[] userImage;
+    private String userImage;
     @Column(name = "registration_date")
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
@@ -77,9 +79,9 @@ public class UserAccount implements Serializable {
     private String userName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     private Set<JobPostActivity> jobPostActivitySet;
-    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
+    @JoinColumn(name = "use_type_id", referencedColumnName = "id")
     @ManyToOne
-    private UserType userTypeId;
+    private UserType useTypeId;
 
     public UserAccount() {
     }
@@ -120,11 +122,11 @@ public class UserAccount implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -136,11 +138,11 @@ public class UserAccount implements Serializable {
         this.contactNumber = contactNumber;
     }
 
-    public byte[] getUserImage() {
+    public String getUserImage() {
         return userImage;
     }
 
-    public void setUserImage(byte[] userImage) {
+    public void setUserImage(String userImage) {
         this.userImage = userImage;
     }
 
@@ -169,12 +171,12 @@ public class UserAccount implements Serializable {
         this.jobPostActivitySet = jobPostActivitySet;
     }
 
-    public UserType getUserTypeId() {
-        return userTypeId;
+    public UserType getUseTypeId() {
+        return useTypeId;
     }
 
-    public void setUserTypeId(UserType userTypeId) {
-        this.userTypeId = userTypeId;
+    public void setUseTypeId(UserType useTypeId) {
+        this.useTypeId = useTypeId;
     }
 
     @Override

@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "JobPostActivity.findAll", query = "SELECT j FROM JobPostActivity j"),
-    @NamedQuery(name = "JobPostActivity.findByUserId", query = "SELECT j FROM JobPostActivity j WHERE j.jobPostActivityPK.userId = :userId"),
+    @NamedQuery(name = "JobPostActivity.findByApplyDate", query = "SELECT j FROM JobPostActivity j WHERE j.applyDate = :applyDate"),
     @NamedQuery(name = "JobPostActivity.findByJobPostId", query = "SELECT j FROM JobPostActivity j WHERE j.jobPostActivityPK.jobPostId = :jobPostId"),
-    @NamedQuery(name = "JobPostActivity.findByApplyDate", query = "SELECT j FROM JobPostActivity j WHERE j.applyDate = :applyDate")})
+    @NamedQuery(name = "JobPostActivity.findByUserAccountId", query = "SELECT j FROM JobPostActivity j WHERE j.jobPostActivityPK.userAccountId = :userAccountId")})
 public class JobPostActivity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class JobPostActivity implements Serializable {
     @JoinColumn(name = "job_post_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private JobPost jobPost;
-    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_account_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private UserAccount userAccount;
 
@@ -52,8 +52,8 @@ public class JobPostActivity implements Serializable {
         this.jobPostActivityPK = jobPostActivityPK;
     }
 
-    public JobPostActivity(int userId, int jobPostId) {
-        this.jobPostActivityPK = new JobPostActivityPK(userId, jobPostId);
+    public JobPostActivity(int jobPostId, int userAccountId) {
+        this.jobPostActivityPK = new JobPostActivityPK(jobPostId, userAccountId);
     }
 
     public JobPostActivityPK getJobPostActivityPK() {

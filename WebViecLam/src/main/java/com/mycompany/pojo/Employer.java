@@ -10,6 +10,8 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -36,13 +37,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Employer.findById", query = "SELECT e FROM Employer e WHERE e.id = :id"),
     @NamedQuery(name = "Employer.findByCompanyName", query = "SELECT e FROM Employer e WHERE e.companyName = :companyName"),
     @NamedQuery(name = "Employer.findByProfileDescription", query = "SELECT e FROM Employer e WHERE e.profileDescription = :profileDescription"),
-    @NamedQuery(name = "Employer.findByCreatedDate", query = "SELECT e FROM Employer e WHERE e.createdDate = :createdDate")})
+    @NamedQuery(name = "Employer.findByCreatedDate", query = "SELECT e FROM Employer e WHERE e.createdDate = :createdDate"),
+    @NamedQuery(name = "Employer.findByImage", query = "SELECT e FROM Employer e WHERE e.image = :image")})
 public class Employer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 100)
@@ -54,7 +56,10 @@ public class Employer implements Serializable {
     @Column(name = "created_date")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
-    @OneToMany(mappedBy = "postedById")
+    @Size(max = 45)
+    @Column(name = "image")
+    private String image;
+    @OneToMany(mappedBy = "employerId")
     private Set<JobPost> jobPostSet;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
@@ -97,6 +102,14 @@ public class Employer implements Serializable {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @XmlTransient

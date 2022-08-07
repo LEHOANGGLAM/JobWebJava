@@ -50,7 +50,7 @@ public class Category implements Serializable {
     @Column(name = "content")
     private String content;
     @Column(name = "active")
-    private Boolean active;
+    private Integer active;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType userTypeId;
@@ -94,11 +94,11 @@ public class Category implements Serializable {
         this.content = content;
     }
 
-    public Boolean getActive() {
+    public Integer getActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(Integer active) {
         this.active = active;
     }
 
