@@ -42,7 +42,7 @@ public class JobPostSkillSet implements Serializable {
     @Column(name = "skill_level")
     private String skillLevel;
     @JoinColumn(name = "job_post_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private JobPost jobPostId;
     @JoinColumn(name = "skill_set_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)

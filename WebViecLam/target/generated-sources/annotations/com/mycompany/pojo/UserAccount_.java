@@ -8,18 +8,18 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-05T01:55:24")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-07T03:50:09")
 @StaticMetamodel(UserAccount.class)
 public class UserAccount_ { 
 
-    public static volatile SingularAttribute<UserAccount, UserType> userTypeId;
     public static volatile SingularAttribute<UserAccount, String> password;
-    public static volatile SingularAttribute<UserAccount, byte[]> userImage;
-    public static volatile SingularAttribute<UserAccount, Boolean> gender;
+    public static volatile SingularAttribute<UserAccount, String> userImage;
+    public static volatile SingularAttribute<UserAccount, String> gender;
     public static volatile SingularAttribute<UserAccount, String> contactNumber;
     public static volatile SingularAttribute<UserAccount, Date> registrationDate;
     public static volatile SingularAttribute<UserAccount, Date> dateOfBirth;
     public static volatile SingularAttribute<UserAccount, Integer> id;
+    public static volatile SingularAttribute<UserAccount, UserType> useTypeId;
     public static volatile SingularAttribute<UserAccount, String> userName;
     public static volatile SingularAttribute<UserAccount, String> email;
     public static volatile SetAttribute<UserAccount, JobPostActivity> jobPostActivitySet;

@@ -51,7 +51,7 @@ public class JobRepositoryImpl implements JobReposiroty {
         Root<Employer> eRoot = q.from(Employer.class);
 
         q.where(b.and(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
-                    b.equal(jRoot.get("postedById"), eRoot.get("id"))));
+                    b.equal(jRoot.get("employerId"), eRoot.get("id"))));
        
         
         q = q.multiselect(
@@ -60,7 +60,7 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jRoot.get("jobMaxSalary"),
                 jRoot.get("yearExperRequire"),
                 jRoot.get("createdDate"),
-                jLocaRoot.get("streetAddress"),
+                jRoot.get("jobStreet"),
                 jLocaRoot.get("city"),
                 eRoot.get("companyName")
         );

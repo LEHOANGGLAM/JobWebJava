@@ -19,27 +19,19 @@ public class JobPostActivityPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "user_id")
-    private int userId;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "job_post_id")
     private int jobPostId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "user_account_id")
+    private int userAccountId;
 
     public JobPostActivityPK() {
     }
 
-    public JobPostActivityPK(int userId, int jobPostId) {
-        this.userId = userId;
+    public JobPostActivityPK(int jobPostId, int userAccountId) {
         this.jobPostId = jobPostId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+        this.userAccountId = userAccountId;
     }
 
     public int getJobPostId() {
@@ -50,11 +42,19 @@ public class JobPostActivityPK implements Serializable {
         this.jobPostId = jobPostId;
     }
 
+    public int getUserAccountId() {
+        return userAccountId;
+    }
+
+    public void setUserAccountId(int userAccountId) {
+        this.userAccountId = userAccountId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) userId;
         hash += (int) jobPostId;
+        hash += (int) userAccountId;
         return hash;
     }
 
@@ -65,10 +65,10 @@ public class JobPostActivityPK implements Serializable {
             return false;
         }
         JobPostActivityPK other = (JobPostActivityPK) object;
-        if (this.userId != other.userId) {
+        if (this.jobPostId != other.jobPostId) {
             return false;
         }
-        if (this.jobPostId != other.jobPostId) {
+        if (this.userAccountId != other.userAccountId) {
             return false;
         }
         return true;
@@ -76,7 +76,7 @@ public class JobPostActivityPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.pojo.JobPostActivityPK[ userId=" + userId + ", jobPostId=" + jobPostId + " ]";
+        return "com.mycompany.pojo.JobPostActivityPK[ jobPostId=" + jobPostId + ", userAccountId=" + userAccountId + " ]";
     }
     
 }

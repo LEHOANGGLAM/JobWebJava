@@ -11,9 +11,10 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,7 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -37,33 +37,34 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "JobPost.findAll", query = "SELECT j FROM JobPost j"),
     @NamedQuery(name = "JobPost.findById", query = "SELECT j FROM JobPost j WHERE j.id = :id"),
     @NamedQuery(name = "JobPost.findByCreatedDate", query = "SELECT j FROM JobPost j WHERE j.createdDate = :createdDate"),
+    @NamedQuery(name = "JobPost.findByJobDescription", query = "SELECT j FROM JobPost j WHERE j.jobDescription = :jobDescription"),
+    @NamedQuery(name = "JobPost.findByJobRequirement", query = "SELECT j FROM JobPost j WHERE j.jobRequirement = :jobRequirement"),
     @NamedQuery(name = "JobPost.findByIsActive", query = "SELECT j FROM JobPost j WHERE j.isActive = :isActive"),
+    @NamedQuery(name = "JobPost.findByJobTitle", query = "SELECT j FROM JobPost j WHERE j.jobTitle = :jobTitle"),
     @NamedQuery(name = "JobPost.findByJobMinSalary", query = "SELECT j FROM JobPost j WHERE j.jobMinSalary = :jobMinSalary"),
     @NamedQuery(name = "JobPost.findByJobMaxSalary", query = "SELECT j FROM JobPost j WHERE j.jobMaxSalary = :jobMaxSalary"),
-    @NamedQuery(name = "JobPost.findByYearExperRequire", query = "SELECT j FROM JobPost j WHERE j.yearExperRequire = :yearExperRequire")})
+    @NamedQuery(name = "JobPost.findByYearExperRequire", query = "SELECT j FROM JobPost j WHERE j.yearExperRequire = :yearExperRequire"),
+    @NamedQuery(name = "JobPost.findByJobStreet", query = "SELECT j FROM JobPost j WHERE j.jobStreet = :jobStreet")})
 public class JobPost implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Column(name = "created_date")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
-    @Lob
-    @Size(max = 65535)
+    @Size(max = 45)
     @Column(name = "job_description")
     private String jobDescription;
-    @Lob
-    @Size(max = 65535)
+    @Size(max = 45)
     @Column(name = "job_requirement")
     private String jobRequirement;
     @Column(name = "is_active")
-    private Character isActive;
-    @Lob
-    @Size(max = 65535)
+    private Integer isActive;
+    @Size(max = 45)
     @Column(name = "job_title")
     private String jobTitle;
     @Column(name = "job_min_salary")
@@ -72,18 +73,21 @@ public class JobPost implements Serializable {
     private Integer jobMaxSalary;
     @Column(name = "year_exper_require")
     private Integer yearExperRequire;
+    @Size(max = 45)
+    @Column(name = "job_street")
+    private String jobStreet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobPost")
     private Set<JobPostActivity> jobPostActivitySet;
-    @JoinColumn(name = "posted_by_id", referencedColumnName = "id")
+    @JoinColumn(name = "employer_id", referencedColumnName = "id")
     @ManyToOne
-    private Employer postedById;
+    private Employer employerId;
     @JoinColumn(name = "job_location_id", referencedColumnName = "id")
     @ManyToOne
     private JobLocation jobLocationId;
     @JoinColumn(name = "job_type_id", referencedColumnName = "id")
     @ManyToOne
     private JobType jobTypeId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobPostId")
+    @OneToMany(mappedBy = "jobPostId")
     private Set<JobPostSkillSet> jobPostSkillSetSet;
 
     public JobPost() {
@@ -125,11 +129,11 @@ public class JobPost implements Serializable {
         this.jobRequirement = jobRequirement;
     }
 
-    public Character getIsActive() {
+    public Integer getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Character isActive) {
+    public void setIsActive(Integer isActive) {
         this.isActive = isActive;
     }
 
@@ -165,6 +169,14 @@ public class JobPost implements Serializable {
         this.yearExperRequire = yearExperRequire;
     }
 
+    public String getJobStreet() {
+        return jobStreet;
+    }
+
+    public void setJobStreet(String jobStreet) {
+        this.jobStreet = jobStreet;
+    }
+
     @XmlTransient
     public Set<JobPostActivity> getJobPostActivitySet() {
         return jobPostActivitySet;
@@ -174,12 +186,12 @@ public class JobPost implements Serializable {
         this.jobPostActivitySet = jobPostActivitySet;
     }
 
-    public Employer getPostedById() {
-        return postedById;
+    public Employer getEmployerId() {
+        return employerId;
     }
 
-    public void setPostedById(Employer postedById) {
-        this.postedById = postedById;
+    public void setEmployerId(Employer employerId) {
+        this.employerId = employerId;
     }
 
     public JobLocation getJobLocationId() {
