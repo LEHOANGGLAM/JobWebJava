@@ -26,20 +26,27 @@
                                     <span>39, 782 Jobs found</span>
                                     <!-- Select job items start -->
                                     <div class="select-job-items">
-                                        <span>Sort by</span>
-                                        <select name="select">
-                                            <option value="">None</option>
-                                            <option value="">job list</option>
-                                            <option value="">job list</option>
-                                            <option value="">job list</option>
-                                        </select>
+                                        <form class="navbar-form navbar-left" action="<c:url value="/joblish"/>">
+                                            <div class="input-group">
+                                                <input type="text" name="kw" class="form-control" placeholder="Search...">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit">
+                                                        <i class="flaticon-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                     <!--  Select job items End-->
                                 </div>
                             </div>
                         </div>
                         <!-- Count of Job list End -->
-
+                        <c:if test="${jobposts.size() == 0}">
+                            <p>
+                                <em style="font-size: 50px;">No job found</em>
+                            </p>
+                        </c:if>
                         <!-- single-job-content -->
                         <c:forEach items="${jobposts}" var="j">
                             <div class="single-job-items mb-30">
@@ -60,15 +67,11 @@
                                 </div>
                                 <div class="items-link items-link2 f-right">
                                     <a href="job_details.html">Watch</a>
-                                    <span> <fmt:formatDate type="date" dateStyle = "short" 
-                                                    pattern="yyyy-MM-dd" value="${j[4]}" /></span>
+                                    <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
+                                                    pattern="yyyy-MM-dd" value="${j[8]}" /></span>
                                 </div>
                             </div>
                         </c:forEach>
-
-
-
-
                     </div>
                 </section>
                 <!-- Featured_job_end -->
@@ -85,10 +88,15 @@
                 <div class="single-wrap d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">
-                            <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                            <li class="page-item"><a class="page-link" href="#">02</a></li>
-                            <li class="page-item"><a class="page-link" href="#">03</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+                            <c:forEach begin="1" end="${Math.ceil(jobCounter/7)}" var="page">
+                                <c:url value="/joblist" var="u">
+                                    <c:param name="page" value="${page}"></c:param>
+                                </c:url>
+                                <li class="page-item">                            
+                                    <a class="page-link" href="${u}">${page}</a>
+                                </li>                          
+                            </c:forEach>   
+
                         </ul>
                     </nav>
                 </div>

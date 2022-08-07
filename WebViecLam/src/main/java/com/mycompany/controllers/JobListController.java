@@ -6,6 +6,7 @@ package com.mycompany.controllers;
 
 import com.mycompany.service.JobService;
 import java.util.Map;
+import javax.ws.rs.core.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -30,17 +31,14 @@ public class JobListController {
     private Environment env;
 
     @RequestMapping("/joblist")
-    public String list( Model model) {
-     
-        
-        
-        //int page = Integer.parseInt(params.getOrDefault("page", "1"));
-       // model.addAttribute("jobposts", this.jobService.getJobs(params, page));
-          model.addAttribute("jobposts", this.jobService.getJobs()); //, page
-//        model.addAttribute("jobCounter", this.jobService.countJobPosts());
-      //  model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
-        
-        
+    public String list(Model model, @RequestParam(required = false) Map<String, String> params) {
+       
+        int page = Integer.parseInt(params.getOrDefault("page", "1"));
+       
+        model.addAttribute("jobposts", this.jobService.getJobs(null, page)); 
+        model.addAttribute("jobCounter", this.jobService.countJobPosts());
+        model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
+
         return "jobList";
     }
 }

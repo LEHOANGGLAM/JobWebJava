@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "JobPost.findAll", query = "SELECT j FROM JobPost j"),
     @NamedQuery(name = "JobPost.findById", query = "SELECT j FROM JobPost j WHERE j.id = :id"),
     @NamedQuery(name = "JobPost.findByCreatedDate", query = "SELECT j FROM JobPost j WHERE j.createdDate = :createdDate"),
+    @NamedQuery(name = "JobPost.findByExpirationDate", query = "SELECT j FROM JobPost j WHERE j.expirationDate = :expirationDate"),
     @NamedQuery(name = "JobPost.findByJobDescription", query = "SELECT j FROM JobPost j WHERE j.jobDescription = :jobDescription"),
     @NamedQuery(name = "JobPost.findByJobRequirement", query = "SELECT j FROM JobPost j WHERE j.jobRequirement = :jobRequirement"),
     @NamedQuery(name = "JobPost.findByIsActive", query = "SELECT j FROM JobPost j WHERE j.isActive = :isActive"),
@@ -56,6 +57,9 @@ public class JobPost implements Serializable {
     @Column(name = "created_date")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
+    @Column(name = "expiration_date")
+    @Temporal(TemporalType.DATE)
+    private Date expirationDate;
     @Size(max = 45)
     @Column(name = "job_description")
     private String jobDescription;
@@ -111,6 +115,14 @@ public class JobPost implements Serializable {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public String getJobDescription() {

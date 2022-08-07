@@ -14,7 +14,8 @@ import java.util.Map;
  */
 public interface JobService {
 
-    List<Object[]> getJobs();
-//
+    List<Object[]> getJobs(Map<String, String> params, int page);
+
+    int countJobPosts();
 //    int countJobPosts();
 }

@@ -40,7 +40,7 @@ public class JobRepositoryImpl implements JobReposiroty {
     private Environment env;
 
     @Override
-    public List<Object[]> getJobs() {
+    public List<Object[]> getJobs(Map<String, String> params, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
@@ -62,28 +62,45 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jRoot.get("createdDate"),
                 jRoot.get("jobStreet"),
                 jLocaRoot.get("city"),
-                eRoot.get("companyName")
+                eRoot.get("companyName"),
+                jRoot.get("expirationDate")
         );
-        
+        if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                Predicate p = b.like(jRoot.get("jobTitle").as(String.class), String.format("%%%s%%", kw));
+                predicates.add(p);
+            }
+            q.where(predicates.toArray(Predicate[]::new));
+        }
 
         Query createQuery = session.createQuery(q);
+        
+         if (page > 0) {
+            int size = Integer.parseInt(env.getProperty("page.size").toString());
+            int start = (page - 1) * size;
+            createQuery.setFirstResult(start);
+            createQuery.setMaxResults(size);
+        }
+         q.orderBy(b.desc(jRoot.get("id")));
         List<Object[]> kq = createQuery.getResultList();
 
-        kq.forEach(k -> {
-            System.out.printf("%s - city, %s - Title\n ", k[0], k[1]);
-        });
+//        kq.forEach(k -> {
+//            System.out.printf("%s - city, %s - Title\n ", k[0], k[1]);
+//        });
 
         return kq;
 
     }
 
-//    @Override
-//    public int countJobPosts() {
-//        Session session = this.sessionFactory.getObject().getCurrentSession();
-//        Query q = session.createQuery("SELECT Count(*) FROM JobPost");
-//
-//        return Integer.parseInt(q.getSingleResult().toString());
-//    }
+    @Override
+    public int countJobPosts() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("SELECT Count(*) FROM JobPost");
+
+        return Integer.parseInt(q.getSingleResult().toString());
+    }
 }
 
 //        if (params != null) {
