@@ -50,10 +50,9 @@ public class JobRepositoryImpl implements JobReposiroty {
         Root<JobLocation> jLocaRoot = q.from(JobLocation.class);
         Root<Employer> eRoot = q.from(Employer.class);
 
-        q.where(b.and(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
-                    b.equal(jRoot.get("employerId"), eRoot.get("id"))));
-       
-        
+        q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+                b.equal(jRoot.get("employerId"), eRoot.get("id")));
+
         q = q.multiselect(
                 jRoot.get("jobTitle"),
                 jRoot.get("jobMinSalary"),
@@ -64,6 +63,7 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jLocaRoot.get("city"),
                 eRoot.get("companyName"),
                 jRoot.get("expirationDate")
+              
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
@@ -74,22 +74,24 @@ public class JobRepositoryImpl implements JobReposiroty {
             }
             q.where(predicates.toArray(Predicate[]::new));
         }
+          
+        q.groupBy(jRoot.get("id"));
+        q.orderBy(b.desc(jRoot.get("id")));
 
-        Query createQuery = session.createQuery(q);
-        
-         if (page > 0) {
+        Query query = session.createQuery(q);
+
+        if (page > 0) {
             int size = Integer.parseInt(env.getProperty("page.size").toString());
             int start = (page - 1) * size;
-            createQuery.setFirstResult(start);
-            createQuery.setMaxResults(size);
+            query.setFirstResult(start);
+            query.setMaxResults(size);
         }
-         q.orderBy(b.desc(jRoot.get("id")));
-        List<Object[]> kq = createQuery.getResultList();
+      
+        List<Object[]> kq = query.getResultList();
 
 //        kq.forEach(k -> {
-//            System.out.printf("%s - city, %s - Title\n ", k[0], k[1]);
+//            System.out.printf("%d - city, %s - Title\n ", k[9], k[1]);
 //        });
-
         return kq;
 
     }
@@ -102,40 +104,3 @@ public class JobRepositoryImpl implements JobReposiroty {
         return Integer.parseInt(q.getSingleResult().toString());
     }
 }
-
-//        if (params != null) {
-//            List<Predicate> predicates = new ArrayList<>();
-//            String kw = params.get("kw");
-//            if (kw != null && !kw.isEmpty()) {
-//                Predicate p = b.like(root.get("id").as(String.class), String.format("%%%s%%", kw));
-//                predicates.add(p);
-//            }
-//
-////            String fp = params.get("fromPrice");
-////            if (fp != null) {
-////                Predicate p = b.greaterThanOrEqualTo(root.get("price").as(Long.class), Long.parseLong(fp));
-////                predicates.add(p);
-////            }
-////
-////            String tp = params.get("toPrice");
-////            if (tp != null) {
-////                Predicate p = b.lessThanOrEqualTo(root.get("price").as(Long.class), Long.parseLong(tp));
-////                predicates.add(p);
-////            }
-////
-////            String cateId = params.get("cateId");
-////            if (cateId != null) {
-////                Predicate p = b.equal(root.get("categoryId"), Integer.parseInt(cateId));
-////                predicates.add(p);
-////            }
-//            q.where(predicates.toArray(Predicate[]::new));
-//        }
-//
-//        Query query = session.createQuery(q);
-//
-//        if (page > 0) {
-//            int size = Integer.parseInt(env.getProperty("page.size").toString());
-//            int start = (page - 1) * size;
-//            query.setFirstResult(start);
-//            query.setMaxResults(size);
-//        }

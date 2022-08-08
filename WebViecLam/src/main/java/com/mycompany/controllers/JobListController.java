@@ -5,6 +5,7 @@
 package com.mycompany.controllers;
 
 import com.mycompany.service.JobService;
+import com.mycompany.service.JobTypeService;
 import java.util.Map;
 import javax.ws.rs.core.Request;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author admin
  */
 @Controller
-//@PropertySource("classpath:messages.properties")
+@ControllerAdvice
+@PropertySource("classpath:messages.properties")
 public class JobListController {
+
+    @Autowired
+    private JobTypeService jobTypeService;
 
     @Autowired
     private JobService jobService;
@@ -31,14 +36,15 @@ public class JobListController {
     private Environment env;
 
     @RequestMapping("/joblist")
-    public String list(Model model, @RequestParam(required = false) Map<String, String> params) {
-       
+    public String list(Model model, @RequestParam Map<String, String> params) {
+       // model.addAttribute("jobType", this.jobTypeService.getJobTypes());
+        
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
-       
-        model.addAttribute("jobposts", this.jobService.getJobs(null, page)); 
+        model.addAttribute("jobposts", this.jobService.getJobs(params, page));
         model.addAttribute("jobCounter", this.jobService.countJobPosts());
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
 
+        
         return "jobList";
     }
 }
