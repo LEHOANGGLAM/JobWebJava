@@ -40,7 +40,7 @@ public class JobRepositoryImpl implements JobReposiroty {
     private Environment env;
 
     @Override
-    public List<Object[]> getJobs() {
+    public List<Object[]> getJobs(Map<String, String> params, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
@@ -50,10 +50,9 @@ public class JobRepositoryImpl implements JobReposiroty {
         Root<JobLocation> jLocaRoot = q.from(JobLocation.class);
         Root<Employer> eRoot = q.from(Employer.class);
 
-        q.where(b.and(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
-                    b.equal(jRoot.get("employerId"), eRoot.get("id"))));
-       
-        
+        q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+                b.equal(jRoot.get("employerId"), eRoot.get("id")));
+
         q = q.multiselect(
                 jRoot.get("jobTitle"),
                 jRoot.get("jobMinSalary"),
@@ -62,63 +61,57 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jRoot.get("createdDate"),
                 jRoot.get("jobStreet"),
                 jLocaRoot.get("city"),
-                eRoot.get("companyName")
+                eRoot.get("companyName"),
+                jRoot.get("expirationDate")
+               
         );
-        
+        if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                Predicate p = b.like(jRoot.get("jobTitle").as(String.class), String.format("%%%s%%", kw));
+                predicates.add(p);
+            }
 
-        Query createQuery = session.createQuery(q);
-        List<Object[]> kq = createQuery.getResultList();
+            String jobTypeId = params.get("jobTypeId");
+            if (jobTypeId != null && !jobTypeId.isEmpty()) {
+                Predicate p = b.equal(jRoot.get("jobTypeId"), Integer.parseInt(jobTypeId));
+                predicates.add(p);
+            }
+
+            String jobLocationId = params.get("jobLocationId");
+            if (jobLocationId != null && !jobLocationId.isEmpty()) {
+                Predicate p = b.equal(jRoot.get("jobLocationId"), Integer.parseInt(jobLocationId));
+                predicates.add(p);
+            }
+            q.where(predicates.toArray(Predicate[]::new));
+        }
+
+        q.groupBy(jRoot.get("id"));
+        q.orderBy(b.desc(jRoot.get("id")));
+
+        Query query = session.createQuery(q);
+
+        if (page > 0) {
+            int size = Integer.parseInt(env.getProperty("page.size").toString());
+            int start = (page - 1) * size;
+            query.setFirstResult(start);
+            query.setMaxResults(size);
+        }
+
+        List<Object[]> kq = query.getResultList();
 
         kq.forEach(k -> {
-            System.out.printf("%s - city, %s - Title\n ", k[0], k[1]);
+            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
         });
-
         return kq;
 
     }
 
-//    @Override
-//    public int countJobPosts() {
-//        Session session = this.sessionFactory.getObject().getCurrentSession();
-//        Query q = session.createQuery("SELECT Count(*) FROM JobPost");
-//
-//        return Integer.parseInt(q.getSingleResult().toString());
-//    }
+    @Override
+    public int countJobPosts() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("SELECT Count(*) FROM JobPost");
+        return Integer.parseInt(q.getSingleResult().toString());
+    }
 }
-
-//        if (params != null) {
-//            List<Predicate> predicates = new ArrayList<>();
-//            String kw = params.get("kw");
-//            if (kw != null && !kw.isEmpty()) {
-//                Predicate p = b.like(root.get("id").as(String.class), String.format("%%%s%%", kw));
-//                predicates.add(p);
-//            }
-//
-////            String fp = params.get("fromPrice");
-////            if (fp != null) {
-////                Predicate p = b.greaterThanOrEqualTo(root.get("price").as(Long.class), Long.parseLong(fp));
-////                predicates.add(p);
-////            }
-////
-////            String tp = params.get("toPrice");
-////            if (tp != null) {
-////                Predicate p = b.lessThanOrEqualTo(root.get("price").as(Long.class), Long.parseLong(tp));
-////                predicates.add(p);
-////            }
-////
-////            String cateId = params.get("cateId");
-////            if (cateId != null) {
-////                Predicate p = b.equal(root.get("categoryId"), Integer.parseInt(cateId));
-////                predicates.add(p);
-////            }
-//            q.where(predicates.toArray(Predicate[]::new));
-//        }
-//
-//        Query query = session.createQuery(q);
-//
-//        if (page > 0) {
-//            int size = Integer.parseInt(env.getProperty("page.size").toString());
-//            int start = (page - 1) * size;
-//            query.setFirstResult(start);
-//            query.setMaxResults(size);
-//        }

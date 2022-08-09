@@ -22,53 +22,61 @@
                         <!-- Count of Job list Start -->
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="count-job mb-35">
-                                    <span>39, 782 Jobs found</span>
+                                <div class="count-job mb-35">                                  
+                                    <span><c:out value="${jobposts.size()}"/> Jobs found</span>
                                     <!-- Select job items start -->
                                     <div class="select-job-items">
-                                        <span>Sort by</span>
-                                        <select name="select">
-                                            <option value="">None</option>
-                                            <option value="">job list</option>
-                                            <option value="">job list</option>
-                                            <option value="">job list</option>
-                                        </select>
+                                        <!--onsubmit="return addOrUpdateUrlParam('kw',this.value)"-->
+                                        <form class="navbar-form navbar-left" action="${window.location.href}">
+                                            <div class="input-group">
+                                                <input name="kw" type="text"  
+                                                       class="form-control" placeholder="Search...">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit">
+                                                        <i class="flaticon-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                     <!--  Select job items End-->
                                 </div>
                             </div>
                         </div>
                         <!-- Count of Job list End -->
-
+                        <c:if test="${jobposts.size() == 0}">
+                            <p>
+                                <em style="font-size: 50px;">No job found</em>
+                            </p>
+                        </c:if>
                         <!-- single-job-content -->
-                        <c:forEach items="${jobposts}" var="j">
-                            <div class="single-job-items mb-30">
-                                <div class="job-items">
-                                    <div class="company-img">
-                                        <a href="#"><img src="asd" alt=""></a>
+                        <c:forEach items="${jobposts}" var="j" varStatus="loop">
+                          
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                            <a href="#"><img src="asd" alt=""></a>
+                                        </div>
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="#">
+                                                <h4>${j[0]} </h4>
+                                            </a>
+                                            <ul>
+                                                <li>${j[7]}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
+                                                <li>${j[1]} - ${j[2]}</li>                                                                               
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="job-tittle job-tittle2">
-                                        <a href="#">
-                                            <h4>${j[0]}</h4>
-                                        </a>
-                                        <ul>
-                                            <li>${j[7]}</li>
-                                            <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
-                                            <li>${j[1]} - ${j[2]}$</li>                                                                               
-                                        </ul>
+                                    <div class="items-link items-link2 f-right">
+                                        <a href="job_details.html">Watch</a>
+                                        <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
+                                                        pattern="yyyy-MM-dd" value="${j[8]}" /></span>
                                     </div>
                                 </div>
-                                <div class="items-link items-link2 f-right">
-                                    <a href="job_details.html">Watch</a>
-                                    <span> <fmt:formatDate type="date" dateStyle = "short" 
-                                                    pattern="yyyy-MM-dd" value="${j[4]}" /></span>
-                                </div>
-                            </div>
+                        
+
                         </c:forEach>
-
-
-
-
                     </div>
                 </section>
                 <!-- Featured_job_end -->
@@ -85,10 +93,15 @@
                 <div class="single-wrap d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">
-                            <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                            <li class="page-item"><a class="page-link" href="#">02</a></li>
-                            <li class="page-item"><a class="page-link" href="#">03</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+                            <c:forEach begin="1" end="${Math.ceil(jobCounter/pageSize)}" var="i">
+                                <c:url value="/joblist" var="u">
+                                    <c:param name="page" value="${i}"></c:param>
+                                </c:url>
+                                <li class="page-item">                            
+                                    <a class="page-link" href="${u}">${i}</a>
+                                </li>                          
+                            </c:forEach>   
+
                         </ul>
                     </nav>
                 </div>
@@ -97,4 +110,21 @@
     </div>
 </div>
 <!--Pagination End  -->
-
+<script>
+    function addOrUpdateUrlParam(name, value)
+    {
+        var href = window.location.href;
+        var regex = new RegExp("[&\\?]" + name + "=");
+        if (regex.test(href))
+        {
+            regex = new RegExp("([&\\?])" + name + "=\\d+");
+            window.location.href = href.replace(regex, "$1" + name + "=" + value);
+        } else
+        {
+            if (href.indexOf("?") > -1)
+                window.location.href = href + "&" + name + "=" + value;
+            else
+                window.location.href = href + "?" + name + "=" + value;
+        }
+    }
+</script>

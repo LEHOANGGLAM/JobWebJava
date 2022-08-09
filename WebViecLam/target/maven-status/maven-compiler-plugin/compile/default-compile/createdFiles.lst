@@ -1,4 +1,6 @@
 com\mycompany\service\impl\JobServiceImpl.class
+com\mycompany\repository\JobTypeRepository.class
+com\mycompany\service\JobTypeService.class
 META-INF\spring.components
 com\mycompany\configs\WebAppContextConfig.class
 com\mycompany\pojo\Employer.class
@@ -6,9 +8,13 @@ com\mycompany\pojo\UserAccount_.class
 com\mycompany\pojo\UserType_.class
 com\mycompany\configs\TilesConfig.class
 com\mycompany\pojo\JobLocation_.class
+com\mycompany\repository\impl\JobTypeRepositoryImpl.class
 com\mycompany\controllers\JobListController.class
+com\mycompany\repository\JobLocaRepository.class
+com\mycompany\service\impl\JobTypeServiceImpl.class
 com\mycompany\controllers\IndexController.class
 com\mycompany\pojo\BusinessType.class
+com\mycompany\repository\impl\JobLocaRepositoryImpl.class
 com\mycompany\configs\HibernateConfig.class
 com\mycompany\pojo\JobPostActivity.class
 com\mycompany\repository\impl\JobRepositoryImpl.class
@@ -18,6 +24,7 @@ com\mycompany\pojo\JobType_.class
 com\mycompany\pojo\JobPostSkillSet_.class
 com\mycompany\pojo\UserAccount.class
 com\mycompany\pojo\JobPostActivityPK.class
+com\mycompany\service\impl\JobLocaServiceImpl.class
 com\mycompany\pojo\JobPostActivityPK_.class
 com\mycompany\pojo\Category_.class
 com\mycompany\pojo\JobPost_.class
@@ -31,5 +38,6 @@ com\mycompany\pojo\UserType.class
 com\mycompany\pojo\SkillSet_.class
 com\mycompany\pojo\JobType.class
 com\mycompany\repository\JobReposiroty.class
+com\mycompany\service\JobLocaService.class
 com\mycompany\configs\DispatcherServletInit.class
 com\mycompany\pojo\Employer_.class

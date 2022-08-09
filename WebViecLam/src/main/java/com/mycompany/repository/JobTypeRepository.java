@@ -4,16 +4,14 @@
  */
 package com.mycompany.repository;
 
-import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.JobType;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author dell
  */
-public interface JobReposiroty {
-    List<Object[]> getJobs(Map<String, String> params, int page);
-    int countJobPosts();
-   // int countJobPosts();
+public interface JobTypeRepository {
+     List<JobType> getJobTypes();
+     public JobType getJobTypeById(int jobTypeId);
 }

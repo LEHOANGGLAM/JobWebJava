@@ -4,11 +4,10 @@
  */
 package com.mycompany.service.impl;
 
-import com.mycompany.pojo.JobPost;
-import com.mycompany.repository.JobReposiroty;
-import com.mycompany.service.JobService;
+import com.mycompany.pojo.JobType;
+import com.mycompany.repository.JobTypeRepository;
+import com.mycompany.service.JobTypeService;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +16,18 @@ import org.springframework.stereotype.Service;
  * @author dell
  */
 @Service
-public class JobServiceImpl implements JobService {
+public class JobTypeServiceImpl implements JobTypeService {
 
     @Autowired
-    private JobReposiroty jobReposiroty;
+    private JobTypeRepository jobTypeRepository;
 
     @Override
-    public List<Object[]> getJobs(Map<String, String> params, int page){
-        return this.jobReposiroty.getJobs(params, page); //, page
+    public List<JobType> getJobTypes() {
+        return this.jobTypeRepository.getJobTypes();
     }
 
     @Override
-    public int countJobPosts() {
-        return this.jobReposiroty.countJobPosts();
+    public JobType getJobTypeById(int jobTypeId) {
+        return this.jobTypeRepository.getJobTypeById(jobTypeId);
     }
 }
