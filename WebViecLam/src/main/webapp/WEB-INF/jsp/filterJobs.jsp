@@ -31,42 +31,34 @@
             </div>
             <!-- Select job items start -->
             <div class="select-job-items2">
-                <select onchange="document.location.href = '' + this.value+'&'" name="select">
+              
+                <select onchange="return addOrUpdateUrlParam('jobTypeId',this.value)" name="select">
                     <option value="">All Category</option>                 
                     <c:forEach items="${getJobTypes}" var="jT">
-                        <c:url value="/joblist" var="jTUrl">
-                            <c:param name="jobTypeId" value="${jT.id}" />
-                        </c:url>
-                        <option value="${jTUrl}">${jT.jobType}</option>
+                        <option value="${jT.id}">${jT.jobType}</option>
                     </c:forEach>
-
-
                 </select>
             </div>
             <!--  Select job items End-->
             <!-- select-Categories start -->
             <div class="select-Categories pt-80 pb-50">
                 <div class="small-section-tittle2">
-                    <h4>Job Type</h4>
+                    <h4>Posted Within</h4>
                 </div>
-                <label class="container">Full Time
+                <label class="container">Any
                     <input type="checkbox" >
                         <span class="checkmark"></span>
                 </label>
-                <label class="container">Part Time
+                <label class="container">Today
                     <input type="checkbox" checked="checked active">
                         <span class="checkmark"></span>
                 </label>
-                <label class="container">Remote
+                <label class="container">Last 2 days
                     <input type="checkbox">
                         <span class="checkmark"></span>
                 </label>
-                <label class="container">Freelance
-                    <input type="checkbox">
-                        <span class="checkmark"></span>
-                </label>
+           
             </div>
-            <!-- select-Categories End -->
         </div>
         <!-- single two -->
         <div class="single-listing">
@@ -75,12 +67,12 @@
             </div>
             <!-- Select job items start -->
             <div class="select-job-items2">
-                <select name="select">
-                    <option value="">Anywhere</option>
-                    <option value="">Category 1</option>
-                    <option value="">Category 2</option>
-                    <option value="">Category 3</option>
-                    <option value="">Category 4</option>
+             
+                <select onchange="return addOrUpdateUrlParam('jobLocationId',this.value)" name="select">
+                    <option value="">Anywhere</option>                 
+                    <c:forEach items="${getJobLocations}" var="jL">
+                        <option value="${jL.id}">${jL.city}</option>
+                    </c:forEach>
                 </select>
             </div>
             <!--  Select job items End-->
@@ -110,36 +102,7 @@
         </div>
         <!-- single three -->
         <div class="single-listing">
-            <!-- select-Categories start -->
-            <div class="select-Categories pb-50">
-                <div class="small-section-tittle2">
-                    <h4>Posted Within</h4>
-                </div>
-                <label class="container">Any
-                    <input type="checkbox" >
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">Today
-                    <input type="checkbox" checked="checked active">
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">Last 2 days
-                    <input type="checkbox">
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">Last 3 days
-                    <input type="checkbox">
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">Last 5 days
-                    <input type="checkbox">
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">Last 10 days
-                    <input type="checkbox">
-                        <span class="checkmark"></span>
-                </label>
-            </div>
+           
             <!-- select-Categories End -->
         </div>
         <div class="single-listing">
@@ -171,14 +134,20 @@
     <!-- Job Category Listing End -->
 </div>
 <script>
-    $(function () {
-        // bind change event to select
-        $('#dynamic_select').on('change', function () {
-            var url = $(this).val(); // get selected value
-            if (url) { // require a URL
-                window.location = url; // redirect
-            }
-            return false;
-        });
-    });
+    function addOrUpdateUrlParam(name, value)
+    {
+        var href = window.location.href;
+        var regex = new RegExp("[&\\?]" + name + "=");
+        if (regex.test(href))
+        {
+            regex = new RegExp("([&\\?])" + name + "=\\d+");
+            window.location.href = href.replace(regex, "$1" + name + "=" + value);
+        } else
+        {
+            if (href.indexOf("?") > -1)
+                window.location.href = href + "&" + name + "=" + value;
+            else
+                window.location.href = href + "?" + name + "=" + value;
+        }
+    }
 </script>

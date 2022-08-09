@@ -63,6 +63,7 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jLocaRoot.get("city"),
                 eRoot.get("companyName"),
                 jRoot.get("expirationDate")
+               
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
@@ -73,8 +74,14 @@ public class JobRepositoryImpl implements JobReposiroty {
             }
 
             String jobTypeId = params.get("jobTypeId");
-            if (jobTypeId != null) {
+            if (jobTypeId != null && !jobTypeId.isEmpty()) {
                 Predicate p = b.equal(jRoot.get("jobTypeId"), Integer.parseInt(jobTypeId));
+                predicates.add(p);
+            }
+
+            String jobLocationId = params.get("jobLocationId");
+            if (jobLocationId != null && !jobLocationId.isEmpty()) {
+                Predicate p = b.equal(jRoot.get("jobLocationId"), Integer.parseInt(jobLocationId));
                 predicates.add(p);
             }
             q.where(predicates.toArray(Predicate[]::new));
@@ -94,9 +101,9 @@ public class JobRepositoryImpl implements JobReposiroty {
 
         List<Object[]> kq = query.getResultList();
 
-//        kq.forEach(k -> {
-//            System.out.printf("%d - city, %s - Title\n ", k[9], k[1]);
-//        });
+        kq.forEach(k -> {
+            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
+        });
         return kq;
 
     }
@@ -105,7 +112,6 @@ public class JobRepositoryImpl implements JobReposiroty {
     public int countJobPosts() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         Query q = session.createQuery("SELECT Count(*) FROM JobPost");
-
         return Integer.parseInt(q.getSingleResult().toString());
     }
 }

@@ -5,6 +5,7 @@
 package com.mycompany.controllers;
 
 import com.mycompany.pojo.JobType;
+import com.mycompany.service.JobLocaService;
 import com.mycompany.service.JobService;
 import com.mycompany.service.JobTypeService;
 import java.util.Map;
@@ -30,6 +31,8 @@ public class JobListController {
 
     @Autowired
     private JobTypeService jobTypeService;
+    @Autowired
+    private JobLocaService jobLocaService;
 
     @Autowired
     private JobService jobService;
@@ -38,15 +41,15 @@ public class JobListController {
 
     @RequestMapping("/joblist")
     public String list(Model model, @RequestParam Map<String, String> params) {
-      
+
         model.addAttribute("getJobTypes", this.jobTypeService.getJobTypes());
-        
+        model.addAttribute("getJobLocations", this.jobLocaService.getJobLocations());
+
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
         model.addAttribute("jobCounter", this.jobService.countJobPosts());
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
 
-        
         return "jobList";
     }
 }

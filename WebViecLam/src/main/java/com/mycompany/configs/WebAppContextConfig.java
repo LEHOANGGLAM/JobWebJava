@@ -52,6 +52,7 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         m.setBasenames("messages");
         return m;
     }
+    
 //        @Bean
 //        public InternalResourceViewResolver viewResolver() {
 //            InternalResourceViewResolver r = new InternalResourceViewResolver();

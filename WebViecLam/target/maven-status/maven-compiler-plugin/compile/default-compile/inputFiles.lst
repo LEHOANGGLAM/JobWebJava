@@ -3,8 +3,10 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobReposiroty.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\JobListController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobLocation.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\JobLocaServiceImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPost.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Category.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\JobLocaService.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPostActivityPK.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\JobService.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\WebAppContextConfig.java
@@ -24,3 +26,5 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobTy
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\TilesConfig.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\JobRepositoryImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPostSkillSet.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\JobLocaRepositoryImpl.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobLocaRepository.java
