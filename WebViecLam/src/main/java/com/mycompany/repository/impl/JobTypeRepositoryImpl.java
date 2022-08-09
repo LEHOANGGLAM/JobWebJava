@@ -32,4 +32,10 @@ public class JobTypeRepositoryImpl implements JobTypeRepository {
 
         return q.getResultList();
     }
+    
+    @Override
+    public JobType getJobTypeById(int jobTypeId){
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(JobType.class, jobTypeId);
+    }
 }

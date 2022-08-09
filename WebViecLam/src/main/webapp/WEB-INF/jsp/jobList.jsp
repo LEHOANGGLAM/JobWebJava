@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="count-job mb-35">                                  
-                                    <span><c:out value="${jobCounter}"/> Jobs found</span>
+                                    <span><c:out value="${jobposts.size()}"/> Jobs found</span>
                                     <!-- Select job items start -->
                                     <div class="select-job-items">
                                         <form class="navbar-form navbar-left" action="<c:url value="/joblist"/>">

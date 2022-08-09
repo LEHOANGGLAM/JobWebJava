@@ -31,12 +31,16 @@
             </div>
             <!-- Select job items start -->
             <div class="select-job-items2">
-                <select name="select">
-                    <option value="">All Category</option>
-                    <option value="">Category 1</option>
-                    <option value="">Category 2</option>
-                    <option value="">Category 3</option>
-                    <option value="">Category 4</option>
+                <select onchange="document.location.href = '' + this.value+'&'" name="select">
+                    <option value="">All Category</option>                 
+                    <c:forEach items="${getJobTypes}" var="jT">
+                        <c:url value="/joblist" var="jTUrl">
+                            <c:param name="jobTypeId" value="${jT.id}" />
+                        </c:url>
+                        <option value="${jTUrl}">${jT.jobType}</option>
+                    </c:forEach>
+
+
                 </select>
             </div>
             <!--  Select job items End-->
@@ -166,3 +170,15 @@
     </div>
     <!-- Job Category Listing End -->
 </div>
+<script>
+    $(function () {
+        // bind change event to select
+        $('#dynamic_select').on('change', function () {
+            var url = $(this).val(); // get selected value
+            if (url) { // require a URL
+                window.location = url; // redirect
+            }
+            return false;
+        });
+    });
+</script>

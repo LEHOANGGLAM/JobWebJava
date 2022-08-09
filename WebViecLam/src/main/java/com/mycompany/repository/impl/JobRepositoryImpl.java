@@ -63,7 +63,6 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jLocaRoot.get("city"),
                 eRoot.get("companyName"),
                 jRoot.get("expirationDate")
-              
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
@@ -72,9 +71,15 @@ public class JobRepositoryImpl implements JobReposiroty {
                 Predicate p = b.like(jRoot.get("jobTitle").as(String.class), String.format("%%%s%%", kw));
                 predicates.add(p);
             }
+
+            String jobTypeId = params.get("jobTypeId");
+            if (jobTypeId != null) {
+                Predicate p = b.equal(jRoot.get("jobTypeId"), Integer.parseInt(jobTypeId));
+                predicates.add(p);
+            }
             q.where(predicates.toArray(Predicate[]::new));
         }
-          
+
         q.groupBy(jRoot.get("id"));
         q.orderBy(b.desc(jRoot.get("id")));
 
@@ -86,7 +91,7 @@ public class JobRepositoryImpl implements JobReposiroty {
             query.setFirstResult(start);
             query.setMaxResults(size);
         }
-      
+
         List<Object[]> kq = query.getResultList();
 
 //        kq.forEach(k -> {

@@ -25,4 +25,9 @@ public class JobTypeServiceImpl implements JobTypeService {
     public List<JobType> getJobTypes() {
         return this.jobTypeRepository.getJobTypes();
     }
+
+    @Override
+    public JobType getJobTypeById(int jobTypeId) {
+        return this.jobTypeRepository.getJobTypeById(jobTypeId);
+    }
 }

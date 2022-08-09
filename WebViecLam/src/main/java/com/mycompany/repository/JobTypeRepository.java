@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface JobTypeRepository {
      List<JobType> getJobTypes();
+     public JobType getJobTypeById(int jobTypeId);
 }
