@@ -13,7 +13,7 @@
         <div class="row">
             <!-- Left content -->
 
-            <%@include file="filterJobs.jsp"%>
+            <%@include file="_filterJobs.jsp"%>
             <!-- Right content -->
             <div class="col-xl-9 col-lg-9 col-md-8">
                 <!-- Featured_job_start -->
@@ -22,8 +22,10 @@
                         <!-- Count of Job list Start -->
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="count-job mb-35">                                  
-                                    <span><c:out value="${jobposts.size()}"/> Jobs found</span>
+                                <div class="count-job mb-35">    
+                                   
+                                    <span> <fmt:formatNumber type = "number" 
+                                                      maxIntegerDigits = "3" value = "${jobCounter}" /> Jobs found</span>
                                     <!-- Select job items start -->
                                     <div class="select-job-items">
                                         <!--onsubmit="return addOrUpdateUrlParam('kw',this.value)"-->
@@ -51,30 +53,30 @@
                         </c:if>
                         <!-- single-job-content -->
                         <c:forEach items="${jobposts}" var="j" varStatus="loop">
-                          
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="asd" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>${j[0]} </h4>
-                                            </a>
-                                            <ul>
-                                                <li>${j[7]}</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
-                                                <li>${j[1]} - ${j[2]}</li>                                                                               
-                                            </ul>
-                                        </div>
+
+                            <div class="single-job-items mb-30">
+                                <div class="job-items">
+                                    <div class="company-img">
+                                        <a href="#"><img src="asd" alt=""></a>
                                     </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Watch</a>
-                                        <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
-                                                        pattern="yyyy-MM-dd" value="${j[8]}" /></span>
+                                    <div class="job-tittle job-tittle2">
+                                        <a href="#">
+                                            <h4>${j[0]} </h4>
+                                        </a>
+                                        <ul>
+                                            <li>${j[7]}</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
+                                            <li>${j[1]} - ${j[2]}</li>                                                                               
+                                        </ul>
                                     </div>
                                 </div>
-                        
+                                <div class="items-link items-link2 f-right">
+                                    <a href="<c:url value="jobDetail"/>">Watch</a>
+                                    <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
+                                                    pattern="yyyy-MM-dd" value="${j[8]}" /></span>
+                                </div>
+                            </div>
+
 
                         </c:forEach>
                     </div>
@@ -97,7 +99,7 @@
                                 <c:url value="/joblist" var="u">
                                     <c:param name="page" value="${i}"></c:param>
                                 </c:url>
-                                <li class="page-item">                            
+                                <li class="page-item ${tagPage == i ? "active":""}">                            
                                     <a class="page-link" href="${u}">${i}</a>
                                 </li>                          
                             </c:forEach>   

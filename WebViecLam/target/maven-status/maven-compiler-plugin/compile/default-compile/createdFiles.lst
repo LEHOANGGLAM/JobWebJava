@@ -21,6 +21,7 @@ com\mycompany\repository\impl\JobRepositoryImpl.class
 com\mycompany\pojo\Category.class
 com\mycompany\pojo\JobPostSkillSet.class
 com\mycompany\pojo\JobType_.class
+com\mycompany\controllers\JobDetailController.class
 com\mycompany\pojo\JobPostSkillSet_.class
 com\mycompany\pojo\UserAccount.class
 com\mycompany\pojo\JobPostActivityPK.class

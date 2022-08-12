@@ -9,6 +9,7 @@ import com.mycompany.service.JobLocaService;
 import com.mycompany.service.JobService;
 import com.mycompany.service.JobTypeService;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -40,7 +41,7 @@ public class JobListController {
     private Environment env;
 
     @RequestMapping("/joblist")
-    public String list(Model model, @RequestParam Map<String, String> params) {
+    public String list(Model model, @RequestParam Map<String, String> params, HttpServletRequest hsr) {
 
         model.addAttribute("getJobTypes", this.jobTypeService.getJobTypes());
         model.addAttribute("getJobLocations", this.jobLocaService.getJobLocations());
@@ -50,6 +51,11 @@ public class JobListController {
         model.addAttribute("jobCounter", this.jobService.countJobPosts());
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
 
+        String typeId = params.getOrDefault("jobTypeId", "");
+        String locaId = params.getOrDefault("jobLocationId", "");
+        hsr.setAttribute("tagPage", page);
+        hsr.setAttribute("tagCate", typeId);
+        hsr.setAttribute("tagLoca", locaId);
         return "jobList";
     }
 }

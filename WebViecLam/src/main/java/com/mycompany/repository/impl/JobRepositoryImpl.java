@@ -63,7 +63,6 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jLocaRoot.get("city"),
                 eRoot.get("companyName"),
                 jRoot.get("expirationDate")
-               
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
@@ -101,9 +100,9 @@ public class JobRepositoryImpl implements JobReposiroty {
 
         List<Object[]> kq = query.getResultList();
 
-        kq.forEach(k -> {
-            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
-        });
+//        kq.forEach(k -> {
+//            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
+//        });
         return kq;
 
     }

@@ -2,6 +2,7 @@ com.mycompany.configs.HibernateConfig=org.springframework.stereotype.Component
 com.mycompany.configs.TilesConfig=org.springframework.stereotype.Component
 com.mycompany.configs.WebAppContextConfig=org.springframework.stereotype.Component
 com.mycompany.controllers.IndexController=org.springframework.stereotype.Component
+com.mycompany.controllers.JobDetailController=org.springframework.stereotype.Component
 com.mycompany.controllers.JobListController=org.springframework.stereotype.Component
 com.mycompany.pojo.BusinessType=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries
 com.mycompany.pojo.BusinessType_=javax.annotation.Generated,javax.persistence.metamodel.StaticMetamodel
