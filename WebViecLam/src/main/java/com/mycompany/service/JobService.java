@@ -17,5 +17,6 @@ public interface JobService {
     List<Object[]> getJobs(Map<String, String> params, int page);
 
     int countJobPosts();
-//    int countJobPosts();
+
+    JobPost getJobById(int id);
 }

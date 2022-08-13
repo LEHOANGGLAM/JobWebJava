@@ -14,6 +14,7 @@
     <class>com.mycompany.pojo.UserAccount</class>
     <class>com.mycompany.pojo.UserType</class>
     <class>com.mycompany.pojo.Category</class>
+    <class>com.mycompany.pojo.Company</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/vieclamdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

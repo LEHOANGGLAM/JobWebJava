@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface JobLocaService {
      List<JobLocation> getJobLocations();
+     JobLocation getLocationByJobPostId(int id);
 }

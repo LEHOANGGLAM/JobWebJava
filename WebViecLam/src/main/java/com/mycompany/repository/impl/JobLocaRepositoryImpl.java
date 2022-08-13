@@ -4,7 +4,9 @@
  */
 package com.mycompany.repository.impl;
 
+import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobLocation;
+import com.mycompany.pojo.JobPost;
 import com.mycompany.repository.JobLocaRepository;
 import java.util.List;
 import javax.persistence.Query;
@@ -37,7 +39,26 @@ public class JobLocaRepositoryImpl implements JobLocaRepository {
         Root root = q.from(JobLocation.class);
         q.select(root);
         Query query = session.createQuery(q);
-        
+
         return query.getResultList();
+    }
+
+    @Override
+    public JobLocation getLocationByJobPostId(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<JobLocation> q = b.createQuery(JobLocation.class);
+
+        Root<JobPost> jRoot = q.from(JobPost.class);
+        Root<JobLocation> jLocaRoot = q.from(JobLocation.class);
+
+        q.select(jLocaRoot).where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+                b.equal(jRoot.get("id"), id));
+        Query query = session.createQuery(q);
+        List<JobLocation> jLocaList = query.getResultList();
+        JobLocation j = jLocaList.get(0);
+        return j;
+        //return null;
     }
 }

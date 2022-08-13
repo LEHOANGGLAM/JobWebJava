@@ -3,7 +3,7 @@
     Created on : Jul 28, 2022, 4:32:41 AM
     Author     : dell
 --%>
-<%@include file="../taglib.jsp"%>
+<%@include file="../../taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- Online CV Area Start -->

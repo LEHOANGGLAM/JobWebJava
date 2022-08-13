@@ -4,10 +4,17 @@
  */
 package com.mycompany.controllers;
 
+import com.mycompany.service.CateService;
+import com.mycompany.service.JobLocaService;
+import com.mycompany.service.JobService;
+import com.mycompany.service.JobTypeService;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,18 +25,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @ControllerAdvice
 public class IndexController {
-//     @Autowired
-//    private CategoryService categoryService;
-//    @Autowired
-//    private ProductService productService;
+
+    @Autowired
+    private JobTypeService jobTypeService;
+    @Autowired
+    private JobLocaService jobLocaService;
+    @Autowired
+    private CateService cateService;
+
+    @Autowired
+    private JobService jobService;
+    @Autowired
+    private Environment env;
+
+    @ModelAttribute
+    public void commonAttribute(Model model) {
+        model.addAttribute("cate", this.cateService.getCateList());
+    }
 
     @RequestMapping("/")
     public String index(Model model,
             @RequestParam Map<String, String> params) {
 
-//        model.addAttribute("categories", this.categoryService.getCategories());
-//        model.addAttribute("products", this.productService.getProducts(params, 0));
-//        
+        int page = Integer.parseInt(params.getOrDefault("page", "1"));
+        model.addAttribute("jobposts", this.jobService.getJobs(params, page));
+
         return "index";
     }
 }

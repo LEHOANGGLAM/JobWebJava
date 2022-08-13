@@ -9,6 +9,7 @@ import com.mycompany.repository.JobReposiroty;
 import com.mycompany.service.JobService;
 import java.util.List;
 import java.util.Map;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +24,17 @@ public class JobServiceImpl implements JobService {
     private JobReposiroty jobReposiroty;
 
     @Override
-    public List<Object[]> getJobs(Map<String, String> params, int page){
+    public List<Object[]> getJobs(Map<String, String> params, int page) {
         return this.jobReposiroty.getJobs(params, page); //, page
     }
 
     @Override
     public int countJobPosts() {
         return this.jobReposiroty.countJobPosts();
+    }
+
+    @Override
+    public JobPost getJobById(int id) {
+        return this.jobReposiroty.getJobById(id);
     }
 }

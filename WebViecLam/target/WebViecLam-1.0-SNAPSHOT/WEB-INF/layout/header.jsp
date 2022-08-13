@@ -25,7 +25,10 @@
                             <div class="main-menu">
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
-                                        <li><a href="/WebViecLam">Home</a></li>
+                                        <c:forEach items="${cate}" var="cate" varStatus="loop">
+                                              <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a></li>
+                                        </c:forEach>
+<!--                                        <li><a href="/WebViecLam">Home</a></li>
                                         <li><a href="<c:url value="/joblist"/>">Find a Jobs </a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="#">Page</a>
@@ -36,7 +39,7 @@
                                                 <li><a href="job_details.html">job Details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="contact.html">Contact</a></li>-->
                                     </ul>
                                 </nav>
                             </div>          

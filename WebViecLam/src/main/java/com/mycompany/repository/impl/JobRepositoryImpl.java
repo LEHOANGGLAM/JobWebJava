@@ -4,7 +4,7 @@
  */
 package com.mycompany.repository.impl;
 
-import com.mycompany.pojo.Employer;
+import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobLocation;
 import com.mycompany.pojo.JobPost;
 import com.mycompany.repository.JobReposiroty;
@@ -48,10 +48,10 @@ public class JobRepositoryImpl implements JobReposiroty {
 
         Root<JobPost> jRoot = q.from(JobPost.class);
         Root<JobLocation> jLocaRoot = q.from(JobLocation.class);
-        Root<Employer> eRoot = q.from(Employer.class);
+        Root<Company> cRoot = q.from(Company.class);
 
         q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
-                b.equal(jRoot.get("employerId"), eRoot.get("id")));
+                b.equal(jRoot.get("companyId"), cRoot.get("id")));
 
         q = q.multiselect(
                 jRoot.get("jobTitle"),
@@ -61,9 +61,9 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jRoot.get("createdDate"),
                 jRoot.get("jobStreet"),
                 jLocaRoot.get("city"),
-                eRoot.get("companyName"),
-                jRoot.get("expirationDate")
-               
+                cRoot.get("companyName"),
+                jRoot.get("expirationDate"),
+                jRoot.get("id")
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
@@ -84,6 +84,12 @@ public class JobRepositoryImpl implements JobReposiroty {
                 Predicate p = b.equal(jRoot.get("jobLocationId"), Integer.parseInt(jobLocationId));
                 predicates.add(p);
             }
+
+            String jobId = params.get("jId");
+            if (jobId != null && !jobId.isEmpty()) {
+                Predicate p = b.equal(jRoot.get("id"), Integer.parseInt(jobId));
+                predicates.add(p);
+            }
             q.where(predicates.toArray(Predicate[]::new));
         }
 
@@ -101,9 +107,9 @@ public class JobRepositoryImpl implements JobReposiroty {
 
         List<Object[]> kq = query.getResultList();
 
-        kq.forEach(k -> {
-            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
-        });
+//        kq.forEach(k -> {
+//            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
+//        });
         return kq;
 
     }
@@ -113,5 +119,11 @@ public class JobRepositoryImpl implements JobReposiroty {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         Query q = session.createQuery("SELECT Count(*) FROM JobPost");
         return Integer.parseInt(q.getSingleResult().toString());
+    }
+
+    @Override
+    public JobPost getJobById(int id) {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(JobPost.class, id);
     }
 }

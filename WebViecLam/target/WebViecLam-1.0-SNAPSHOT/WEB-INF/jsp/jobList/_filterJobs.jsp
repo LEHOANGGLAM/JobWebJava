@@ -3,7 +3,7 @@
     Created on : Jul 28, 2022, 4:48:21 PM
     Author     : dell
 --%>
-<%@include file="../taglib.jsp"%>
+<%@include file="../../taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <div class="col-xl-3 col-lg-3 col-md-4">
@@ -31,11 +31,11 @@
             </div>
             <!-- Select job items start -->
             <div class="select-job-items2">
-              
-                <select onchange="return addOrUpdateUrlParam('jobTypeId',this.value)" name="select">
+
+                <select onchange="return addOrUpdateUrlParam('jobTypeId', this.value)" name="select">
                     <option value="">All Category</option>                 
                     <c:forEach items="${getJobTypes}" var="jT">
-                        <option value="${jT.id}">${jT.jobType}</option>
+                        <option value="${jT.id}" ${tagCate == jT.id ? "selected":""}>${jT.jobType}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -46,18 +46,19 @@
                     <h4>Posted Within</h4>
                 </div>
                 <label class="container">Any
-                    <input type="checkbox" >
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">Today
                     <input type="checkbox" checked="checked active">
                         <span class="checkmark"></span>
                 </label>
-                <label class="container">Last 2 days
+                <label class="container">Today
                     <input type="checkbox">
                         <span class="checkmark"></span>
                 </label>
-           
+                <c:forEach begin="1" end="${4}" var="i">
+                    <label class="container">Lasts ${i*2} days
+                        <input type="checkbox" >
+                            <span class="checkmark"></span>
+                    </label>
+                </c:forEach>  
             </div>
         </div>
         <!-- single two -->
@@ -67,11 +68,11 @@
             </div>
             <!-- Select job items start -->
             <div class="select-job-items2">
-             
-                <select onchange="return addOrUpdateUrlParam('jobLocationId',this.value)" name="select">
+
+                <select onchange="return addOrUpdateUrlParam('jobLocationId', this.value)" name="select">
                     <option value="">Anywhere</option>                 
                     <c:forEach items="${getJobLocations}" var="jL">
-                        <option value="${jL.id}">${jL.city}</option>
+                        <option value="${jL.id}" ${tagLoca == jL.id ? "selected":""}>${jL.city}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -81,20 +82,14 @@
                 <div class="small-section-tittle2">
                     <h4>Experience</h4>
                 </div>
-                <label class="container">1-2 Years
+                <c:forEach begin="1" end="${4}" var="i">
+                    <label class="container">${i} years
+                        <input type="checkbox" >
+                            <span class="checkmark"></span>
+                    </label>
+                </c:forEach>  
+                <label class="container">5 - more..
                     <input type="checkbox" >
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">2-3 Years
-                    <input type="checkbox" checked="checked active">
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">3-6 Years
-                    <input type="checkbox">
-                        <span class="checkmark"></span>
-                </label>
-                <label class="container">6-more..
-                    <input type="checkbox">
                         <span class="checkmark"></span>
                 </label>
             </div>
@@ -102,7 +97,7 @@
         </div>
         <!-- single three -->
         <div class="single-listing">
-           
+
             <!-- select-Categories End -->
         </div>
         <div class="single-listing">

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @author dell
  */
 @Service
-public class JobLocaServiceImpl implements JobLocaService{
+public class JobLocaServiceImpl implements JobLocaService {
 
     @Autowired
     private JobLocaRepository jobLocaRepository;
@@ -26,5 +26,10 @@ public class JobLocaServiceImpl implements JobLocaService{
     @Override
     public List<JobLocation> getJobLocations() {
         return this.jobLocaRepository.getJobLocations();
+    }
+
+    @Override
+    public JobLocation getLocationByJobPostId(int id) {
+        return this.jobLocaRepository.getLocationByJobPostId(id);
     }
 }

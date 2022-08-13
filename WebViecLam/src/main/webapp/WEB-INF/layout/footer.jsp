@@ -88,7 +88,7 @@
                     <!-- logo -->
                     <div class="footer-logo mb-20 logo">
                         <c:url value="/img/logo/logo.png" var="img"/>
-                        <a href="index.html"><img src="${img}" alt="">WorkFun</a>
+                        <a href="/WebViecLam"><img src="${img}" alt="">WorkFun</a>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
