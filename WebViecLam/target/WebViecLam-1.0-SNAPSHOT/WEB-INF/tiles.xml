@@ -29,5 +29,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/jobDetail/jobDetail.jsp" />
     </definition>
+     <definition name="Default" extends="baseLayout">
+        <put-attribute name="title" value="Default" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/about.jsp" />
+    </definition>
 </tiles-definitions>
 

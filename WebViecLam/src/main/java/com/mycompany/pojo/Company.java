@@ -40,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Company.findByCreatedDate", query = "SELECT c FROM Company c WHERE c.createdDate = :createdDate"),
     @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image"),
     @NamedQuery(name = "Company.findByCompanyWebsite", query = "SELECT c FROM Company c WHERE c.companyWebsite = :companyWebsite"),
-    @NamedQuery(name = "Company.findByCompanyEmail", query = "SELECT c FROM Company c WHERE c.companyEmail = :companyEmail")})
+    @NamedQuery(name = "Company.findByCompanyEmail", query = "SELECT c FROM Company c WHERE c.companyEmail = :companyEmail"),
+    @NamedQuery(name = "Company.findByCoverImage", query = "SELECT c FROM Company c WHERE c.coverImage = :coverImage")})
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -67,6 +68,9 @@ public class Company implements Serializable {
     @Size(max = 45)
     @Column(name = "company_email")
     private String companyEmail;
+    @Size(max = 45)
+    @Column(name = "cover_image")
+    private String coverImage;
     @OneToMany(mappedBy = "companyId")
     private Set<JobPost> jobPostSet;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
@@ -134,6 +138,14 @@ public class Company implements Serializable {
 
     public void setCompanyEmail(String companyEmail) {
         this.companyEmail = companyEmail;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 
     @XmlTransient

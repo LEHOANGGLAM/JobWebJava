@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Category.findByCategoryName", query = "SELECT c FROM Category c WHERE c.categoryName = :categoryName"),
     @NamedQuery(name = "Category.findByParentCateId", query = "SELECT c FROM Category c WHERE c.parentCateId = :parentCateId"),
     @NamedQuery(name = "Category.findByContent", query = "SELECT c FROM Category c WHERE c.content = :content"),
-    @NamedQuery(name = "Category.findByActive", query = "SELECT c FROM Category c WHERE c.active = :active")})
+    @NamedQuery(name = "Category.findByActive", query = "SELECT c FROM Category c WHERE c.active = :active"),
+    @NamedQuery(name = "Category.findByLinkCate", query = "SELECT c FROM Category c WHERE c.linkCate = :linkCate")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +52,9 @@ public class Category implements Serializable {
     private String content;
     @Column(name = "active")
     private Integer active;
+    @Size(max = 45)
+    @Column(name = "link_cate")
+    private String linkCate;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType userTypeId;
@@ -100,6 +104,14 @@ public class Category implements Serializable {
 
     public void setActive(Integer active) {
         this.active = active;
+    }
+
+    public String getLinkCate() {
+        return linkCate;
+    }
+
+    public void setLinkCate(String linkCate) {
+        this.linkCate = linkCate;
     }
 
     public UserType getUserTypeId() {

@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers;
 
+import com.mycompany.service.CateService;
 import com.mycompany.service.JobLocaService;
 import com.mycompany.service.JobService;
 import com.mycompany.service.JobTypeService;
@@ -13,6 +14,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,21 +30,26 @@ public class IndexController {
     private JobTypeService jobTypeService;
     @Autowired
     private JobLocaService jobLocaService;
+    @Autowired
+    private CateService cateService;
 
     @Autowired
     private JobService jobService;
     @Autowired
     private Environment env;
 
+    @ModelAttribute
+    public void commonAttribute(Model model) {
+        model.addAttribute("cate", this.cateService.getCateList());
+    }
+
     @RequestMapping("/")
     public String index(Model model,
             @RequestParam Map<String, String> params) {
-        
+
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
-//        model.addAttribute("categories", this.categoryService.getCategories());
-//        model.addAttribute("products", this.productService.getProducts(params, 0));
-//        
+
         return "index";
     }
 }
