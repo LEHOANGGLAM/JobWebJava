@@ -42,7 +42,7 @@ public class BusinessType implements Serializable {
     @Column(name = "business_type_name")
     private String businessTypeName;
     @OneToMany(mappedBy = "businessTypeId")
-    private Set<Employer> employerSet;
+    private Set<Company> companySet;
 
     public BusinessType() {
     }
@@ -68,12 +68,12 @@ public class BusinessType implements Serializable {
     }
 
     @XmlTransient
-    public Set<Employer> getEmployerSet() {
-        return employerSet;
+    public Set<Company> getCompanySet() {
+        return companySet;
     }
 
-    public void setEmployerSet(Set<Employer> employerSet) {
-        this.employerSet = employerSet;
+    public void setCompanySet(Set<Company> companySet) {
+        this.companySet = companySet;
     }
 
     @Override

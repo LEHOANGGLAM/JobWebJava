@@ -13,7 +13,11 @@ import java.util.Map;
  * @author dell
  */
 public interface JobReposiroty {
+
     List<Object[]> getJobs(Map<String, String> params, int page);
+
     int countJobPosts();
-   // int countJobPosts();
+
+    JobPost getJobById(int id);
+    // int countJobPosts();
 }

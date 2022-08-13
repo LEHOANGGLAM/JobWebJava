@@ -7,7 +7,7 @@ package com.mycompany.repository.impl;
 import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobLocation;
 import com.mycompany.pojo.JobPost;
-import com.mycompany.repository.JobLocaRepository;
+import com.mycompany.repository.CompanyRepository;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,6 +15,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,40 +27,29 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class JobLocaRepositoryImpl implements JobLocaRepository {
+public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
+    @Autowired
+    private Environment env;
 
     @Override
-    public List<JobLocation> getJobLocations() {
+    public Company getCompanyByJobPostId(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<JobLocation> q = b.createQuery(JobLocation.class);
-        Root root = q.from(JobLocation.class);
-        q.select(root);
-        Query query = session.createQuery(q);
-
-        return query.getResultList();
-    }
-
-    @Override
-    public JobLocation getLocationByJobPostId(int id) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<JobLocation> q = b.createQuery(JobLocation.class);
+        CriteriaQuery<Company> q = b.createQuery(Company.class);
 
         Root<JobPost> jRoot = q.from(JobPost.class);
-        Root<JobLocation> jLocaRoot = q.from(JobLocation.class);
+        Root<Company> cRoot = q.from(Company.class);
 
-        q.select(jLocaRoot).where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+       
+        q.select(cRoot).where(b.equal(jRoot.get("companyId"), cRoot.get("id")),
                 b.equal(jRoot.get("id"), id));
         Query query = session.createQuery(q);
-        List<JobLocation> jLocaList = query.getResultList();
-        JobLocation j = jLocaList.get(0);
-        return j;
-        //return null;
+        List<Company> cList = query.getResultList();
+        Company c = cList.get(0);
+        return c;
     }
 }

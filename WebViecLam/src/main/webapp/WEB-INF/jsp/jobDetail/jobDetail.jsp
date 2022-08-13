@@ -3,7 +3,7 @@
     Created on : Jul 28, 2022, 4:26:01 PM
     Author     : dell
 --%>
-<%@include file="../taglib.jsp"%>
+<%@include file="../../taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- job post company Start -->
@@ -20,12 +20,12 @@
                         </div>
                         <div class="job-tittle">
                             <a href="#">
-                                <h4>Digital Marketer</h4>
+                                <h4>${job.jobTitle}</h4>
                             </a>
                             <ul>
-                                <li>Creative Agency</li>
-                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                <li>$3500 - $4000</li>
+                                <li>${c.companyName}</li>
+                                <li><i class="fas fa-map-marker-alt"></i>${job.jobStreet}, ${l.city}</li>
+                                <li>${job.jobMinSalary} - ${job.jobMaxSalary}$</li>
                             </ul>
                         </div>
                     </div>
@@ -38,33 +38,21 @@
                         <div class="small-section-tittle">
                             <h4>Job Description</h4>
                         </div>
-                        <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
+                        <p>${job.jobDescription}</p>
                     </div>
                     <div class="post-details2  mb-50">
                         <!-- Small Section Tittle -->
                         <div class="small-section-tittle">
-                            <h4>Required Knowledge, Skills, and Abilities</h4>
+                            <h4>Required Knowledge, Education, Skills, and Abilities</h4>
                         </div>
-                        <ul>
-                            <li>System Software Development</li>
-                            <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                            <li>Research and code , libraries, APIs and frameworks</li>
-                            <li>Strong knowledge on software development life cycle</li>
-                            <li>Strong problem solving and debugging skills</li>
-                        </ul>
+                        <p>${job.jobRequirement}</p>
                     </div>
                     <div class="post-details2  mb-50">
                         <!-- Small Section Tittle -->
                         <div class="small-section-tittle">
-                            <h4>Education + Experience</h4>
+                            <h4>Individual Right</h4>
                         </div>
-                        <ul>
-                            <li>3 or more years of professional design experience</li>
-                            <li>Direct response email experience</li>
-                            <li>Ecommerce website design experience</li>
-                            <li>Familiarity with mobile and web apps preferred</li>
-                            <li>Experience using Invision a plus</li>
-                        </ul>
+                         <p>${job.individualRight}</p>
                     </div>
                 </div>
 
@@ -77,12 +65,14 @@
                         <h4>Job Overview</h4>
                     </div>
                     <ul>
-                        <li>Posted date : <span>12 Aug 2019</span></li>
-                        <li>Location : <span>New York</span></li>
-                        <li>Vacancy : <span>02</span></li>
-                        <li>Job nature : <span>Full time</span></li>
-                        <li>Salary :  <span>$7,800 yearly</span></li>
-                        <li>Application date : <span>12 Sep 2020</span></li>
+                        <li>Posted date : <span> <fmt:formatDate type="date" dateStyle = "short" 
+                                                    pattern="yyyy-MM-dd" value="${job.createdDate}" /></span></li>
+                        <li>Location : <span>${l.city}</span></li>
+                        <li>Vacancy : <span>${job.vacancy}</span></li>
+                        <li>Job nature : <span>${job.jobNature}</span></li>
+                        <li>Salary :  <span>$<fmt:formatNumber type = "number" 
+                                                      maxIntegerDigits = "9" value = "${job.jobMaxSalary*12}" /> yearly</span></li>
+                        <li>Application date : <span>${job.expirationDate}</span></li>
                     </ul>
                     <div class="apply-btn2">
                         <a href="#" class="btn">Apply Now</a>
@@ -93,12 +83,12 @@
                     <div class="small-section-tittle">
                         <h4>Company Information</h4>
                     </div>
-                    <span>Colorlib</span>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <ul>
-                        <li>Name: <span>Colorlib </span></li>
-                        <li>Web : <span> colorlib.com</span></li>
-                        <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+                  
+                    <li >Name: <a href="#">${c.companyName} </a><b></b></li>
+                        <br>
+                        <li>Web : <b> ${c.companyWebsite}</b></li>
+                            <br>
+                        <li>Email: <b>${c.companyEmail}</b></li>
                     </ul>
                 </div>
             </div>

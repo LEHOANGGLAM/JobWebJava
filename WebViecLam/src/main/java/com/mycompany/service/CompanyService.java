@@ -4,19 +4,13 @@
  */
 package com.mycompany.service;
 
-import com.mycompany.pojo.JobPost;
-import java.util.List;
-import java.util.Map;
+import com.mycompany.pojo.Company;
 
 /**
  *
  * @author dell
  */
-public interface JobService {
+public interface CompanyService {
 
-    List<Object[]> getJobs(Map<String, String> params, int page);
-
-    int countJobPosts();
-
-    JobPost getJobById(int id);
+    Company getCompanyByJobPostId(int id);
 }

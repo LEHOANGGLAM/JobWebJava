@@ -45,7 +45,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "JobPost.findByJobMinSalary", query = "SELECT j FROM JobPost j WHERE j.jobMinSalary = :jobMinSalary"),
     @NamedQuery(name = "JobPost.findByJobMaxSalary", query = "SELECT j FROM JobPost j WHERE j.jobMaxSalary = :jobMaxSalary"),
     @NamedQuery(name = "JobPost.findByYearExperRequire", query = "SELECT j FROM JobPost j WHERE j.yearExperRequire = :yearExperRequire"),
-    @NamedQuery(name = "JobPost.findByJobStreet", query = "SELECT j FROM JobPost j WHERE j.jobStreet = :jobStreet")})
+    @NamedQuery(name = "JobPost.findByJobStreet", query = "SELECT j FROM JobPost j WHERE j.jobStreet = :jobStreet"),
+    @NamedQuery(name = "JobPost.findByJobNature", query = "SELECT j FROM JobPost j WHERE j.jobNature = :jobNature"),
+    @NamedQuery(name = "JobPost.findByVacancy", query = "SELECT j FROM JobPost j WHERE j.vacancy = :vacancy"),
+    @NamedQuery(name = "JobPost.findByIndividualRight", query = "SELECT j FROM JobPost j WHERE j.individualRight = :individualRight")})
 public class JobPost implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -80,11 +83,19 @@ public class JobPost implements Serializable {
     @Size(max = 45)
     @Column(name = "job_street")
     private String jobStreet;
+    @Size(max = 45)
+    @Column(name = "job_nature")
+    private String jobNature;
+    @Column(name = "vacancy")
+    private Integer vacancy;
+    @Size(max = 45)
+    @Column(name = "individual_right")
+    private String individualRight;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobPost")
     private Set<JobPostActivity> jobPostActivitySet;
-    @JoinColumn(name = "employer_id", referencedColumnName = "id")
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
-    private Employer employerId;
+    private Company companyId;
     @JoinColumn(name = "job_location_id", referencedColumnName = "id")
     @ManyToOne
     private JobLocation jobLocationId;
@@ -189,6 +200,30 @@ public class JobPost implements Serializable {
         this.jobStreet = jobStreet;
     }
 
+    public String getJobNature() {
+        return jobNature;
+    }
+
+    public void setJobNature(String jobNature) {
+        this.jobNature = jobNature;
+    }
+
+    public Integer getVacancy() {
+        return vacancy;
+    }
+
+    public void setVacancy(Integer vacancy) {
+        this.vacancy = vacancy;
+    }
+
+    public String getIndividualRight() {
+        return individualRight;
+    }
+
+    public void setIndividualRight(String individualRight) {
+        this.individualRight = individualRight;
+    }
+
     @XmlTransient
     public Set<JobPostActivity> getJobPostActivitySet() {
         return jobPostActivitySet;
@@ -198,12 +233,12 @@ public class JobPost implements Serializable {
         this.jobPostActivitySet = jobPostActivitySet;
     }
 
-    public Employer getEmployerId() {
-        return employerId;
+    public Company getCompanyId() {
+        return companyId;
     }
 
-    public void setEmployerId(Employer employerId) {
-        this.employerId = employerId;
+    public void setCompanyId(Company companyId) {
+        this.companyId = companyId;
     }
 
     public JobLocation getJobLocationId() {

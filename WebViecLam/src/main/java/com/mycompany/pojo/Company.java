@@ -30,16 +30,18 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author dell
  */
 @Entity
-@Table(name = "employer")
+@Table(name = "company")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Employer.findAll", query = "SELECT e FROM Employer e"),
-    @NamedQuery(name = "Employer.findById", query = "SELECT e FROM Employer e WHERE e.id = :id"),
-    @NamedQuery(name = "Employer.findByCompanyName", query = "SELECT e FROM Employer e WHERE e.companyName = :companyName"),
-    @NamedQuery(name = "Employer.findByProfileDescription", query = "SELECT e FROM Employer e WHERE e.profileDescription = :profileDescription"),
-    @NamedQuery(name = "Employer.findByCreatedDate", query = "SELECT e FROM Employer e WHERE e.createdDate = :createdDate"),
-    @NamedQuery(name = "Employer.findByImage", query = "SELECT e FROM Employer e WHERE e.image = :image")})
-public class Employer implements Serializable {
+    @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
+    @NamedQuery(name = "Company.findById", query = "SELECT c FROM Company c WHERE c.id = :id"),
+    @NamedQuery(name = "Company.findByCompanyName", query = "SELECT c FROM Company c WHERE c.companyName = :companyName"),
+    @NamedQuery(name = "Company.findByProfileDescription", query = "SELECT c FROM Company c WHERE c.profileDescription = :profileDescription"),
+    @NamedQuery(name = "Company.findByCreatedDate", query = "SELECT c FROM Company c WHERE c.createdDate = :createdDate"),
+    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image"),
+    @NamedQuery(name = "Company.findByCompanyWebsite", query = "SELECT c FROM Company c WHERE c.companyWebsite = :companyWebsite"),
+    @NamedQuery(name = "Company.findByCompanyEmail", query = "SELECT c FROM Company c WHERE c.companyEmail = :companyEmail")})
+public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,16 +61,22 @@ public class Employer implements Serializable {
     @Size(max = 45)
     @Column(name = "image")
     private String image;
-    @OneToMany(mappedBy = "employerId")
+    @Size(max = 45)
+    @Column(name = "company_website")
+    private String companyWebsite;
+    @Size(max = 45)
+    @Column(name = "company_email")
+    private String companyEmail;
+    @OneToMany(mappedBy = "companyId")
     private Set<JobPost> jobPostSet;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
     private BusinessType businessTypeId;
 
-    public Employer() {
+    public Company() {
     }
 
-    public Employer(Integer id) {
+    public Company(Integer id) {
         this.id = id;
     }
 
@@ -112,6 +120,22 @@ public class Employer implements Serializable {
         this.image = image;
     }
 
+    public String getCompanyWebsite() {
+        return companyWebsite;
+    }
+
+    public void setCompanyWebsite(String companyWebsite) {
+        this.companyWebsite = companyWebsite;
+    }
+
+    public String getCompanyEmail() {
+        return companyEmail;
+    }
+
+    public void setCompanyEmail(String companyEmail) {
+        this.companyEmail = companyEmail;
+    }
+
     @XmlTransient
     public Set<JobPost> getJobPostSet() {
         return jobPostSet;
@@ -139,10 +163,10 @@ public class Employer implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Employer)) {
+        if (!(object instanceof Company)) {
             return false;
         }
-        Employer other = (Employer) object;
+        Company other = (Company) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -151,7 +175,7 @@ public class Employer implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.pojo.Employer[ id=" + id + " ]";
+        return "com.mycompany.pojo.Company[ id=" + id + " ]";
     }
     
 }

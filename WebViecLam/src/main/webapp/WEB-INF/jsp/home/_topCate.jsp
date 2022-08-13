@@ -3,7 +3,7 @@
     Created on : Jul 28, 2022, 4:31:03 AM
     Author     : dell
 --%>
-<%@include file="../taglib.jsp"%>
+<%@include file="../../taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Our Services Start -->
 <div class="our-services section-pad-t30">
@@ -35,7 +35,7 @@
                         <span class="flaticon-cms"></span>
                     </div>
                     <div class="services-cap">
-                        <h5><a href="job_listing.html">Design & Development</a></h5>
+                        <h5><a href="joblist">Design & Development</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         <span class="flaticon-report"></span>
                     </div>
                     <div class="services-cap">
-                        <h5><a href="job_listing.html">Sales & Marketing</a></h5>
+                        <h5><a href="joblist">Sales & Marketing</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <span class="flaticon-app"></span>
                     </div>
                     <div class="services-cap">
-                        <h5><a href="job_listing.html">Mobile Application</a></h5>
+                        <h5><a href="joblist">Mobile Application</a></h5>
                         <span>(658)</span>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="browse-btn2 text-center mt-50">
-                    <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
+                    <a href="joblist" class="border-btn2">Browse All Sectors</a>
                 </div>
             </div>
         </div>

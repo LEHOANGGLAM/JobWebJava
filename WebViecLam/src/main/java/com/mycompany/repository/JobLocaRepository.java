@@ -4,6 +4,7 @@
  */
 package com.mycompany.repository;
 
+import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobLocation;
 import java.util.List;
 
@@ -12,5 +13,8 @@ import java.util.List;
  * @author dell
  */
 public interface JobLocaRepository {
-     List<JobLocation> getJobLocations();
+
+    List<JobLocation> getJobLocations();
+
+    JobLocation getLocationByJobPostId(int id);
 }
