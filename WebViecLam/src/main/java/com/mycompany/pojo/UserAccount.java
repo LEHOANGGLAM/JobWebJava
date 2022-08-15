@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByContactNumber", query = "SELECT u FROM UserAccount u WHERE u.contactNumber = :contactNumber"),
     @NamedQuery(name = "UserAccount.findByUserImage", query = "SELECT u FROM UserAccount u WHERE u.userImage = :userImage"),
     @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate"),
-    @NamedQuery(name = "UserAccount.findByUserName", query = "SELECT u FROM UserAccount u WHERE u.userName = :userName")})
+    @NamedQuery(name = "UserAccount.findByUsername", query = "SELECT u FROM UserAccount u WHERE u.username = :username")})
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -75,13 +75,13 @@ public class UserAccount implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
     @Size(max = 45)
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "username")
+    private String username;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     private Set<JobPostActivity> jobPostActivitySet;
-    @JoinColumn(name = "use_type_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
-    private UserType useTypeId;
+    private UserType userTypeId;
 
     public UserAccount() {
     }
@@ -154,12 +154,12 @@ public class UserAccount implements Serializable {
         this.registrationDate = registrationDate;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @XmlTransient
@@ -171,12 +171,12 @@ public class UserAccount implements Serializable {
         this.jobPostActivitySet = jobPostActivitySet;
     }
 
-    public UserType getUseTypeId() {
-        return useTypeId;
+    public UserType getUserTypeId() {
+        return userTypeId;
     }
 
-    public void setUseTypeId(UserType useTypeId) {
-        this.useTypeId = useTypeId;
+    public void setUserTypeId(UserType userTypeId) {
+        this.userTypeId = userTypeId;
     }
 
     @Override
