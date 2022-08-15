@@ -25,17 +25,25 @@
                             <div class="main-menu">
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
+
+                                        
                                         <c:forEach items="${cate}" var="cate" varStatus="loop">
                                               <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a></li>
                                         </c:forEach>
+
 
                                     </ul>
                                 </nav>
                             </div>          
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
-                                <a href="#" class="btn head-btn1">Register</a>
-                                <a href="#" class="btn head-btn2">Login</a>
+                                <a href="<c:url value="/register"/>" class="btn head-btn1">Register</a>
+                                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                    <a href="<c:url value="/login"/>" class="btn head-btn2">Login</a>
+                                </c:if>
+                                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                    <a href="<c:url value="/"/>" class="btn head-btn2">${pageContext.request.userPrincipal.name}</a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
