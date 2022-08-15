@@ -45,7 +45,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate"),
     @NamedQuery(name = "UserAccount.findByUserName", query = "SELECT u FROM UserAccount u WHERE u.userName = :userName")})
 public class UserAccount implements Serializable {
-
+    private static final String ADMIN = "ROLE_ADMIN";
+    private static final String USER = "ROLE_USER";
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,11 +77,11 @@ public class UserAccount implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
     @Size(max = 45)
-    @Column(name = "user_name")
+    @Column(name = "username")
     private String userName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     private Set<JobPostActivity> jobPostActivitySet;
-    @JoinColumn(name = "use_type_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType useTypeId;
 
