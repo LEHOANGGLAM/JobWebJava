@@ -53,6 +53,7 @@ CREATE TABLE `category` (
   `user_type_id` int DEFAULT NULL,
   `content` varchar(45) DEFAULT NULL,
   `active` int DEFAULT NULL,
+  `link_cate` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_userTypeID3_idx` (`user_type_id`),
   CONSTRAINT `FK_userTypeID3` FOREIGN KEY (`user_type_id`) REFERENCES `user_type` (`id`)
@@ -65,24 +66,27 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'home',0,2,'demo',1),(2,'Find a job',0,2,'demo',1),(3,'About',0,2,'demo',1),(4,'Contact',0,4,'demo',1);
+INSERT INTO `category` VALUES (1,'Home',0,2,'demo',1,'/'),(2,'Find a job',0,2,'demo',1,'joblist'),(3,'About',0,4,'demo',1,'about'),(4,'Contact',0,4,'demo',1,'contact');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `employer`
+-- Table structure for table `company`
 --
 
-DROP TABLE IF EXISTS `employer`;
+DROP TABLE IF EXISTS `company`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `employer` (
+CREATE TABLE `company` (
   `id` int NOT NULL AUTO_INCREMENT,
   `company_name` varchar(100) DEFAULT NULL,
   `profile_description` varchar(1000) DEFAULT NULL,
   `business_type_id` int DEFAULT NULL,
   `created_date` date DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
+  `company_website` varchar(45) DEFAULT NULL,
+  `company_email` varchar(45) DEFAULT NULL,
+  `cover_image` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_businessTypeID_idx` (`business_type_id`),
   CONSTRAINT `FK_businessTypeID` FOREIGN KEY (`business_type_id`) REFERENCES `business_type` (`id`)
@@ -90,13 +94,13 @@ CREATE TABLE `employer` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `employer`
+-- Dumping data for table `company`
 --
 
-LOCK TABLES `employer` WRITE;
-/*!40000 ALTER TABLE `employer` DISABLE KEYS */;
-INSERT INTO `employer` VALUES (7,'VNG','demo',1,'2022-08-30','null'),(8,'FPT','demo',1,'2022-08-30','null'),(9,'NetCompany','demo',2,'2022-08-30','null');
-/*!40000 ALTER TABLE `employer` ENABLE KEYS */;
+LOCK TABLES `company` WRITE;
+/*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` VALUES (7,'VNG','demo',1,'2022-08-30','null',NULL,NULL,NULL),(8,'FPT','demo',1,'2022-08-30','null',NULL,NULL,NULL),(9,'NetCompany','demo',2,'2022-08-30','null',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -119,7 +123,7 @@ CREATE TABLE `job_location` (
 
 LOCK TABLES `job_location` WRITE;
 /*!40000 ALTER TABLE `job_location` DISABLE KEYS */;
-INSERT INTO `job_location` VALUES (1,'TpHCm'),(2,'Hà Nội');
+INSERT INTO `job_location` VALUES (1,'TpHCM'),(2,'Hà Nội');
 /*!40000 ALTER TABLE `job_location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +137,9 @@ DROP TABLE IF EXISTS `job_post`;
 CREATE TABLE `job_post` (
   `id` int NOT NULL AUTO_INCREMENT,
   `job_type_id` int DEFAULT NULL,
+  `company_id` int DEFAULT NULL,
   `created_date` date DEFAULT NULL,
+  `expiration_date` date DEFAULT NULL,
   `job_description` varchar(45) DEFAULT NULL,
   `job_requirement` varchar(45) DEFAULT NULL,
   `job_location_id` int DEFAULT NULL,
@@ -142,16 +148,18 @@ CREATE TABLE `job_post` (
   `job_min_salary` int DEFAULT NULL,
   `job_max_salary` int DEFAULT NULL,
   `year_exper_require` int DEFAULT NULL,
-  `employer_id` int DEFAULT NULL,
   `job_street` varchar(45) DEFAULT NULL,
+  `job_nature` varchar(45) DEFAULT NULL,
+  `vacancy` int DEFAULT NULL,
+  `individual_right` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_jobLocationID_idx` (`job_location_id`),
   KEY `FK_jobTypeID_idx` (`job_type_id`),
-  KEY `fk_job_post_employer1_idx` (`employer_id`),
-  CONSTRAINT `fk_job_post_employer1` FOREIGN KEY (`employer_id`) REFERENCES `employer` (`id`),
+  KEY `fk_job_post_employer1_idx` (`company_id`),
+  CONSTRAINT `fk_job_post_employer1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
   CONSTRAINT `FK_jobLocationID` FOREIGN KEY (`job_location_id`) REFERENCES `job_location` (`id`),
   CONSTRAINT `FK_jobTypeID` FOREIGN KEY (`job_type_id`) REFERENCES `job_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +168,7 @@ CREATE TABLE `job_post` (
 
 LOCK TABLES `job_post` WRITE;
 /*!40000 ALTER TABLE `job_post` DISABLE KEYS */;
-INSERT INTO `job_post` VALUES (1,1,'2022-08-07','demo','job_quirement',1,1,'Web Developer',3000,4000,3,7,'12 Nguyễn Đình Chiểu'),(2,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu'),(3,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu'),(4,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu'),(5,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu'),(6,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu'),(7,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu'),(8,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu'),(9,2,'2022-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,8,'12 Nguyễn Đình Chiểu');
+INSERT INTO `job_post` VALUES (1,1,7,'2022-08-07','2023-08-09','demo','job_quirement',1,1,'Web Developer',3000,4000,3,'12 Nguyễn Đình Chiểu','Full time',1,'individual_right'),(2,2,8,'2022-08-10','2023-08-10','demo','job_quirement',2,1,'Marketing Manager',4000,5000,3,'12 ABC','Full time',2,'individual_right'),(3,3,9,'2022-08-10','2023-08-11','demo','job_quirement',1,1,'Marketing Manager1',1000,2000,3,'12 ASD','Full time',3,'individual_right'),(4,4,7,'2022-08-10','2023-08-12','demo','job_quirement',2,1,'Marketing Manager2',500,3000,3,'12 QWE','Full time',1,'individual_right'),(5,3,8,'2022-08-10','2023-08-13','demo','job_quirement',1,1,'Marketing Manager3',8000,9000,3,'12 Nguyễn Đình Chiểu','Full time',2,'individual_right'),(6,3,9,'2022-08-10','2023-08-14','demo','job_quirement',2,1,'Marketing Manager4',3000,3500,3,'12 Phan Văn Tri','Full time',3,'individual_right'),(7,4,7,'2022-08-10','2023-08-15','demo','job_quirement',1,1,'Marketing Manager5',1500,2000,3,'12 Nguyễn Đình Chiểu','Full time',1,'individual_right'),(8,4,8,'2022-08-10','2023-08-16','demo','job_quirement',2,1,'Marketing Manager6',900,1000,3,'12 Phan Văn Tri','Full time',2,'individual_right'),(9,2,9,'2022-08-10','2023-08-17','demo','job_quirement',1,1,'Marketing Manager7',1200,1500,3,'12 Phan Văn Tri','Full time',3,'individual_right');
 /*!40000 ALTER TABLE `job_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,4 +341,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-07 23:43:33
+-- Dump completed on 2022-08-13 19:21:48
