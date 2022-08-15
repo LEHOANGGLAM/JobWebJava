@@ -43,8 +43,12 @@
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
                                 <a href="<c:url value="/register"/>" class="btn head-btn1">Register</a>
-                                
-                                <a href="<c:url value="/login"/>" class="btn head-btn2">Login</a>
+                                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                    <a href="<c:url value="/login"/>" class="btn head-btn2">Login</a>
+                                </c:if>
+                                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                    <a href="<c:url value="/"/>" class="btn head-btn2">${pageContext.request.userPrincipal.name}</a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
