@@ -4,6 +4,7 @@
  */
 package com.mycompany.configs;
 
+import com.mycompany.validator.WebAppValidator;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -52,7 +53,16 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         m.setBasenames("messages");
         return m;
     }
-    
+
+//    @Bean
+//    public WebAppValidator productValidator() {
+//        Set<Validator> springValidators = new HashSet<>();
+//        springValidators.add(new PriceValidator());
+//        WebAppValidator validator = new WebAppValidator();
+//        validator.setSpringValidators(springValidators);
+//        return validator;
+//    }
+
 //        @Bean
 //        public InternalResourceViewResolver viewResolver() {
 //            InternalResourceViewResolver r = new InternalResourceViewResolver();
