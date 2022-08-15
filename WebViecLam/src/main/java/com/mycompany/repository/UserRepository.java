@@ -4,7 +4,7 @@
  */
 package com.mycompany.repository;
 
-import com.mycompany.pojo.UserAccount;
+
 import java.util.List;
 import org.springframework.security.core.userdetails.User;
 
@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.User;
  * @author PC
  */
 public interface UserRepository {
-    boolean addUser(UserAccount user);
+    boolean addUser(User user);
     List<User> getUsers(String username);
     
 }

@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository UserRepository;
 
     @Override
-    public boolean addUser(UserAccount user) {
+    public boolean addUser(User user) {
         return this.UserRepository.addUser(user);
     }
 

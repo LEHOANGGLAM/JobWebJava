@@ -4,7 +4,6 @@
  */
 package com.mycompany.repository.impl;
 
-import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.UserRepository;
 import java.util.List;
 import javax.persistence.Query;
@@ -30,7 +29,7 @@ public class UserRepositoryImpl implements UserRepository{
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
-    public boolean addUser(UserAccount user) {
+    public boolean addUser(User user) {
         return false;
     }
 
@@ -39,8 +38,8 @@ public class UserRepositoryImpl implements UserRepository{
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<UserAccount> q = b.createQuery(UserAccount.class);
-        Root root = q.from(UserAccount.class);
+        CriteriaQuery<User> q = b.createQuery(User.class);
+        Root root = q.from(User.class);
         q.select(root);
         
         if (!username.isEmpty()){
