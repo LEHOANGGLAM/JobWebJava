@@ -27,7 +27,7 @@
                 <ul>
                     <li>${j[7]}</li>
                     <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
-                    <li>${j[1]} - ${j[2]}</li>                                                                               
+                    <li>${j[1]} - ${j[2]}$</li>                                                                               
                 </ul>
             </div>
         </div>

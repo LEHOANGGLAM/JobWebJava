@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -26,9 +27,9 @@ public class DefaultPageController {
     @Autowired
     private CateService cateService;
 
-//    @GetMapping("/{cateLink}")
-//    public String Default(Model model, @PathVariable(value = "cateLink") String cateLink) {
-//        model.addAttribute("c", this.cateService.getCateByLink(cateLink));
-//        return "about";
-//    }
+    @RequestMapping("/{linkCate}")
+    public String Default(Model model, @PathVariable(value = "linkCate") String linkCate) {
+        model.addAttribute("c", this.cateService.getCateByLink(linkCate));
+        return "defaultPage";
+    }
 }
