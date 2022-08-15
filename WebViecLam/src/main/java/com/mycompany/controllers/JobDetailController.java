@@ -8,6 +8,7 @@ import com.mycompany.service.CompanyService;
 import com.mycompany.service.JobLocaService;
 import com.mycompany.service.JobService;
 import java.util.Map;
+import javax.swing.JFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,8 @@ public class JobDetailController {
     @Autowired
     private JobLocaService jobLocaService;
 
+    private JFrame outFrame = new JFrame("demo");
+    
     @GetMapping("/jobDetail/{jId}")
     public String jobDetail(Model model, @PathVariable(value = "jId") int jId) {
         model.addAttribute("job", this.jobService.getJobById(jId));

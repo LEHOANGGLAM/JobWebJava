@@ -36,6 +36,7 @@ com\mycompany\repository\CateRepository.class
 com\mycompany\service\impl\CateServiceImpl.class
 com\mycompany\controllers\DefaultPageController.class
 com\mycompany\pojo\BusinessType.class
+.netbeans_automatic_build
 com\mycompany\pojo\JobPostActivity.class
 com\mycompany\controllers\JobDetailController.class
 com\mycompany\service\impl\CompanyServiceImpl.class

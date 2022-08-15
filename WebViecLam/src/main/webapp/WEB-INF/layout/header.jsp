@@ -28,18 +28,7 @@
                                         <c:forEach items="${cate}" var="cate" varStatus="loop">
                                               <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a></li>
                                         </c:forEach>
-<!--                                        <li><a href="/WebViecLam">Home</a></li>
-                                        <li><a href="<c:url value="/joblist"/>">Find a Jobs </a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="#">Page</a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Blog Details</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a href="job_details.html">job Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>-->
+
                                     </ul>
                                 </nav>
                             </div>          
