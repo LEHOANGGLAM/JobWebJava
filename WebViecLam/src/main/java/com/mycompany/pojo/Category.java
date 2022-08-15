@@ -59,7 +59,7 @@ public class Category implements Serializable {
     @Column(name = "link_cate")
     private String linkCate;
     @OneToMany(mappedBy = "cateId")
-    private Set<New1> new1Set;
+    private Set<New> new1Set;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType userTypeId;
@@ -120,11 +120,11 @@ public class Category implements Serializable {
     }
 
     @XmlTransient
-    public Set<New1> getNew1Set() {
+    public Set<New> getNewSet() {
         return new1Set;
     }
 
-    public void setNew1Set(Set<New1> new1Set) {
+    public void setNewSet(Set<New> new1Set) {
         this.new1Set = new1Set;
     }
 
