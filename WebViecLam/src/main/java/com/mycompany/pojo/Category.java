@@ -5,6 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -55,6 +58,8 @@ public class Category implements Serializable {
     @Size(max = 45)
     @Column(name = "link_cate")
     private String linkCate;
+    @OneToMany(mappedBy = "cateId")
+    private Set<New> new1Set;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType userTypeId;
@@ -112,6 +117,15 @@ public class Category implements Serializable {
 
     public void setLinkCate(String linkCate) {
         this.linkCate = linkCate;
+    }
+
+    @XmlTransient
+    public Set<New> getNewSet() {
+        return new1Set;
+    }
+
+    public void setNewSet(Set<New> new1Set) {
+        this.new1Set = new1Set;
     }
 
     public UserType getUserTypeId() {

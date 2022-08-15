@@ -42,7 +42,7 @@ public class UserType implements Serializable {
     @Size(max = 45)
     @Column(name = "user_type_name")
     private String userTypeName;
-    @OneToMany(mappedBy = "useTypeId")
+    @OneToMany(mappedBy = "userTypeId")
     private Set<UserAccount> userAccountSet;
     @OneToMany(mappedBy = "userTypeId")
     private Set<Category> categorySet;

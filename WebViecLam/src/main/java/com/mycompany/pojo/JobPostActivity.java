@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "JobPostActivity.findAll", query = "SELECT j FROM JobPostActivity j"),
     @NamedQuery(name = "JobPostActivity.findByApplyDate", query = "SELECT j FROM JobPostActivity j WHERE j.applyDate = :applyDate"),
     @NamedQuery(name = "JobPostActivity.findByJobPostId", query = "SELECT j FROM JobPostActivity j WHERE j.jobPostActivityPK.jobPostId = :jobPostId"),
-    @NamedQuery(name = "JobPostActivity.findByUserAccountId", query = "SELECT j FROM JobPostActivity j WHERE j.jobPostActivityPK.userAccountId = :userAccountId")})
+    @NamedQuery(name = "JobPostActivity.findByUserAccountId", query = "SELECT j FROM JobPostActivity j WHERE j.jobPostActivityPK.userAccountId = :userAccountId"),
+    @NamedQuery(name = "JobPostActivity.findByIsSave", query = "SELECT j FROM JobPostActivity j WHERE j.isSave = :isSave")})
 public class JobPostActivity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,6 +39,8 @@ public class JobPostActivity implements Serializable {
     @Column(name = "apply_date")
     @Temporal(TemporalType.DATE)
     private Date applyDate;
+    @Column(name = "is_save")
+    private Integer isSave;
     @JoinColumn(name = "job_post_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private JobPost jobPost;
@@ -70,6 +73,14 @@ public class JobPostActivity implements Serializable {
 
     public void setApplyDate(Date applyDate) {
         this.applyDate = applyDate;
+    }
+
+    public Integer getIsSave() {
+        return isSave;
+    }
+
+    public void setIsSave(Integer isSave) {
+        this.isSave = isSave;
     }
 
     public JobPost getJobPost() {
