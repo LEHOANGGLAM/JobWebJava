@@ -6,6 +6,7 @@ com\mycompany\pojo\UserAccount_.class
 com\mycompany\configs\TilesConfig.class
 com\mycompany\pojo\JobLocation_.class
 com\mycompany\service\UserService.class
+com\mycompany\controllers\HomeAdminController.class
 com\mycompany\repository\impl\CompanyRepositoryImpl.class
 com\mycompany\repository\JobLocaRepository.class
 com\mycompany\service\impl\JobTypeServiceImpl.class
@@ -57,6 +58,7 @@ com\mycompany\service\impl\UserServiceImpl.class
 com\mycompany\service\JobService.class
 com\mycompany\pojo\SkillSet.class
 com\mycompany\service\CateService.class
+com\mycompany\controllers\LoginAdminController.class
 com\mycompany\pojo\Company.class
 com\mycompany\pojo\JobType.class
 com\mycompany\repository\JobReposiroty.class

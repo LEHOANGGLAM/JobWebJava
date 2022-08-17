@@ -15,4 +15,5 @@ import java.util.List;
 public interface CateRepository {
      List<Category> getCateList();
      Category getCateByLink(String link);
+      List<Category> getCateChild();
 }

@@ -29,7 +29,11 @@ public class CateServiceImpl implements CateService {
 
     @Override
     public Category getCateByLink(String link) {
-          return this.cateRepository.getCateByLink(link);
+        return this.cateRepository.getCateByLink(link);
     }
 
+    @Override
+    public List<Category> getCateChild() {
+        return this.cateRepository.getCateChild();
+    }
 }

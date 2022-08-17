@@ -62,7 +62,6 @@ public class WebAppContextConfig implements WebMvcConfigurer {
 //        validator.setSpringValidators(springValidators);
 //        return validator;
 //    }
-
 //        @Bean
 //        public InternalResourceViewResolver viewResolver() {
 //            InternalResourceViewResolver r = new InternalResourceViewResolver();
