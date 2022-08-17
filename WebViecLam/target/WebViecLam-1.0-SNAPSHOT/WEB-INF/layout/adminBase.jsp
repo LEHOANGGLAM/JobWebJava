@@ -32,8 +32,7 @@
 
 
         <!-- CSS here -->
-        <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
-        <link href="<c:url value="/css/style.min.css"/>" rel="stylesheet" type="text/css">
+       
         <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/animate.min.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/flaticon.css"/>" rel="stylesheet" type="text/css">
@@ -47,6 +46,8 @@
         <link href="<c:url value="/css/slicknav.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/themify-icons.css"/>" rel="stylesheet" type="text/css">
 
+        <link href="<c:url value="/css/style2.css"/>" rel="stylesheet" type="text/css">
+        <link href="<c:url value="/css/dashicons.min.css"/>" rel="stylesheet" type="text/css">
 
         <link href="<c:url value="/css/icheck-bootstrap.min.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/adminlte.min.css"/>" rel="stylesheet" type="text/css">
