@@ -76,6 +76,9 @@ public class Company implements Serializable {
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
     private BusinessType businessTypeId;
+    @JoinColumn(name = "user_account_id", referencedColumnName = "id")
+    @ManyToOne
+    private UserAccount userAccountId;
 
     public Company() {
     }
@@ -163,6 +166,14 @@ public class Company implements Serializable {
 
     public void setBusinessTypeId(BusinessType businessTypeId) {
         this.businessTypeId = businessTypeId;
+    }
+
+    public UserAccount getUserAccountId() {
+        return userAccountId;
+    }
+
+    public void setUserAccountId(UserAccount userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     @Override
