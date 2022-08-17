@@ -26,9 +26,28 @@
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
 
-                                        
                                         <c:forEach items="${cate}" var="cate" varStatus="loop">
-                                              <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a></li>
+                                            <c:if test="${(cate.userTypeId.getId() == 2 || cate.userTypeId.getId() == 4) && cate.parentCateId == 0}">
+                                                <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
+
+
+                                                    <c:forEach items="${cateChild}" var="a">
+                                                        <c:if test="${a.parentCateId == cate.id}"> 
+
+                                                            <ul class="submenu">
+                                                                <c:forEach items="${cateChild}" var="cateChild">
+                                                                    <c:if test="${cateChild.parentCateId == cate.id}">    
+
+                                                                        <li><a href="<c:url value="${cateChild.linkCate}"/>">${cateChild.categoryName}</a></li>                                                       
+
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                            </ul>
+
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </li>
+                                            </c:if>
                                         </c:forEach>
 
 

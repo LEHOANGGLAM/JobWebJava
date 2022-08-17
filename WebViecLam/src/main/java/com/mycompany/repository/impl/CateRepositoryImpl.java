@@ -55,8 +55,27 @@ public class CateRepositoryImpl implements CateRepository {
         List<Category> cList = query.getResultList();
         Category c = cList.get(0);
 
-        System.out.printf("%s - content\n ", c.getContent());
+        //System.out.printf("%s - content\n ", c.getContent());
 
         return c;
+    }
+
+    @Override
+    public List<Category> getCateChild() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Category> q = b.createQuery(Category.class);
+
+        Root<Category> cRoot = q.from(Category.class);
+
+        q.select(cRoot).where(b.notEqual(cRoot.get("parentCateId"), 0));
+        Query query = session.createQuery(q);
+        List<Category> cList = query.getResultList();
+       
+
+       // System.out.printf("%s - content\n ", c.getContent());
+
+        return cList;
     }
 }

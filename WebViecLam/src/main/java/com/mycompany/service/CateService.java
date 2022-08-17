@@ -14,4 +14,5 @@ import java.util.List;
 public interface CateService {
     List<Category> getCateList();
     Category getCateByLink(String link);
+     List<Category> getCateChild();
 }

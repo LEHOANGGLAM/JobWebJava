@@ -32,18 +32,50 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="defaultPage" extends="baseLayout">
         <put-attribute name="title" value="WorkFun - Tìm kiếm việc làm thông minh" />
         <put-attribute name="content"
-                       value="/WEB-INF/jsp/defaultPage.jsp" />
+                       value="/WEB-INF/jsp/defaultPage/defaultPage.jsp" />
     </definition>
     
-    <definition name="login" extends="baseLayout">
+    
+    <!--    LAYOUT LOGIN PAGE-->
+    <definition name="loginBase"
+                template="/WEB-INF/layout/loginBase.jsp">
+                        
+        <put-attribute name="content" value="" />     
+    </definition>
+    <definition name="loginAdmin" extends="loginBase">
+        <put-attribute name="title" value="Login admin" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin/login.jsp" />
+    </definition>
+    
+    <definition name="login" extends="loginBase">
         <put-attribute name="title" value="Đăng nhập" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/login.jsp" />
     </definition>
-    <definition name="register" extends="baseLayout">
+    <definition name="register" extends="loginBase">
         <put-attribute name="title" value="Đăng ký" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/register.jsp" />
     </definition>
+    
+    
+    
+    <!--    LAYOUT ADMIN PAGE-->
+    <definition name="adminBase"
+                template="/WEB-INF/layout/adminBase.jsp">
+        <put-attribute name="header"
+                value="/WEB-INF/layout/header.jsp" />
+        <put-attribute name="content" value="" />     
+    </definition>
+    <definition name="home" extends="adminBase">
+        <put-attribute name="title" value="Admin Page" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin/home.jsp" />
+    </definition>
+    
+        
+    
+   
 </tiles-definitions>
 
