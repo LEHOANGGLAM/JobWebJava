@@ -50,6 +50,7 @@ com\mycompany\pojo\BusinessType.class
 com\mycompany\controllers\ApiAccountController.class
 com\mycompany\pojo\JobPostActivity.class
 com\mycompany\controllers\JobDetailController.class
+com\mycompany\controllers\MyProfileController.class
 com\mycompany\service\impl\CompanyServiceImpl.class
 com\mycompany\pojo\JobPostSkillSet_.class
 com\mycompany\pojo\UserAccount.class

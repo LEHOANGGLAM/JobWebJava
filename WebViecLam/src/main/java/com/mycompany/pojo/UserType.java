@@ -5,11 +5,10 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "user_type")
@@ -43,10 +42,10 @@ public class UserType implements Serializable {
     @Size(max = 45)
     @Column(name = "user_type_name")
     private String userTypeName;
-    @OneToMany(mappedBy = "userTypeId",  fetch = FetchType.EAGER)
-    private Set<UserAccount> userAccountSet;
     @OneToMany(mappedBy = "userTypeId")
-    private Set<Category> categorySet;
+    private Collection<UserAccount> userAccountCollection;
+    @OneToMany(mappedBy = "userTypeId")
+    private Collection<Category> categoryCollection;
 
     public UserType() {
     }
@@ -72,21 +71,21 @@ public class UserType implements Serializable {
     }
 
     @XmlTransient
-    public Set<UserAccount> getUserAccountSet() {
-        return userAccountSet;
+    public Collection<UserAccount> getUserAccountCollection() {
+        return userAccountCollection;
     }
 
-    public void setUserAccountSet(Set<UserAccount> userAccountSet) {
-        this.userAccountSet = userAccountSet;
+    public void setUserAccountCollection(Collection<UserAccount> userAccountCollection) {
+        this.userAccountCollection = userAccountCollection;
     }
 
     @XmlTransient
-    public Set<Category> getCategorySet() {
-        return categorySet;
+    public Collection<Category> getCategoryCollection() {
+        return categoryCollection;
     }
 
-    public void setCategorySet(Set<Category> categorySet) {
-        this.categorySet = categorySet;
+    public void setCategoryCollection(Collection<Category> categoryCollection) {
+        this.categoryCollection = categoryCollection;
     }
 
     @Override

@@ -73,6 +73,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/admin/company.jsp" />
     </definition>
+    <definition name="myProfile" extends="adminBase">
+        <put-attribute name="title" value="Admin Page" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/myProfile/myProfile.jsp" />
+    </definition>
     
         
     

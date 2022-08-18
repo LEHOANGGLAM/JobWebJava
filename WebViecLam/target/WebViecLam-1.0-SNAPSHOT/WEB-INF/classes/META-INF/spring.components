@@ -11,6 +11,7 @@ com.mycompany.controllers.JobDetailController=org.springframework.stereotype.Com
 com.mycompany.controllers.JobListController=org.springframework.stereotype.Component
 com.mycompany.controllers.LoginAdminController=org.springframework.stereotype.Component
 com.mycompany.controllers.LoginController=org.springframework.stereotype.Component
+com.mycompany.controllers.MyProfileController=org.springframework.stereotype.Component
 com.mycompany.controllers.RegisterController=org.springframework.stereotype.Component
 com.mycompany.pojo.BusinessType=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries
 com.mycompany.pojo.BusinessType_=javax.annotation.Generated,javax.persistence.metamodel.StaticMetamodel

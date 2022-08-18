@@ -4,15 +4,13 @@
  */
 package com.mycompany.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "user_account")
@@ -46,7 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByUserImage", query = "SELECT u FROM UserAccount u WHERE u.userImage = :userImage"),
     @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate"),
     @NamedQuery(name = "UserAccount.findByUsername", query = "SELECT u FROM UserAccount u WHERE u.username = :username"),
-    @NamedQuery(name = "UserAccount.findByIsComfirm", query = "SELECT u FROM UserAccount u WHERE u.isComfirm = :isComfirm")})
+    @NamedQuery(name = "UserAccount.findByIsComfirm", query = "SELECT u FROM UserAccount u WHERE u.isComfirm = :isComfirm"),
+    @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName"),
+    @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")})
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -82,15 +82,18 @@ public class UserAccount implements Serializable {
     private String username;
     @Column(name = "is_comfirm")
     private Integer isComfirm;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount",fetch = FetchType.EAGER)
-     @JsonIgnore
-    private Set<JobPostActivity> jobPostActivitySet;
-    @OneToMany(mappedBy = "userAccountId", fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Set<Company> companySet;
+    @Size(max = 45)
+    @Column(name = "first_name")
+    private String firstName;
+    @Size(max = 45)
+    @Column(name = "last_name")
+    private String lastName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
+    private Collection<JobPostActivity> jobPostActivityCollection;
+    @OneToMany(mappedBy = "userAccountId")
+    private Collection<Company> companyCollection;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
-    @ManyToOne 
-    @JsonIgnore
+    @ManyToOne
     private UserType userTypeId;
 
     public UserAccount() {
@@ -180,22 +183,38 @@ public class UserAccount implements Serializable {
         this.isComfirm = isComfirm;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @XmlTransient
-    public Set<JobPostActivity> getJobPostActivitySet() {
-        return jobPostActivitySet;
+    public Collection<JobPostActivity> getJobPostActivityCollection() {
+        return jobPostActivityCollection;
     }
 
-    public void setJobPostActivitySet(Set<JobPostActivity> jobPostActivitySet) {
-        this.jobPostActivitySet = jobPostActivitySet;
+    public void setJobPostActivityCollection(Collection<JobPostActivity> jobPostActivityCollection) {
+        this.jobPostActivityCollection = jobPostActivityCollection;
     }
 
     @XmlTransient
-    public Set<Company> getCompanySet() {
-        return companySet;
+    public Collection<Company> getCompanyCollection() {
+        return companyCollection;
     }
 
-    public void setCompanySet(Set<Company> companySet) {
-        this.companySet = companySet;
+    public void setCompanyCollection(Collection<Company> companyCollection) {
+        this.companyCollection = companyCollection;
     }
 
     public UserType getUserTypeId() {
