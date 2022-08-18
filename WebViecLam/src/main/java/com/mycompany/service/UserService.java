@@ -4,6 +4,7 @@
  */
 package com.mycompany.service;
 
+import com.mycompany.pojo.UserAccount;
 import java.util.List;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,5 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface UserService extends UserDetailsService {
     boolean addUser(User user);
-    List<User> getUsers(String username);
+    List<User> getUserByUsername(String username);
+     boolean deleteUser(int id);
+     List<UserAccount> getUsers();
 }

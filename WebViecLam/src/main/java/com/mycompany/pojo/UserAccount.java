@@ -4,6 +4,7 @@
  */
 package com.mycompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -11,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByContactNumber", query = "SELECT u FROM UserAccount u WHERE u.contactNumber = :contactNumber"),
     @NamedQuery(name = "UserAccount.findByUserImage", query = "SELECT u FROM UserAccount u WHERE u.userImage = :userImage"),
     @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate"),
-    @NamedQuery(name = "UserAccount.findByUsername", query = "SELECT u FROM UserAccount u WHERE u.username = :username")})
+    @NamedQuery(name = "UserAccount.findByUsername", query = "SELECT u FROM UserAccount u WHERE u.username = :username"),
+    @NamedQuery(name = "UserAccount.findByIsComfirm", query = "SELECT u FROM UserAccount u WHERE u.isComfirm = :isComfirm")})
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,12 +80,17 @@ public class UserAccount implements Serializable {
     @Size(max = 45)
     @Column(name = "username")
     private String username;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
+    @Column(name = "is_comfirm")
+    private Integer isComfirm;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount",fetch = FetchType.EAGER)
+     @JsonIgnore
     private Set<JobPostActivity> jobPostActivitySet;
-    @OneToMany(mappedBy = "userAccountId")
+    @OneToMany(mappedBy = "userAccountId", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Company> companySet;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne 
+    @JsonIgnore
     private UserType userTypeId;
 
     public UserAccount() {
@@ -162,6 +170,14 @@ public class UserAccount implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Integer getIsComfirm() {
+        return isComfirm;
+    }
+
+    public void setIsComfirm(Integer isComfirm) {
+        this.isComfirm = isComfirm;
     }
 
     @XmlTransient

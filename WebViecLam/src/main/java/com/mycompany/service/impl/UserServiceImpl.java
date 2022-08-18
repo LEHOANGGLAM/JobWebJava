@@ -32,15 +32,24 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User user) {
         return this.UserRepository.addUser(user);
     }
+    @Override
+    public List<UserAccount> getUsers() {
+        return this.UserRepository.getUsers();
+    }
+    
+    @Override
+     public boolean deleteUser(int id) {
+        return this.UserRepository.deleteUser(id);
+    }
 
     @Override
-    public List<User> getUsers(String username) {
-        return this.UserRepository.getUsers(username);
+    public List<User> getUserByUsername(String username) {
+        return this.UserRepository.getUserByUsername(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<User> users = this.getUsers(username);
+        List<User> users = this.getUserByUsername(username);
         if (!users.isEmpty()) {
             throw new UsernameNotFoundException("User does not exist!");
         }

@@ -5,6 +5,7 @@
 package com.mycompany.repository;
 
 import com.mycompany.pojo.Company;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,7 @@ import com.mycompany.pojo.Company;
  */
 public interface CompanyRepository {
     Company getCompanyByJobPostId(int id);
+    List<Object[]> getCompanies();
+    boolean deleteCompany(int id);
+     boolean addOrUpdateCompany(Company com);
 }

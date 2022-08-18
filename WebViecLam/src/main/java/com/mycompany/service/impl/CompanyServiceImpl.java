@@ -8,6 +8,7 @@ import com.mycompany.pojo.Company;
 import com.mycompany.repository.CompanyRepository;
 import com.mycompany.repository.JobReposiroty;
 import com.mycompany.service.CompanyService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,18 @@ public class CompanyServiceImpl implements CompanyService {
         return this.companyRepository.getCompanyByJobPostId(id);
     }
 
+    @Override
+    public List<Object[]> getCompanies() {
+        return this.companyRepository.getCompanies();
+    }
+
+    @Override
+    public boolean deleteCompany(int id) {
+        return this.companyRepository.deleteCompany(id);
+    }
+
+    @Override
+    public boolean addOrUpdateCompany(Company com) {
+        return this.companyRepository.addOrUpdateCompany(com);
+    }
 }

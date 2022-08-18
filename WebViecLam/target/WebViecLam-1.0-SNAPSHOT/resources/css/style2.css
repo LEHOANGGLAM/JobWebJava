@@ -1943,58 +1943,6 @@ table.manage-table {
     border-spacing: 0;
 } */
 
-table.manage-table.job-manager-bookmarks th:first-child i {
-    left: 33px;
-}
-
-.post-content table th,
-article.page table th,
-table.shop_table th,
-table.manage-table th {
-	background-color: #f6f6f6;
-	text-align: left;
-	padding: 18px 20px 18px 40px;
-	color: #333;
-	vertical-align: top;
-	font-size: 14px;
-	font-weight: 500;
-	position: relative;
-	z-index: 9;
-	line-height: 19px;
-	/* margin-left: 33px !important; */
-}
-
-
-table.job-manager-past-applications.manage-table th:first-child,
-table.job-manager-past-applications.manage-table th {
-	padding: 18px 20px 18px 18px;
-	width: 20%
-}
-table.shop_table th {
-    padding: 18px 20px 18px 20px;
-    margin-left: 0px !important;
-}
-
-a.cart-remove {line-height: 25px;}
-
-table.manage-table th i { position: absolute; left: 17px; top: 21px; }
-
-table.manage-table a.button {
-	padding: 7px 14px;
-	line-height: 26px;
-}
-
-table.manage-table tr:nth-child(2n+2) { background-color: #fbfbfb; }
-
-/* table.manage-table th:first-child {width: 32%;padding-left: 55px;} */
-
-/* table.manage-table th:first-child i { left: 35px; } */
-table.manage-table.resumes th:first-child { width: auto; }
-
-table.manage-table.resumes td:first-child,
-table.manage-table td:first-child {padding-left: 25px;line-height: 25px;}
-
-
 
 /* header cart */
 
@@ -2240,22 +2188,6 @@ a.button.wc-forward {
 
 
 
-/* Border Hover */
-.post-content table tr td ,
-article.page table tr td ,
-table.shop_table tr td,
-table.manage-table tr td {
-	padding: 40px 20px;
-	vertical-align: middle;
-	border: 1px solid #e0e0e0;
-	border-left: none;
-	border-right: none;
-}
-
-.job-manager-jobs.manage-table tr td {
-	padding: 30px 20px;
-	
-}
 
 table .job_title { font-weight: 500; color: #333; }
 table .job_title small { font-weight: 500; color: #999; font-size: 12px;}
@@ -2282,14 +2214,6 @@ span.pending {
 	color: #53b427;
 	font-weight: 500;
 }
-
-table.manage-table td.centered { text-align: center; }
-
-table.manage-table td.action a { display: block; color: #333; line-height: 20px; padding: 3px 0; position: relative; margin-left: 21px; }
-table.manage-table td.action a.delete i { left: -20px; }
-table.manage-table td.action a i { position: absolute; left: -21px; top: 5px; }
-
-table.manage-table td.action a.job-dashboard-action-delete:hover { color: #f02929; }
 
 .keywords,
 .alert-name { width: 18% }
