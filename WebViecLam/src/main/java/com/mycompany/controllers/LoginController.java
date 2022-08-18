@@ -45,12 +45,5 @@ public class LoginController {
 //         }
 //     }
 //     
-     @RequestMapping("/login")
-   public String list(Model model, @RequestParam Map<String, String> params) {
-
-//        model.addAttribute("categories", this.categoryService.getCategories());
-//        model.addAttribute("products", this.productService.getProducts(params, 0));
-//        
-        return "login";
-    }
+   
 }

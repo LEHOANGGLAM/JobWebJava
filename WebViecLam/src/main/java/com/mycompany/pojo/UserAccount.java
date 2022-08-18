@@ -5,8 +5,8 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "user_account")
@@ -45,9 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByRegistrationDate", query = "SELECT u FROM UserAccount u WHERE u.registrationDate = :registrationDate"),
     @NamedQuery(name = "UserAccount.findByUsername", query = "SELECT u FROM UserAccount u WHERE u.username = :username")})
 public class UserAccount implements Serializable {
-    private static final String ADMIN = "ROLE_ADMIN";
-    private static final String USER = "ROLE_USER";
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,11 +76,11 @@ public class UserAccount implements Serializable {
     private Date registrationDate;
     @Size(max = 45)
     @Column(name = "username")
-
     private String username;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
-    private Set<JobPostActivity> jobPostActivitySet;
+    private Collection<JobPostActivity> jobPostActivityCollection;
+    @OneToMany(mappedBy = "userAccountId")
+    private Collection<Company> companyCollection;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType userTypeId;
@@ -167,12 +165,21 @@ public class UserAccount implements Serializable {
     }
 
     @XmlTransient
-    public Set<JobPostActivity> getJobPostActivitySet() {
-        return jobPostActivitySet;
+    public Collection<JobPostActivity> getJobPostActivityCollection() {
+        return jobPostActivityCollection;
     }
 
-    public void setJobPostActivitySet(Set<JobPostActivity> jobPostActivitySet) {
-        this.jobPostActivitySet = jobPostActivitySet;
+    public void setJobPostActivityCollection(Collection<JobPostActivity> jobPostActivityCollection) {
+        this.jobPostActivityCollection = jobPostActivityCollection;
+    }
+
+    @XmlTransient
+    public Collection<Company> getCompanyCollection() {
+        return companyCollection;
+    }
+
+    public void setCompanyCollection(Collection<Company> companyCollection) {
+        this.companyCollection = companyCollection;
     }
 
     public UserType getUserTypeId() {

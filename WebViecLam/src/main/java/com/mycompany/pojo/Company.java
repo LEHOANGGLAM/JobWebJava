@@ -5,8 +5,8 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "company")
@@ -72,10 +72,13 @@ public class Company implements Serializable {
     @Column(name = "cover_image")
     private String coverImage;
     @OneToMany(mappedBy = "companyId")
-    private Set<JobPost> jobPostSet;
+    private Collection<JobPost> jobPostCollection;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
     private BusinessType businessTypeId;
+    @JoinColumn(name = "user_account_id", referencedColumnName = "id")
+    @ManyToOne
+    private UserAccount userAccountId;
 
     public Company() {
     }
@@ -149,12 +152,12 @@ public class Company implements Serializable {
     }
 
     @XmlTransient
-    public Set<JobPost> getJobPostSet() {
-        return jobPostSet;
+    public Collection<JobPost> getJobPostCollection() {
+        return jobPostCollection;
     }
 
-    public void setJobPostSet(Set<JobPost> jobPostSet) {
-        this.jobPostSet = jobPostSet;
+    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
+        this.jobPostCollection = jobPostCollection;
     }
 
     public BusinessType getBusinessTypeId() {
@@ -163,6 +166,14 @@ public class Company implements Serializable {
 
     public void setBusinessTypeId(BusinessType businessTypeId) {
         this.businessTypeId = businessTypeId;
+    }
+
+    public UserAccount getUserAccountId() {
+        return userAccountId;
+    }
+
+    public void setUserAccountId(UserAccount userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     @Override

@@ -4,7 +4,6 @@
  */
 package com.mycompany.service.impl;
 
-import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.UserRepository;
 import com.mycompany.service.UserService;
 import java.util.HashSet;

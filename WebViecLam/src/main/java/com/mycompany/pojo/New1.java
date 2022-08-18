@@ -21,19 +21,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "new")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "New.findAll", query = "SELECT n FROM New n"),
-    @NamedQuery(name = "New.findById", query = "SELECT n FROM New n WHERE n.id = :id"),
-    @NamedQuery(name = "New.findByTitle", query = "SELECT n FROM New n WHERE n.title = :title"),
-    @NamedQuery(name = "New.findByContent", query = "SELECT n FROM New n WHERE n.content = :content"),
-    @NamedQuery(name = "New.findByImage", query = "SELECT n FROM New n WHERE n.image = :image"),
-    @NamedQuery(name = "New.findByDescription", query = "SELECT n FROM New n WHERE n.description = :description")})
-public class New implements Serializable {
+    @NamedQuery(name = "New1.findAll", query = "SELECT n FROM New1 n"),
+    @NamedQuery(name = "New1.findById", query = "SELECT n FROM New1 n WHERE n.id = :id"),
+    @NamedQuery(name = "New1.findByTitle", query = "SELECT n FROM New1 n WHERE n.title = :title"),
+    @NamedQuery(name = "New1.findByContent", query = "SELECT n FROM New1 n WHERE n.content = :content"),
+    @NamedQuery(name = "New1.findByImage", query = "SELECT n FROM New1 n WHERE n.image = :image"),
+    @NamedQuery(name = "New1.findByDescription", query = "SELECT n FROM New1 n WHERE n.description = :description")})
+public class New1 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,10 +57,10 @@ public class New implements Serializable {
     @ManyToOne
     private Category cateId;
 
-    public New() {
+    public New1() {
     }
 
-    public New(Integer id) {
+    public New1(Integer id) {
         this.id = id;
     }
 
@@ -122,10 +122,10 @@ public class New implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof New)) {
+        if (!(object instanceof New1)) {
             return false;
         }
-        New other = (New) object;
+        New1 other = (New1) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -134,7 +134,7 @@ public class New implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.pojo.New[ id=" + id + " ]";
+        return "com.mycompany.pojo.New1[ id=" + id + " ]";
     }
     
 }

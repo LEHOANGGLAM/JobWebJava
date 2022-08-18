@@ -5,8 +5,8 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "job_post")
@@ -92,7 +92,7 @@ public class JobPost implements Serializable {
     @Column(name = "individual_right")
     private String individualRight;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobPost")
-    private Set<JobPostActivity> jobPostActivitySet;
+    private Collection<JobPostActivity> jobPostActivityCollection;
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
@@ -103,7 +103,7 @@ public class JobPost implements Serializable {
     @ManyToOne
     private JobType jobTypeId;
     @OneToMany(mappedBy = "jobPostId")
-    private Set<JobPostSkillSet> jobPostSkillSetSet;
+    private Collection<JobPostSkillSet> jobPostSkillSetCollection;
 
     public JobPost() {
     }
@@ -225,12 +225,12 @@ public class JobPost implements Serializable {
     }
 
     @XmlTransient
-    public Set<JobPostActivity> getJobPostActivitySet() {
-        return jobPostActivitySet;
+    public Collection<JobPostActivity> getJobPostActivityCollection() {
+        return jobPostActivityCollection;
     }
 
-    public void setJobPostActivitySet(Set<JobPostActivity> jobPostActivitySet) {
-        this.jobPostActivitySet = jobPostActivitySet;
+    public void setJobPostActivityCollection(Collection<JobPostActivity> jobPostActivityCollection) {
+        this.jobPostActivityCollection = jobPostActivityCollection;
     }
 
     public Company getCompanyId() {
@@ -258,12 +258,12 @@ public class JobPost implements Serializable {
     }
 
     @XmlTransient
-    public Set<JobPostSkillSet> getJobPostSkillSetSet() {
-        return jobPostSkillSetSet;
+    public Collection<JobPostSkillSet> getJobPostSkillSetCollection() {
+        return jobPostSkillSetCollection;
     }
 
-    public void setJobPostSkillSetSet(Set<JobPostSkillSet> jobPostSkillSetSet) {
-        this.jobPostSkillSetSet = jobPostSkillSetSet;
+    public void setJobPostSkillSetCollection(Collection<JobPostSkillSet> jobPostSkillSetCollection) {
+        this.jobPostSkillSetCollection = jobPostSkillSetCollection;
     }
 
     @Override
