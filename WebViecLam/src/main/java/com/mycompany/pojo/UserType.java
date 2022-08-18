@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class UserType implements Serializable {
     @Size(max = 45)
     @Column(name = "user_type_name")
     private String userTypeName;
-    @OneToMany(mappedBy = "userTypeId")
+    @OneToMany(mappedBy = "userTypeId",  fetch = FetchType.EAGER)
     private Set<UserAccount> userAccountSet;
     @OneToMany(mappedBy = "userTypeId")
     private Set<Category> categorySet;

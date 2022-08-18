@@ -4,6 +4,8 @@
  */
 package com.mycompany.repository.impl;
 
+import com.mycompany.pojo.Company;
+import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.UserRepository;
 import java.util.List;
 import javax.persistence.Query;
@@ -24,7 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserRepositoryImpl implements UserRepository{
+public class UserRepositoryImpl implements UserRepository {
+
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
 
@@ -34,20 +37,46 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     @Override
-    public List<User> getUsers(String username) {
+    public List<UserAccount> getUsers() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<UserAccount> q = b.createQuery(UserAccount.class);
+        Root root = q.from(UserAccount.class);
+        q.select(root).groupBy(root.get("id"));
+        Query query = s.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<User> getUserByUsername(String username) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
         CriteriaQuery<User> q = b.createQuery(User.class);
         Root root = q.from(User.class);
         q.select(root);
-        
-        if (!username.isEmpty()){
+
+        if (!username.isEmpty()) {
             Predicate p = b.equal(root.get("username").as(String.class), username.trim());
             q = q.where(p);
         }
-        
+
         Query query = session.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        try {
+            UserAccount p = session.get(UserAccount.class, id);
+            session.delete(p);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+
     }
 }

@@ -32,7 +32,7 @@
 
 
         <!-- CSS here -->
-       
+        <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/animate.min.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/flaticon.css"/>" rel="stylesheet" type="text/css">
@@ -46,12 +46,8 @@
         <link href="<c:url value="/css/slicknav.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/themify-icons.css"/>" rel="stylesheet" type="text/css">
 
-        <link href="<c:url value="/css/style2.css"/>" rel="stylesheet" type="text/css">
-        <link href="<c:url value="/css/dashicons.min.css"/>" rel="stylesheet" type="text/css">
 
-        <link href="<c:url value="/css/icheck-bootstrap.min.css"/>" rel="stylesheet" type="text/css">
-        <link href="<c:url value="/css/adminlte.min.css"/>" rel="stylesheet" type="text/css">
-        <link href="<c:url value="/css/all.min.css"/>" rel="stylesheet" type="text/css">
+        <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
 
