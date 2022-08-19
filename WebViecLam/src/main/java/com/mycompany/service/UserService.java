@@ -18,4 +18,6 @@ public interface UserService extends UserDetailsService {
     List<User> getUserByUsername(String username);
      boolean deleteUser(int id);
      List<UserAccount> getUsers();
+     UserAccount getUserById(int id);
+      boolean updateConfirmUser(int id, int isComfirm);
 }

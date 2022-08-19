@@ -4,27 +4,23 @@
  */
 package com.mycompany.controllers;
 
-import com.mycompany.pojo.Company;
-import com.mycompany.pojo.UserAccount;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import com.mycompany.pojo.Category;
 import com.mycompany.service.CateService;
 import com.mycompany.service.CompanyService;
+import java.io.IOException;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  *
@@ -33,18 +29,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 @ControllerAdvice
 @RequestMapping("/admin")
-public class CompanyAdminController {
-
+public class CateAdminController {
     @Autowired
-    private CompanyService companyService;
+    private CateService cateService;
 
-    @GetMapping("/company")
-    public String index(Model model) {
-
-        model.addAttribute("c", this.companyService.getCompanies());
-
-        return "company";
+    @GetMapping("/cate")
+    public String cate(Model model) {
+        //model.addAttribute("cate", new Category());
+        return "category";
     }
 
-    
 }

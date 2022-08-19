@@ -18,9 +18,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -38,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findByActive", query = "SELECT c FROM Category c WHERE c.active = :active"),
     @NamedQuery(name = "Category.findByLinkCate", query = "SELECT c FROM Category c WHERE c.linkCate = :linkCate")})
 public class Category implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -63,6 +66,7 @@ public class Category implements Serializable {
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType userTypeId;
+   
 
     public Category() {
     }
@@ -160,5 +164,5 @@ public class Category implements Serializable {
     public String toString() {
         return "com.mycompany.pojo.Category[ id=" + id + " ]";
     }
-    
+
 }

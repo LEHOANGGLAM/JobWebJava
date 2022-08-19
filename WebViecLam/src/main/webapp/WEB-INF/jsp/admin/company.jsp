@@ -22,18 +22,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Company Dashboard</h1>  
-                    <!-- Breadcrumbs -->
-                    <nav id="breadcrumbs">
-                        <ul>
-                            <li><a href="#">Home &gt;</a></li>
-                            <li>Dashboard</li>
-                        </ul>
-                    </nav>
+                   
                 </div>
             </div>
         </div>
 
-        <div class="notification notice margin-bottom-25">Companies can be edited or removed below.</div>
+        <div class="notification notice margin-bottom-25">Companies can be edited or removed below,
+            after update reload to make sure everything is correct.</div>
         <c:if test="${errMsg!=null}">
             <div class="notification notice margin-bottom-25">${errMsg}</div>
         </c:if>
@@ -55,8 +50,7 @@
                 </table>
             </div>
         </div>
-
-        <a class="btn head-btn1" href="#">Add Company</a>	
+	
 
     </div>
 </div>

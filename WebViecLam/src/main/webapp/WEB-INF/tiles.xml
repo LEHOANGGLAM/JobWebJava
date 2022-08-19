@@ -65,13 +65,23 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="adminBase"
                 template="/WEB-INF/layout/adminBase.jsp">
         <put-attribute name="header"
-                value="/WEB-INF/layout/header.jsp" />
+                       value="/WEB-INF/layout/header.jsp" />
         <put-attribute name="content" value="" />     
     </definition>
     <definition name="company" extends="adminBase">
         <put-attribute name="title" value="Admin Page" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/admin/company.jsp" />
+    </definition>
+    <definition name="category" extends="adminBase">
+        <put-attribute name="title" value="Admin Page" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin/category.jsp" />
+    </definition>
+    <definition name="news" extends="adminBase">
+        <put-attribute name="title" value="Admin Page" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin/news.jsp" />
     </definition>
     <definition name="myProfile" extends="adminBase">
         <put-attribute name="title" value="Admin Page" />

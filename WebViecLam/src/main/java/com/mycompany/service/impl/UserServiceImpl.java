@@ -36,6 +36,10 @@ public class UserServiceImpl implements UserService {
     public List<UserAccount> getUsers() {
         return this.UserRepository.getUsers();
     }
+    @Override
+    public UserAccount getUserById(int id){
+         return this.UserRepository.getUserById(id);
+    }
     
     @Override
      public boolean deleteUser(int id) {
@@ -59,6 +63,11 @@ public class UserServiceImpl implements UserService {
         auth.add(new SimpleGrantedAuthority(user.getUsername()));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), auth);
+    }
+
+    @Override
+    public boolean updateConfirmUser(int id, int isComfirm) {
+         return this.UserRepository.updateConfirmUser(id,isComfirm);
     }
 
 }
