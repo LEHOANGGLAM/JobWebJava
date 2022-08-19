@@ -1,11 +1,11 @@
 <%-- 
-    Document   : home
-    Created on : Aug 17, 2022, 12:59:10 AM
+    Document   : manegeCompanies
+    Created on : Aug 17, 2022, 4:03:19 PM
     Author     : dell
 --%>
+
 <%@include file="../../taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 
 <c:forEach items="${cate}" var="cate" varStatus="loop">
     <c:if test="${cate.userTypeId.getId() == 1}">
@@ -21,7 +21,7 @@
         <div id="titlebar">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Company Dashboard</h1>  
+                    <h1>Categories Dashboard</h1>  
                    
                 </div>
             </div>
@@ -54,14 +54,3 @@
 
     </div>
 </div>
-
-<script src="<c:url value="/js/myjs.js" />"></script>
-<script>
-    <c:url value="/api/companies" var="u" />
-    window.onload = function () {
-        loadAdminCompany("${u}")
-    }
-
-</script>
-
-

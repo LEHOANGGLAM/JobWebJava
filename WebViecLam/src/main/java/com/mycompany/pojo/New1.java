@@ -16,8 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -56,7 +58,10 @@ public class New1 implements Serializable {
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     @ManyToOne
     private Category cateId;
-
+    @Transient
+    private MultipartFile file;
+    
+    
     public New1() {
     }
 
@@ -135,6 +140,20 @@ public class New1 implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.pojo.New1[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
     
 }

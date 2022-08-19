@@ -48,6 +48,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public UserAccount getUserById(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        return session.get(UserAccount.class, id);
+    }
+
+    @Override
     public List<User> getUserByUsername(String username) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
@@ -79,4 +86,20 @@ public class UserRepositoryImpl implements UserRepository {
         }
 
     }
+
+    @Override
+    public boolean updateConfirmUser(int id, int isComfirm) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        try {
+            UserAccount p = session.get(UserAccount.class, id);
+            p.setIsComfirm(isComfirm);
+            session.save(p);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }

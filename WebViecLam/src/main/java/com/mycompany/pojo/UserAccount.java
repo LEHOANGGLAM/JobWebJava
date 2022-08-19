@@ -4,6 +4,7 @@
  */
 package com.mycompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -22,9 +23,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
+
 
 /**
  *
@@ -48,6 +52,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName"),
     @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")})
 public class UserAccount implements Serializable {
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -89,13 +107,19 @@ public class UserAccount implements Serializable {
     @Column(name = "last_name")
     private String lastName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
+    @JsonIgnore
     private Collection<JobPostActivity> jobPostActivityCollection;
     @OneToMany(mappedBy = "userAccountId")
+    @JsonIgnore
     private Collection<Company> companyCollection;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private UserType userTypeId;
-
+    @Transient
+    private MultipartFile file;
+    
+    
     public UserAccount() {
     }
 
@@ -249,5 +273,5 @@ public class UserAccount implements Serializable {
     public String toString() {
         return "com.mycompany.pojo.UserAccount[ id=" + id + " ]";
     }
-    
+
 }
