@@ -10,9 +10,11 @@ import com.mycompany.pojo.Category;
 import com.mycompany.pojo.New1;
 import com.mycompany.service.CateService;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,6 @@ public class NewsAdminController {
 
     @Autowired
     private Cloudinary cloudinary;
-   
 
     @GetMapping("/news")
     public String news(Model model) {
@@ -41,8 +42,11 @@ public class NewsAdminController {
         return "news";
     }
 
+    
+
     @PostMapping("news")
     public String addNew(@ModelAttribute(value = "news") New1 n) {
+       
         try {
             Map r = this.cloudinary.uploader().upload(n.getFile(),
                     ObjectUtils.asMap("resource_type", "auto"));
@@ -50,7 +54,7 @@ public class NewsAdminController {
             String img = (String) r.get("secure_url");
             return "news";
         } catch (IOException ex) {
-            Logger.getLogger(CateAdminController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("----------ADD NEWS-------- : "+ ex.getMessage() );
         }
         return "news";
     }

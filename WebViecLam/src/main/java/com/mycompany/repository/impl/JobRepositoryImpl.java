@@ -63,7 +63,8 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jLocaRoot.get("city"),
                 cRoot.get("companyName"),
                 jRoot.get("expirationDate"),
-                jRoot.get("id")
+                jRoot.get("id"),
+                cRoot.get("image")
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();

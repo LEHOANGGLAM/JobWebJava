@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <c:url value="/admin/news" var="action">
+        <c:url value="/admin/news" var="action"/>
         <form:form method="post" action="${action}" modelAttribute="news" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="file">Ảnh New</label>
