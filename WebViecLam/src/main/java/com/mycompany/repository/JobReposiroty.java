@@ -20,4 +20,5 @@ public interface JobReposiroty {
 
     JobPost getJobById(int id);
     // int countJobPosts();
+    
 }

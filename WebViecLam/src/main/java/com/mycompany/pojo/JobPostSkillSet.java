@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "job_post_skill_set")

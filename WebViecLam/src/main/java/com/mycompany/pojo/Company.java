@@ -5,8 +5,8 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "company")
@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image"),
     @NamedQuery(name = "Company.findByCompanyWebsite", query = "SELECT c FROM Company c WHERE c.companyWebsite = :companyWebsite"),
     @NamedQuery(name = "Company.findByCompanyEmail", query = "SELECT c FROM Company c WHERE c.companyEmail = :companyEmail"),
-    @NamedQuery(name = "Company.findByCoverImage", query = "SELECT c FROM Company c WHERE c.coverImage = :coverImage")})
+    @NamedQuery(name = "Company.findByCoverImage", query = "SELECT c FROM Company c WHERE c.coverImage = :coverImage"),
+    @NamedQuery(name = "Company.findByAboutCompany", query = "SELECT c FROM Company c WHERE c.aboutCompany = :aboutCompany"),
+    @NamedQuery(name = "Company.findByCompanySize", query = "SELECT c FROM Company c WHERE c.companySize = :companySize")})
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,10 +61,10 @@ public class Company implements Serializable {
     @Column(name = "created_date")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
-    @Size(max = 45)
+    @Size(max = 200)
     @Column(name = "image")
     private String image;
-    @Size(max = 45)
+    @Size(max = 200)
     @Column(name = "company_website")
     private String companyWebsite;
     @Size(max = 45)
@@ -71,8 +73,16 @@ public class Company implements Serializable {
     @Size(max = 45)
     @Column(name = "cover_image")
     private String coverImage;
+    @Size(max = 2000)
+    @Column(name = "aboutCompany")
+    private String aboutCompany;
+    @Size(max = 45)
+    @Column(name = "company_size")
+    private String companySize;
     @OneToMany(mappedBy = "companyId")
-    private Collection<JobPost> jobPostCollection;
+    private Set<Street> streetSet;
+    @OneToMany(mappedBy = "companyId")
+    private Set<JobPost> jobPostSet;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
     private BusinessType businessTypeId;
@@ -151,13 +161,38 @@ public class Company implements Serializable {
         this.coverImage = coverImage;
     }
 
-    @XmlTransient
-    public Collection<JobPost> getJobPostCollection() {
-        return jobPostCollection;
+    public String getAboutCompany() {
+        return aboutCompany;
     }
 
-    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
-        this.jobPostCollection = jobPostCollection;
+    public void setAboutCompany(String aboutCompany) {
+        this.aboutCompany = aboutCompany;
+    }
+
+    public String getCompanySize() {
+        return companySize;
+    }
+
+    public void setCompanySize(String companySize) {
+        this.companySize = companySize;
+    }
+
+    @XmlTransient
+    public Set<Street> getStreetSet() {
+        return streetSet;
+    }
+
+    public void setStreetSet(Set<Street> streetSet) {
+        this.streetSet = streetSet;
+    }
+
+    @XmlTransient
+    public Set<JobPost> getJobPostSet() {
+        return jobPostSet;
+    }
+
+    public void setJobPostSet(Set<JobPost> jobPostSet) {
+        this.jobPostSet = jobPostSet;
     }
 
     public BusinessType getBusinessTypeId() {

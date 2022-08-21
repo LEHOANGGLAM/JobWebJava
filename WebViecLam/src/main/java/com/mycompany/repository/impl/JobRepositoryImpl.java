@@ -5,8 +5,8 @@
 package com.mycompany.repository.impl;
 
 import com.mycompany.pojo.Company;
-import com.mycompany.pojo.JobLocation;
 import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.Location;
 import com.mycompany.repository.JobReposiroty;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class JobRepositoryImpl implements JobReposiroty {
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
 
         Root<JobPost> jRoot = q.from(JobPost.class);
-        Root<JobLocation> jLocaRoot = q.from(JobLocation.class);
+        Root<Location> jLocaRoot = q.from(Location.class);
         Root<Company> cRoot = q.from(Company.class);
 
         q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),

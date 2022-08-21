@@ -41,4 +41,9 @@ public class CompanyServiceImpl implements CompanyService {
     public boolean addOrUpdateCompany(Company com) {
         return this.companyRepository.addOrUpdateCompany(com);
     }
+
+    @Override
+    public Company getComById(int id) {
+        return this.companyRepository.getComById(id);
+    }
 }

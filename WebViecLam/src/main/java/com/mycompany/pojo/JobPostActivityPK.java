@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Embeddable
 public class JobPostActivityPK implements Serializable {

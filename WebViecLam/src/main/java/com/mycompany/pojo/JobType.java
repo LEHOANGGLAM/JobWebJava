@@ -5,7 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "job_type")
@@ -42,7 +42,7 @@ public class JobType implements Serializable {
     @Column(name = "job_type")
     private String jobType;
     @OneToMany(mappedBy = "jobTypeId")
-    private Collection<JobPost> jobPostCollection;
+    private Set<JobPost> jobPostSet;
 
     public JobType() {
     }
@@ -68,12 +68,12 @@ public class JobType implements Serializable {
     }
 
     @XmlTransient
-    public Collection<JobPost> getJobPostCollection() {
-        return jobPostCollection;
+    public Set<JobPost> getJobPostSet() {
+        return jobPostSet;
     }
 
-    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
-        this.jobPostCollection = jobPostCollection;
+    public void setJobPostSet(Set<JobPost> jobPostSet) {
+        this.jobPostSet = jobPostSet;
     }
 
     @Override

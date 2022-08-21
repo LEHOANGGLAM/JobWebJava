@@ -12,8 +12,14 @@ import java.util.List;
  * @author dell
  */
 public interface CompanyRepository {
+
     Company getCompanyByJobPostId(int id);
+
     List<Object[]> getCompanies();
+
     boolean deleteCompany(int id);
-     boolean addOrUpdateCompany(Company com);
+
+    boolean addOrUpdateCompany(Company com);
+
+    Company getComById(int id);
 }

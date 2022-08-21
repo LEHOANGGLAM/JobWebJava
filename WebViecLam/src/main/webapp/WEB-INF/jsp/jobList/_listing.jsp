@@ -18,11 +18,11 @@
     <div class="single-job-items mb-30">
         <div class="job-items">
             <div class="company-img">
-                <a href="#">  <img class="img-fluid" src="<c:url value="${j[10]}"/>" alt="alt"/></a>
+                <a href="jobDetail/${j[9]}">  <img class="img-fluid" src="<c:url value="${j[10]}"/>" alt="alt"/></a>
             </div>
             <div class="job-tittle job-tittle2">
 
-                <a href="#">
+                <a href="jobDetail/${j[9]}">
                     <h4>${j[0]} </h4>
                 </a>
                 <ul>

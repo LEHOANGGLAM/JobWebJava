@@ -5,7 +5,6 @@
 package com.mycompany.controllers;
 
 import com.mycompany.service.CompanyService;
-import com.mycompany.service.JobLocaService;
 import com.mycompany.service.JobService;
 import java.util.Map;
 import javax.swing.JFrame;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.mycompany.service.LocationService;
 
 /**
  *
@@ -32,7 +32,7 @@ public class JobDetailController {
     @Autowired
     private CompanyService companyService;
     @Autowired
-    private JobLocaService jobLocaService;
+    private LocationService jobLocaService;
 
     private JFrame outFrame = new JFrame("demo");
     
