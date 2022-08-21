@@ -44,19 +44,19 @@ public class NewsAdminController {
 
     
 
-    @PostMapping("news")
-    public String addNew(@ModelAttribute(value = "news") New1 n) {
-       
-        try {
-            Map r = this.cloudinary.uploader().upload(n.getFile(),
-                    ObjectUtils.asMap("resource_type", "auto"));
-
-            String img = (String) r.get("secure_url");
-            //Phuong thuc tao news moi,
-            return "news";
-        } catch (IOException ex) {
-            System.err.println("----------ADD NEWS-------- : "+ ex.getMessage() );
-        }
-        return "news";
-    }
+//    @PostMapping("news")
+//    public String addNew(@ModelAttribute(value = "news") New1 n) {
+//       
+//        try {
+//            Map r = this.cloudinary.uploader().upload(n.getFile(),
+//                    ObjectUtils.asMap("resource_type", "auto"));
+//
+//            String img = (String) r.get("secure_url");
+//            //Phuong thuc tao news moi,
+//            return "news";
+//        } catch (IOException ex) {
+//            System.err.println("----------ADD NEWS-------- : "+ ex.getMessage() );
+//        }
+//        return "news";
+//    }
 }

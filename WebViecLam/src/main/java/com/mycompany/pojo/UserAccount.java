@@ -6,8 +6,8 @@ package com.mycompany.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,18 +20,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "user_account")
@@ -51,20 +50,6 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName"),
     @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")})
 public class UserAccount implements Serializable {
-
-    /**
-     * @return the file
-     */
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -107,16 +92,16 @@ public class UserAccount implements Serializable {
     private String lastName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     @JsonIgnore
-    private Set<JobPostActivity> jobPostActivitySet;
+    private Collection<JobPostActivity> jobPostActivityCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userAccount")
+    private Comment comment;
     @OneToMany(mappedBy = "userAccountId")
     @JsonIgnore
-    private Set<Company> companySet;
+    private Collection<Company> companyCollection;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     @JsonIgnore
     private UserType userTypeId;
-    @Transient
-    private MultipartFile file;
 
     public UserAccount() {
     }
@@ -222,21 +207,29 @@ public class UserAccount implements Serializable {
     }
 
     @XmlTransient
-    public Set<JobPostActivity> getJobPostActivitySet() {
-        return jobPostActivitySet;
+    public Collection<JobPostActivity> getJobPostActivityCollection() {
+        return jobPostActivityCollection;
     }
 
-    public void setJobPostActivitySet(Set<JobPostActivity> jobPostActivitySet) {
-        this.jobPostActivitySet = jobPostActivitySet;
+    public void setJobPostActivityCollection(Collection<JobPostActivity> jobPostActivityCollection) {
+        this.jobPostActivityCollection = jobPostActivityCollection;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     @XmlTransient
-    public Set<Company> getCompanySet() {
-        return companySet;
+    public Collection<Company> getCompanyCollection() {
+        return companyCollection;
     }
 
-    public void setCompanySet(Set<Company> companySet) {
-        this.companySet = companySet;
+    public void setCompanyCollection(Collection<Company> companyCollection) {
+        this.companyCollection = companyCollection;
     }
 
     public UserType getUserTypeId() {
@@ -271,5 +264,5 @@ public class UserAccount implements Serializable {
     public String toString() {
         return "com.mycompany.pojo.UserAccount[ id=" + id + " ]";
     }
-
+    
 }

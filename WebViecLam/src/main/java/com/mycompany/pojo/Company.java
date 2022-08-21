@@ -5,8 +5,8 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "company")
@@ -80,9 +80,11 @@ public class Company implements Serializable {
     @Column(name = "company_size")
     private String companySize;
     @OneToMany(mappedBy = "companyId")
-    private Set<Street> streetSet;
+    private Collection<Street> streetCollection;
     @OneToMany(mappedBy = "companyId")
-    private Set<JobPost> jobPostSet;
+    private Collection<JobPost> jobPostCollection;
+    @OneToMany(mappedBy = "companyId")
+    private Collection<Comment> commentCollection;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
     private BusinessType businessTypeId;
@@ -178,21 +180,30 @@ public class Company implements Serializable {
     }
 
     @XmlTransient
-    public Set<Street> getStreetSet() {
-        return streetSet;
+    public Collection<Street> getStreetCollection() {
+        return streetCollection;
     }
 
-    public void setStreetSet(Set<Street> streetSet) {
-        this.streetSet = streetSet;
+    public void setStreetCollection(Collection<Street> streetCollection) {
+        this.streetCollection = streetCollection;
     }
 
     @XmlTransient
-    public Set<JobPost> getJobPostSet() {
-        return jobPostSet;
+    public Collection<JobPost> getJobPostCollection() {
+        return jobPostCollection;
     }
 
-    public void setJobPostSet(Set<JobPost> jobPostSet) {
-        this.jobPostSet = jobPostSet;
+    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
+        this.jobPostCollection = jobPostCollection;
+    }
+
+    @XmlTransient
+    public Collection<Comment> getCommentCollection() {
+        return commentCollection;
+    }
+
+    public void setCommentCollection(Collection<Comment> commentCollection) {
+        this.commentCollection = commentCollection;
     }
 
     public BusinessType getBusinessTypeId() {

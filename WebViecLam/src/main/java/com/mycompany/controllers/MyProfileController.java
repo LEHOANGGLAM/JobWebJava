@@ -46,18 +46,18 @@ public class MyProfileController {
         return "myProfile";
     }
 
-    @PutMapping("/myProfile")
-    public String updateProfile(@RequestBody UserAccount params, HttpSession session) {
-
-        try {
-            Map r = this.cloudinary.uploader().upload(params.getFile(),
-                    ObjectUtils.asMap("resource_type", "auto"));
-            String img = (String) r.get("secure_url");
-            //Phuong thuc update UserAccount
-        } catch (IOException ex) {
-            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return "myProfile";
-    }
+//    @PutMapping("/myProfile")
+//    public String updateProfile(@RequestBody UserAccount params, HttpSession session) {
+//
+//        try {
+//            Map r = this.cloudinary.uploader().upload(params.getFile,
+//                    ObjectUtils.asMap("resource_type", "auto"));
+//            String img = (String) r.get("secure_url");
+//            //Phuong thuc update UserAccount
+//        } catch (IOException ex) {
+//            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return "myProfile";
+//    }
 }
