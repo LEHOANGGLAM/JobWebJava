@@ -5,7 +5,6 @@
 package com.mycompany.repository.impl;
 
 import com.mycompany.pojo.Company;
-import com.mycompany.pojo.JobLocation;
 import com.mycompany.pojo.JobPost;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.CompanyRepository;
@@ -91,13 +90,13 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         }
 
     }
-    
+
     @Override
     public boolean addOrUpdateCompany(Company com) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         try {
-           
+
             session.save(com);
             return true;
         } catch (Exception ex) {
@@ -105,5 +104,11 @@ public class CompanyRepositoryImpl implements CompanyRepository {
             return false;
         }
 
+    }
+
+    @Override
+    public Company getComById(int id) {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(Company.class, id);
     }
 }

@@ -5,7 +5,6 @@
 package com.mycompany.controllers;
 
 import com.mycompany.pojo.JobType;
-import com.mycompany.service.JobLocaService;
 import com.mycompany.service.JobService;
 import com.mycompany.service.JobTypeService;
 import java.util.Map;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.mycompany.service.LocationService;
 
 /**
  *
@@ -33,7 +33,7 @@ public class JobListController {
     @Autowired
     private JobTypeService jobTypeService;
     @Autowired
-    private JobLocaService jobLocaService;
+    private LocationService jobLocaService;
 
     @Autowired
     private JobService jobService;

@@ -15,11 +15,11 @@
                 <!-- job single -->
                 <div class="single-job-items mb-50">
                     <div class="job-items">
-                        <div class="company-img company-img-details">
-                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                        <div class="company-img">
+                            <a href="#">  <img class="img-fluid" src="<c:url value="${c.image}"/>" alt="alt"/></a>
                         </div>
                         <div class="job-tittle">
-                            <a href="#">
+                            <a href="<c:url value="companyDetail/${job.id}"/>">
                                 <h4>${job.jobTitle}</h4>
                             </a>
                             <ul>

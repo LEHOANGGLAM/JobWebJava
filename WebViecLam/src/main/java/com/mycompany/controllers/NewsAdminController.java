@@ -52,6 +52,7 @@ public class NewsAdminController {
                     ObjectUtils.asMap("resource_type", "auto"));
 
             String img = (String) r.get("secure_url");
+            //Phuong thuc tao news moi,
             return "news";
         } catch (IOException ex) {
             System.err.println("----------ADD NEWS-------- : "+ ex.getMessage() );

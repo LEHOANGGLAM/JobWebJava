@@ -6,7 +6,6 @@ package com.mycompany.controllers;
 
 import com.mycompany.service.CateService;
 import com.mycompany.service.CompanyService;
-import com.mycompany.service.JobLocaService;
 import com.mycompany.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.mycompany.service.LocationService;
 
 /**
  *
