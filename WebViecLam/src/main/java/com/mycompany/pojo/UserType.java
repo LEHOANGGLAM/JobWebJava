@@ -5,7 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "user_type")
@@ -43,9 +43,9 @@ public class UserType implements Serializable {
     @Column(name = "user_type_name")
     private String userTypeName;
     @OneToMany(mappedBy = "userTypeId")
-    private Collection<UserAccount> userAccountCollection;
+    private Set<UserAccount> userAccountSet;
     @OneToMany(mappedBy = "userTypeId")
-    private Collection<Category> categoryCollection;
+    private Set<Category> categorySet;
 
     public UserType() {
     }
@@ -71,21 +71,21 @@ public class UserType implements Serializable {
     }
 
     @XmlTransient
-    public Collection<UserAccount> getUserAccountCollection() {
-        return userAccountCollection;
+    public Set<UserAccount> getUserAccountSet() {
+        return userAccountSet;
     }
 
-    public void setUserAccountCollection(Collection<UserAccount> userAccountCollection) {
-        this.userAccountCollection = userAccountCollection;
+    public void setUserAccountSet(Set<UserAccount> userAccountSet) {
+        this.userAccountSet = userAccountSet;
     }
 
     @XmlTransient
-    public Collection<Category> getCategoryCollection() {
-        return categoryCollection;
+    public Set<Category> getCategorySet() {
+        return categorySet;
     }
 
-    public void setCategoryCollection(Collection<Category> categoryCollection) {
-        this.categoryCollection = categoryCollection;
+    public void setCategorySet(Set<Category> categorySet) {
+        this.categorySet = categorySet;
     }
 
     @Override

@@ -4,14 +4,17 @@
  */
 package com.mycompany.service;
 
-import com.mycompany.pojo.JobLocation;
+import com.mycompany.pojo.Location;
+import com.mycompany.pojo.Street;
 import java.util.List;
 
 /**
  *
  * @author dell
  */
-public interface JobLocaService {
-     List<JobLocation> getJobLocations();
-     JobLocation getLocationByJobPostId(int id);
+public interface LocationService {
+     List<Location> getJobLocations();
+     Location getLocationByJobPostId(int id);
+     List<Street> getLocaByComId(int id);
+      int countLocaByComId(int id);
 }

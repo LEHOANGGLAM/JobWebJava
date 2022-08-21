@@ -5,7 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,16 +21,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
-@Table(name = "job_location")
+@Table(name = "location")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "JobLocation.findAll", query = "SELECT j FROM JobLocation j"),
-    @NamedQuery(name = "JobLocation.findById", query = "SELECT j FROM JobLocation j WHERE j.id = :id"),
-    @NamedQuery(name = "JobLocation.findByCity", query = "SELECT j FROM JobLocation j WHERE j.city = :city")})
-public class JobLocation implements Serializable {
+    @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),
+    @NamedQuery(name = "Location.findById", query = "SELECT l FROM Location l WHERE l.id = :id"),
+    @NamedQuery(name = "Location.findByCity", query = "SELECT l FROM Location l WHERE l.city = :city")})
+public class Location implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,13 +41,15 @@ public class JobLocation implements Serializable {
     @Size(max = 50)
     @Column(name = "city")
     private String city;
+    @OneToMany(mappedBy = "cityId")
+    private Set<Street> streetSet;
     @OneToMany(mappedBy = "jobLocationId")
-    private Collection<JobPost> jobPostCollection;
+    private Set<JobPost> jobPostSet;
 
-    public JobLocation() {
+    public Location() {
     }
 
-    public JobLocation(Integer id) {
+    public Location(Integer id) {
         this.id = id;
     }
 
@@ -68,12 +70,21 @@ public class JobLocation implements Serializable {
     }
 
     @XmlTransient
-    public Collection<JobPost> getJobPostCollection() {
-        return jobPostCollection;
+    public Set<Street> getStreetSet() {
+        return streetSet;
     }
 
-    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
-        this.jobPostCollection = jobPostCollection;
+    public void setStreetSet(Set<Street> streetSet) {
+        this.streetSet = streetSet;
+    }
+
+    @XmlTransient
+    public Set<JobPost> getJobPostSet() {
+        return jobPostSet;
+    }
+
+    public void setJobPostSet(Set<JobPost> jobPostSet) {
+        this.jobPostSet = jobPostSet;
     }
 
     @Override
@@ -86,10 +97,10 @@ public class JobLocation implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof JobLocation)) {
+        if (!(object instanceof Location)) {
             return false;
         }
-        JobLocation other = (JobLocation) object;
+        Location other = (Location) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,7 +109,7 @@ public class JobLocation implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.pojo.JobLocation[ id=" + id + " ]";
+        return "com.mycompany.pojo.Location[ id=" + id + " ]";
     }
     
 }

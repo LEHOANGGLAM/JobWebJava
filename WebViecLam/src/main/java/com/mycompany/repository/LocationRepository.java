@@ -5,16 +5,19 @@
 package com.mycompany.repository;
 
 import com.mycompany.pojo.Company;
-import com.mycompany.pojo.JobLocation;
+import com.mycompany.pojo.Location;
+import com.mycompany.pojo.Street;
 import java.util.List;
 
 /**
  *
  * @author dell
  */
-public interface JobLocaRepository {
+public interface LocationRepository {
 
-    List<JobLocation> getJobLocations();
+    List<Location> getJobLocations();
 
-    JobLocation getLocationByJobPostId(int id);
+    Location getLocationByJobPostId(int id);
+    List<Street> getLocaByComId(int id);
+    int countLocaByComId(int id);
 }

@@ -3,8 +3,8 @@
     Created on : Jul 27, 2022, 2:24:21 AM
     Author     : dell
 --%>
- <%@include file="../taglib.jsp"%>
- 
+<%@include file="../taglib.jsp"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
         <link href="<c:url value="/css/slicknav.css"/>" rel="stylesheet" type="text/css">
         <link href="<c:url value="/css/themify-icons.css"/>" rel="stylesheet" type="text/css">
 
-
+        <link href="<c:url value="/css2/v2style.css"/>" rel="stylesheet" type="text/css">
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
         <title>

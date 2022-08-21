@@ -20,4 +20,6 @@ public interface CompanyService {
     boolean deleteCompany(int id);
 
     boolean addOrUpdateCompany(Company com);
+
+    Company getComById(int id);
 }

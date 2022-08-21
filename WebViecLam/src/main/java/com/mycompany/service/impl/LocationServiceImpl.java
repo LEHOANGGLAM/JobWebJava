@@ -4,32 +4,43 @@
  */
 package com.mycompany.service.impl;
 
-import com.mycompany.pojo.JobLocation;
+import com.mycompany.pojo.Location;
 import com.mycompany.pojo.JobType;
-import com.mycompany.repository.JobLocaRepository;
+import com.mycompany.pojo.Street;
 import com.mycompany.repository.JobTypeRepository;
-import com.mycompany.service.JobLocaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.mycompany.repository.LocationRepository;
+import com.mycompany.service.LocationService;
 
 /**
  *
  * @author dell
  */
 @Service
-public class JobLocaServiceImpl implements JobLocaService {
+public class LocationServiceImpl implements LocationService {
 
     @Autowired
-    private JobLocaRepository jobLocaRepository;
+    private LocationRepository jobLocaRepository;
 
     @Override
-    public List<JobLocation> getJobLocations() {
+    public List<Location> getJobLocations() {
         return this.jobLocaRepository.getJobLocations();
     }
 
     @Override
-    public JobLocation getLocationByJobPostId(int id) {
+    public Location getLocationByJobPostId(int id) {
         return this.jobLocaRepository.getLocationByJobPostId(id);
     }
+    
+    @Override
+    public List<Street> getLocaByComId(int id) {
+        return this.jobLocaRepository.getLocaByComId(id);
+    }
+    
+    @Override
+     public int countLocaByComId(int id){
+            return this.jobLocaRepository.countLocaByComId(id);
+     }
 }

@@ -6,8 +6,8 @@ package com.mycompany.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,10 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
-
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "user_account")
@@ -108,18 +107,17 @@ public class UserAccount implements Serializable {
     private String lastName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     @JsonIgnore
-    private Collection<JobPostActivity> jobPostActivityCollection;
+    private Set<JobPostActivity> jobPostActivitySet;
     @OneToMany(mappedBy = "userAccountId")
     @JsonIgnore
-    private Collection<Company> companyCollection;
+    private Set<Company> companySet;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     @JsonIgnore
     private UserType userTypeId;
     @Transient
     private MultipartFile file;
-    
-    
+
     public UserAccount() {
     }
 
@@ -224,21 +222,21 @@ public class UserAccount implements Serializable {
     }
 
     @XmlTransient
-    public Collection<JobPostActivity> getJobPostActivityCollection() {
-        return jobPostActivityCollection;
+    public Set<JobPostActivity> getJobPostActivitySet() {
+        return jobPostActivitySet;
     }
 
-    public void setJobPostActivityCollection(Collection<JobPostActivity> jobPostActivityCollection) {
-        this.jobPostActivityCollection = jobPostActivityCollection;
+    public void setJobPostActivitySet(Set<JobPostActivity> jobPostActivitySet) {
+        this.jobPostActivitySet = jobPostActivitySet;
     }
 
     @XmlTransient
-    public Collection<Company> getCompanyCollection() {
-        return companyCollection;
+    public Set<Company> getCompanySet() {
+        return companySet;
     }
 
-    public void setCompanyCollection(Collection<Company> companyCollection) {
-        this.companyCollection = companyCollection;
+    public void setCompanySet(Set<Company> companySet) {
+        this.companySet = companySet;
     }
 
     public UserType getUserTypeId() {

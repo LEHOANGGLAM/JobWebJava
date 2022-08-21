@@ -5,8 +5,8 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "job_post")
@@ -92,18 +92,18 @@ public class JobPost implements Serializable {
     @Column(name = "individual_right")
     private String individualRight;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobPost")
-    private Collection<JobPostActivity> jobPostActivityCollection;
+    private Set<JobPostActivity> jobPostActivitySet;
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
-    @JoinColumn(name = "job_location_id", referencedColumnName = "id")
-    @ManyToOne
-    private JobLocation jobLocationId;
     @JoinColumn(name = "job_type_id", referencedColumnName = "id")
     @ManyToOne
     private JobType jobTypeId;
+    @JoinColumn(name = "job_location_id", referencedColumnName = "id")
+    @ManyToOne
+    private Location jobLocationId;
     @OneToMany(mappedBy = "jobPostId")
-    private Collection<JobPostSkillSet> jobPostSkillSetCollection;
+    private Set<JobPostSkillSet> jobPostSkillSetSet;
 
     public JobPost() {
     }
@@ -225,12 +225,12 @@ public class JobPost implements Serializable {
     }
 
     @XmlTransient
-    public Collection<JobPostActivity> getJobPostActivityCollection() {
-        return jobPostActivityCollection;
+    public Set<JobPostActivity> getJobPostActivitySet() {
+        return jobPostActivitySet;
     }
 
-    public void setJobPostActivityCollection(Collection<JobPostActivity> jobPostActivityCollection) {
-        this.jobPostActivityCollection = jobPostActivityCollection;
+    public void setJobPostActivitySet(Set<JobPostActivity> jobPostActivitySet) {
+        this.jobPostActivitySet = jobPostActivitySet;
     }
 
     public Company getCompanyId() {
@@ -241,14 +241,6 @@ public class JobPost implements Serializable {
         this.companyId = companyId;
     }
 
-    public JobLocation getJobLocationId() {
-        return jobLocationId;
-    }
-
-    public void setJobLocationId(JobLocation jobLocationId) {
-        this.jobLocationId = jobLocationId;
-    }
-
     public JobType getJobTypeId() {
         return jobTypeId;
     }
@@ -257,13 +249,21 @@ public class JobPost implements Serializable {
         this.jobTypeId = jobTypeId;
     }
 
-    @XmlTransient
-    public Collection<JobPostSkillSet> getJobPostSkillSetCollection() {
-        return jobPostSkillSetCollection;
+    public Location getJobLocationId() {
+        return jobLocationId;
     }
 
-    public void setJobPostSkillSetCollection(Collection<JobPostSkillSet> jobPostSkillSetCollection) {
-        this.jobPostSkillSetCollection = jobPostSkillSetCollection;
+    public void setJobLocationId(Location jobLocationId) {
+        this.jobLocationId = jobLocationId;
+    }
+
+    @XmlTransient
+    public Set<JobPostSkillSet> getJobPostSkillSetSet() {
+        return jobPostSkillSetSet;
+    }
+
+    public void setJobPostSkillSetSet(Set<JobPostSkillSet> jobPostSkillSetSet) {
+        this.jobPostSkillSetSet = jobPostSkillSetSet;
     }
 
     @Override
