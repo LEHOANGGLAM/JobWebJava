@@ -29,10 +29,10 @@
             </div>
         </div>
         <c:url value="/admin/news" var="action"/>
-        <form:form method="post" action="${action}" modelAttribute="news" enctype="multipart/form-data">
+        <form:form method="post" action="${action}" modelAttribute="n" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="file">Ảnh New</label>
-                <form:input type="file" id="image" path="file" cssClass="form-control"/>
+                  <form:input type="file" id="image" path="file" cssClass="form-control"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Add New" class="btn btn-danger"/>
