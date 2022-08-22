@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -83,7 +84,7 @@ public class Company implements Serializable {
     private Collection<Street> streetCollection;
     @OneToMany(mappedBy = "companyId")
     private Collection<JobPost> jobPostCollection;
-    @OneToMany(mappedBy = "companyId")
+    @OneToMany(mappedBy = "companyId", fetch = FetchType.EAGER)
     private Collection<Comment> commentCollection;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne

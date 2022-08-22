@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -93,8 +92,9 @@ public class UserAccount implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     @JsonIgnore
     private Collection<JobPostActivity> jobPostActivityCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userAccount")
-    private Comment comment;
+    @OneToMany(mappedBy = "userId")
+    @JsonIgnore
+    private Collection<Comment> commentCollection;
     @OneToMany(mappedBy = "userAccountId")
     @JsonIgnore
     private Collection<Company> companyCollection;
@@ -215,12 +215,13 @@ public class UserAccount implements Serializable {
         this.jobPostActivityCollection = jobPostActivityCollection;
     }
 
-    public Comment getComment() {
-        return comment;
+    @XmlTransient
+    public Collection<Comment> getCommentCollection() {
+        return commentCollection;
     }
 
-    public void setComment(Comment comment) {
-        this.comment = comment;
+    public void setCommentCollection(Collection<Comment> commentCollection) {
+        this.commentCollection = commentCollection;
     }
 
     @XmlTransient

@@ -102,4 +102,19 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public boolean updateInfo(UserAccount u) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        try {
+
+            session.save(u);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+
+    }
+
 }

@@ -67,6 +67,24 @@ function updateAcc(obj, accId) {
         document.getElementById(accId).innerHTML  = (data == 1 ? "Approved" : "Pending Review")       
     })
 }
+//
+//function updateInfo(obj, accId) {
+//
+//    fetch("api/accounts", {
+//        method: "put",
+//        body: JSON.stringify({
+//            "id": accId,
+//            "isComfirm": obj.ge
+//        }),
+//        headers: {
+//            "Content-Type": "application/json"
+//        }
+//    }).then(function (res) {
+//        return res.json()
+//    }).then(function (data) {
+//        document.getElementById(accId).innerHTML  = (data == 1 ? "Approved" : "Pending Review")       
+//    })
+//}
 
 
 

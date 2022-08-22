@@ -4,6 +4,7 @@
  */
 package com.mycompany.repository;
 
+import com.mycompany.pojo.Comment;
 import com.mycompany.pojo.Company;
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface CompanyRepository {
     boolean addOrUpdateCompany(Company com);
 
     Company getComById(int id);
+    
+    List<Comment> getComments(int companyId);
 }

@@ -4,6 +4,7 @@
  */
 package com.mycompany.service.impl;
 
+import com.mycompany.pojo.Comment;
 import com.mycompany.pojo.Company;
 import com.mycompany.repository.CompanyRepository;
 import com.mycompany.repository.JobReposiroty;
@@ -45,5 +46,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company getComById(int id) {
         return this.companyRepository.getComById(id);
+    }
+    
+    @Override
+    public List<Comment> getComments(int companyId) {
+        return this.companyRepository.getComments(companyId);
     }
 }

@@ -21,5 +21,5 @@ public interface UserRepository {
     boolean deleteUser(int id);
     List<UserAccount> getUsers();
     UserAccount getUserById(int id);
-     boolean updateConfirmUser(int id, int isComfirm);
+    boolean updateConfirmUser(int id, int isComfirm);
 }

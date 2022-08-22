@@ -16,6 +16,7 @@
 <!-- job post company End -->
 <!--
 <form method="post" action="" id="form-apply-cv" enctype="multipart/form-data">
+<a href="../comment/_comment.jsp"></a>
     <input type="hidden" name="_token" value="kUeclEoZMIKoG7ch7whM5jXDH74fSxxeLBPB0QfV">
     <input type="hidden" name="ta_source" value="BoxFeatureJob">
     <input type="hidden" name="jr_i" value="">
