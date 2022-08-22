@@ -37,4 +37,9 @@ public class JobServiceImpl implements JobService {
     public JobPost getJobById(int id) {
         return this.jobReposiroty.getJobById(id);
     }
+    
+    @Override
+    public List<Object[]> getJobsByComid(int comId,int page) {
+        return this.jobReposiroty.getJobsByComid(comId, page);
+    }
 }

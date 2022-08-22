@@ -97,7 +97,7 @@
             </p>
         </c:if>
         <!-- single-job-content -->
-        <c:forEach items="${jobposts}" var="j" varStatus="loop">
+        <c:forEach items="${jobs}" var="j" varStatus="loop">
 
             <div class="single-job-items mb-30">
                 <div class="job-items">
