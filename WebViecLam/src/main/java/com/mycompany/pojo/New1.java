@@ -16,8 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -34,6 +36,20 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "New1.findByImage", query = "SELECT n FROM New1 n WHERE n.image = :image"),
     @NamedQuery(name = "New1.findByDescription", query = "SELECT n FROM New1 n WHERE n.description = :description")})
 public class New1 implements Serializable {
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,6 +72,8 @@ public class New1 implements Serializable {
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     @ManyToOne
     private Category cateId;
+    @Transient
+    private MultipartFile file;
 
     public New1() {
     }
