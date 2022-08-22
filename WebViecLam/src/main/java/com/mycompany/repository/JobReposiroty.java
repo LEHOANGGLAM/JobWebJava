@@ -20,5 +20,6 @@ public interface JobReposiroty {
 
     JobPost getJobById(int id);
     // int countJobPosts();
+    List<Object[]> getJobsByComid(int comId,int page);
     
 }
