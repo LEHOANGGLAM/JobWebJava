@@ -5,6 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,16 +27,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author PC
  */
 @Entity
-@Table(name = "new")
+@Table(name = "comment")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "New1.findAll", query = "SELECT n FROM New1 n"),
-    @NamedQuery(name = "New1.findById", query = "SELECT n FROM New1 n WHERE n.id = :id"),
-    @NamedQuery(name = "New1.findByTitle", query = "SELECT n FROM New1 n WHERE n.title = :title"),
-    @NamedQuery(name = "New1.findByContent", query = "SELECT n FROM New1 n WHERE n.content = :content"),
-    @NamedQuery(name = "New1.findByImage", query = "SELECT n FROM New1 n WHERE n.image = :image"),
-    @NamedQuery(name = "New1.findByDescription", query = "SELECT n FROM New1 n WHERE n.description = :description")})
-public class New1 implements Serializable {
+    @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
+    @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
+    @NamedQuery(name = "Comment.findByContent", query = "SELECT c FROM Comment c WHERE c.content = :content"),
+    @NamedQuery(name = "Comment.findByCreatedDate", query = "SELECT c FROM Comment c WHERE c.createdDate = :createdDate")})
+public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,26 +42,23 @@ public class New1 implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
-    @Column(name = "title")
-    private String title;
-    @Size(max = 45)
+    @Size(max = 200)
     @Column(name = "content")
     private String content;
-    @Size(max = 45)
-    @Column(name = "image")
-    private String image;
-    @Size(max = 45)
-    @Column(name = "description")
-    private String description;
-    @JoinColumn(name = "cate_id", referencedColumnName = "id")
+    @Column(name = "created_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
-    private Category cateId;
-
-    public New1() {
+    private Company companyId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private UserAccount userId;
+    
+    public Comment() {
     }
 
-    public New1(Integer id) {
+    public Comment(Integer id) {
         this.id = id;
     }
 
@@ -72,14 +70,6 @@ public class New1 implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getContent() {
         return content;
     }
@@ -88,28 +78,28 @@ public class New1 implements Serializable {
         this.content = content;
     }
 
-    public String getImage() {
-        return image;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public String getDescription() {
-        return description;
+    public Company getCompanyId() {
+        return companyId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCompanyId(Company companyId) {
+        this.companyId = companyId;
     }
 
-    public Category getCateId() {
-        return cateId;
+    public UserAccount getUserId() {
+        return userId;
     }
 
-    public void setCateId(Category cateId) {
-        this.cateId = cateId;
+    public void setUserId(UserAccount userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -122,10 +112,10 @@ public class New1 implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof New1)) {
+        if (!(object instanceof Comment)) {
             return false;
         }
-        New1 other = (New1) object;
+        Comment other = (Comment) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -134,7 +124,7 @@ public class New1 implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.pojo.New1[ id=" + id + " ]";
+        return "com.mycompany.pojo.Comment[ id=" + id + " ]";
     }
     
 }

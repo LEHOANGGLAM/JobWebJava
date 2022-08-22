@@ -51,16 +51,16 @@
 
 
                                     <label for="first-name">First Name</label>
-                                    <input class="text-input" name="first-name" type="text" id="first-name" value="Tom" />
+                                    <input class="text-input" name="first-name" type="text" id="first-name" value="${u.firstName}" />
 
                                     <label for="last-name">Last Name</label>
-                                    <input class="text-input" name="last-name" type="text" id="last-name" value="Wilson" />
+                                    <input class="text-input" name="last-name" type="text" id="last-name" value="${u.lastName}" />
 
                                     <label for="phone">Phone</label>
-                                    <input class="text-input" name="phone" type="text" id="phone" value="" type="text">
+                                    <input class="text-input" name="phone" type="text" id="phone" value="${u.contactNumber}" type="text">
 
                                     <label for="email">E-mail</label>
-                                    <input class="text-input" name="email" type="text" id="email" value="tom@example.com" />
+                                    <input class="text-input" name="email" type="text" id="email" value="${u.email}" />
 
                                     <label for="description">About me</label>
                                     <textarea name="description" id="description" cols="30" rows="10"></textarea>

@@ -19,6 +19,7 @@
     <class>com.mycompany.pojo.New1</class>
     <class>com.mycompany.pojo.Location</class>
     <class>com.mycompany.pojo.Street</class>
+    <class>com.mycompany.pojo.Comment</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/vieclamdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

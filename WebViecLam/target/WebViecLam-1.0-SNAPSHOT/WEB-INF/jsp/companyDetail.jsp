@@ -44,7 +44,7 @@
                     </div>
 
                 </div>
-               
+
             </div>
             <!-- Right Content -->
             <div class="col-xl-4 col-lg-4">
@@ -85,8 +85,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-tittle text-center">
- <h2>   Recently posted jobs</h2>
-               
+                    <h2>   Recently posted jobs</h2>
+
                 </div>
             </div>
         </div>
@@ -95,4 +95,10 @@
     </div>
 </section>
 <!--    comment section-->
+<section>
+    <div class="container">
+        <div class="row">
+
+            <%@include file="comment/comment.jsp"%>
+        </div>
 </section>

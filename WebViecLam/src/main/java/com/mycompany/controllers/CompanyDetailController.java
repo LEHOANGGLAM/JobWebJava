@@ -40,6 +40,7 @@ public class CompanyDetailController {
         //  model.addAttribute("countLoca", this.locationService.countLocaByComId(cId));
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
+        model.addAttribute("comment", this.companyService.getComments(cId));
         return "companyDetail";
     }
 }

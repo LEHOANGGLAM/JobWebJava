@@ -53,10 +53,17 @@ public class ApiAccountController {
         } else {
             isComfirm = 1;
         }
-      //  UserAccount account = userService.getUserById(params.getId());
+       //UserAccount account = userService.getUserById(params.getId());
       //  account.setIsComfirm(isComfirm);
+      
+      
+      
+      
+      
        // session.setAttribute("acc", account);
          this.userService.updateConfirmUser(params.getId(),isComfirm);
         return isComfirm; 
     }
+    
+    
 }

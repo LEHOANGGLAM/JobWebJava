@@ -5,10 +5,10 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-22T09:44:18")
-@StaticMetamodel(JobPostActivityPK.class)
-public class JobPostActivityPK_ { 
+@StaticMetamodel(JobLocation.class)
+public class JobLocation_ { 
 
-    public static volatile SingularAttribute<JobPostActivityPK, Integer> userAccountId;
-    public static volatile SingularAttribute<JobPostActivityPK, Integer> jobPostId;
+    public static volatile SingularAttribute<JobLocation, String> city;
+    public static volatile SingularAttribute<JobLocation, Integer> id;
 
 }

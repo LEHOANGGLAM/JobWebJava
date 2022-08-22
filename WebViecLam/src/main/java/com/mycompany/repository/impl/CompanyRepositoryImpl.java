@@ -4,6 +4,7 @@
  */
 package com.mycompany.repository.impl;
 
+import com.mycompany.pojo.Comment;
 import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobPost;
 import com.mycompany.pojo.UserAccount;
@@ -111,4 +112,19 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(Company.class, id);
     }
+
+    @Override
+    public List<Comment> getComments(int Id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Comment> q = b.createQuery(Comment.class);
+        Root root = q.from(Comment.class);
+        q.select(root);
+        q.where(b.equal(root.get("companyId"), Id));
+
+        org.hibernate.query.Query query = session.createQuery(q);
+        return query.getResultList();
+    }
 }
+
+

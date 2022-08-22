@@ -8,6 +8,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.mycompany.pojo.New1;
 import com.mycompany.pojo.UserAccount;
+import com.mycompany.service.UserService;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -39,25 +41,29 @@ public class MyProfileController {
     private Cloudinary cloudinary;
     @Autowired
     private Environment env;
+    @Autowired
+    private UserService userService;
 
-    @RequestMapping("/myProfile")
-    public String MyProfileController(Model model) {
-
+    
+    @GetMapping("/myProfile/{uId}")
+    public String getInfo(Model model, @PathVariable(value = "uId") int uId, @RequestParam Map<String, String> params) {    
+        model.addAttribute("u", this.userService.getUserById(uId));
         return "myProfile";
     }
 
-    @PutMapping("/myProfile")
-    public String updateProfile(@RequestBody UserAccount params, HttpSession session) {
+//    @PutMapping("/myProfile")
+//    public String updateProfile(@RequestBody UserAccount params, HttpSession session) {
+//
+//        try {
+//            Map r = this.cloudinary.uploader().upload(params.getFile,
+//                    ObjectUtils.asMap("resource_type", "auto"));
+//            String img = (String) r.get("secure_url");
+//            //Phuong thuc update UserAccount
+//        } catch (IOException ex) {
+//            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return "myProfile";
+//    }
 
-        try {
-            Map r = this.cloudinary.uploader().upload(params.getFile(),
-                    ObjectUtils.asMap("resource_type", "auto"));
-            String img = (String) r.get("secure_url");
-            //Phuong thuc update UserAccount
-        } catch (IOException ex) {
-            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return "myProfile";
-    }
 }

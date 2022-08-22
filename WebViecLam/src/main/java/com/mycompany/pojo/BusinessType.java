@@ -5,7 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "business_type")
@@ -42,7 +42,7 @@ public class BusinessType implements Serializable {
     @Column(name = "business_type_name")
     private String businessTypeName;
     @OneToMany(mappedBy = "businessTypeId")
-    private Set<Company> companySet;
+    private Collection<Company> companyCollection;
 
     public BusinessType() {
     }
@@ -68,12 +68,12 @@ public class BusinessType implements Serializable {
     }
 
     @XmlTransient
-    public Set<Company> getCompanySet() {
-        return companySet;
+    public Collection<Company> getCompanyCollection() {
+        return companyCollection;
     }
 
-    public void setCompanySet(Set<Company> companySet) {
-        this.companySet = companySet;
+    public void setCompanyCollection(Collection<Company> companyCollection) {
+        this.companyCollection = companyCollection;
     }
 
     @Override
