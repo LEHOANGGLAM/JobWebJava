@@ -55,12 +55,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> getUserByUsername(String username) {
+    public List<UserAccount> getUserByUsername(String username) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<User> q = b.createQuery(User.class);
-        Root root = q.from(User.class);
+        CriteriaQuery<UserAccount> q = b.createQuery(UserAccount.class);
+        Root root = q.from(UserAccount.class);
         q.select(root);
 
         if (!username.isEmpty()) {
@@ -102,19 +102,19 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
-    @Override
-    public boolean updateInfo(UserAccount u) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-
-        try {
-
-            session.save(u);
-            return true;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-
-    }
+//    @Override
+//    public boolean updateInfo(UserAccount u) {
+//        Session session = this.sessionFactory.getObject().getCurrentSession();
+//
+//        try {
+//
+//            session.save(u);
+//            return true;
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            return false;
+//        }
+//
+//    }
 
 }
