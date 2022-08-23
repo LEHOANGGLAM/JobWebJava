@@ -19,7 +19,7 @@
                 <p class="login-box-msg">Trang quản trị website</p>
 
                 <form action="/Admin" enctype="multipart/form-data" method="post"><input name="__RequestVerificationToken" type="hidden" value="vUl0N0beI_KH5s8rmfX7f1cMTWyK9iyeeneTGMMurZt3iXwIMXEuKAff89l4Dfgpcf9SDDFE1AGWRUJOEAWv4czoa4Z9CfVgrR-hSWp57wvgJi-tMJGw_wkLjzXPhbXIdpcI5CM2Kd_Qt-dvQRO3-WL7Ls1a7F1xN8zryNVloRo1" />            <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="UserName" placeholder="username">
+                        <input type="text" class="form-control" name="username" placeholder="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="Password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
