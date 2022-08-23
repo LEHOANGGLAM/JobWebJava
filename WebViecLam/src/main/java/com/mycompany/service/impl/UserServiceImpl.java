@@ -47,20 +47,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUserByUsername(String username) {
+    public List<UserAccount> getUserByUsername(String username) {
         return this.UserRepository.getUserByUsername(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<User> users = this.getUserByUsername(username);
+        List<UserAccount> users = this.getUserByUsername(username);
         if (!users.isEmpty()) {
             throw new UsernameNotFoundException("User does not exist!");
         }
-        User user = users.get(0);
+        UserAccount user = users.get(0);
 
         Set<GrantedAuthority> auth = new HashSet<>();
-        auth.add(new SimpleGrantedAuthority(user.getUsername()));
+        auth.add(new SimpleGrantedAuthority(user.getUserTypeId().toString()));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), auth);
     }
