@@ -62,6 +62,8 @@
                                 </c:if>
                                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                                     <a href="<c:url value="/"/>" class="btn head-btn2">${pageContext.request.userPrincipal.name}</a>
+                                    
+                                    <a href="<c:url value="/logout"/>" class="btn head-btn2"></a>
                                 </c:if>
                             </div>
                         </div>

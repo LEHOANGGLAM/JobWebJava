@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -51,6 +52,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static final int USER = 2;
+    public static final int ADMIN = 1;
+    public static final int RECRUITER = 3;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -101,7 +106,11 @@ public class UserAccount implements Serializable {
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     @JsonIgnore
-    private UserType userTypeId;
+    private Integer userTypeId;
+
+    @Transient
+    private String confirmedPassword;
+    // getters setters
 
     public UserAccount() {
     }
@@ -233,12 +242,12 @@ public class UserAccount implements Serializable {
         this.companyCollection = companyCollection;
     }
 
-    public UserType getUserTypeId() {
+    public int getUserTypeId() {
         return userTypeId;
     }
 
     public void setUserTypeId(UserType userTypeId) {
-        this.userTypeId = userTypeId;
+        this.setUserTypeId(userTypeId);
     }
 
     @Override
@@ -265,5 +274,33 @@ public class UserAccount implements Serializable {
     public String toString() {
         return "com.mycompany.pojo.UserAccount[ id=" + id + " ]";
     }
-    
+
+    /**
+     * @return the confirmedPassword
+     */
+    public String getConfirmedPassword() {
+        return confirmedPassword;
+    }
+
+    /**
+     * @param confirmedPassword the confirmedPassword to set
+     */
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
+    }
+
+    /**
+     * @param userTypeId the userTypeId to set
+     */
+    public void setUserTypeId(int userTypeId) {
+        this.setUserTypeId((Integer) userTypeId);
+    }
+
+    /**
+     * @param userTypeId the userTypeId to set
+     */
+    public void setUserTypeId(Integer userTypeId) {
+        this.userTypeId = userTypeId;
+    }
+
 }

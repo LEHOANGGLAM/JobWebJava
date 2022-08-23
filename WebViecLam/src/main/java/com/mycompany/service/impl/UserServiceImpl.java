@@ -16,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,9 +28,19 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository UserRepository;
-
+    
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+    
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(UserAccount user) {
+     
+        String pass = user.getPassword();
+        user.setPassword(this.passwordEncoder.encode(pass));
+        user.setUserTypeId(2);
+        
+        
+        
         return this.UserRepository.addUser(user);
     }
     @Override
@@ -58,9 +69,9 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User does not exist!");
         }
         UserAccount user = users.get(0);
-
+        
         Set<GrantedAuthority> auth = new HashSet<>();
-        auth.add(new SimpleGrantedAuthority(user.getUserTypeId().toString()));
+        auth.add(new SimpleGrantedAuthority(Integer.toString(user.getUserTypeId())));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), auth);
     }

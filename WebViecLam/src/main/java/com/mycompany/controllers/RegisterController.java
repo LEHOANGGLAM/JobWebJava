@@ -4,7 +4,9 @@
  */
 package com.mycompany.controllers;
 
-import java.util.Map;
+import com.mycompany.pojo.UserAccount;
+import com.mycompany.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -26,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @ControllerAdvice
 @PropertySource("classpath:messages.properties")
 public class RegisterController {
-     
-     @Autowired
-      private Environment env;
-    
+
+    @Autowired
+    private Environment env;
+
+    @Autowired
+    private UserService userService;
 //     @Autowired
 //     private WebAppValidator usernameValidator;
 //     
@@ -37,12 +41,28 @@ public class RegisterController {
 //     public void initBinder(WebDataBinder binder){
 //         binder.setValidator(usernameValidator);
 //     }
-     @RequestMapping("/register")
-   public String list(Model model, @RequestParam Map<String, String> params) {
 
-//        model.addAttribute("categories", this.categoryService.getCategories());
-//        model.addAttribute("products", this.productService.getProducts(params, 0));
-//        
+    @GetMapping("/register")
+    public String registerView(Model model) {
+
+        model.addAttribute("user", this.userService.getUsers());
+
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(Model model, @ModelAttribute(value = "user") UserAccount user) {
+        String errMsg = "";
+        if (user.getPassword().equals(user.getConfirmedPassword())) {
+            if (this.userService.addUser(user) == true)
+                return "redirect:/login";
+            else 
+                errMsg = "Da co loi xay ra!";
+        } else 
+            errMsg = "Mat khau khong dung";
+        
+        model.addAttribute("err", errMsg); 
+        
         return "register";
     }
 }
