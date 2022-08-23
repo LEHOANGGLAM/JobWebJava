@@ -14,5 +14,5 @@ import java.util.List;
 
 public interface StatsService {
       List<Object[]> applicationStats(int quarter,int year);
-     List<Object[]> applicationStatsAccordingToDate(String kw,Date fromDate, Date toDate);
+    
 }

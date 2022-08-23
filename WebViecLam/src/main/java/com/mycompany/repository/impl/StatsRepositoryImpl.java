@@ -60,23 +60,5 @@ public class StatsRepositoryImpl implements StatsRepository {
         return cList;
     }
 
-    @Override
-    public List<Object[]> applicationStatsAccordingToDate(String kw, Date fromDate, Date toDate) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-
-        Root<JobPostActivity> jARoot = q.from(JobPostActivity.class);
-        Root<JobPost> jRoot = q.from(JobPost.class);
-
-        q.multiselect(jRoot.get("jobTypeId"), b.count(jARoot.get("jobPost"))).where(b.equal(jARoot.get("jobPost"), jRoot.get("id"))
-        );
-
-        q.groupBy(jRoot.get("jobTypeId"));
-
-        Query query = session.createQuery(q);
-        List<Object[]> cList = query.getResultList();
-        return cList;
-    }
+  
 }

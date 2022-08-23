@@ -27,8 +27,5 @@ public class StatsServiceImpl implements StatsService{
         return this.statsRepository.applicationStats( quarter, year);
     }
     
-    @Override
-    public List<Object[]> applicationStatsAccordingToDate(String kw,Date fromDate, Date toDate) {
-          return this.statsRepository.applicationStatsAccordingToDate(kw,fromDate,toDate);
-    }
+  
 }
