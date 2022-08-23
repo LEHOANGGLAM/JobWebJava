@@ -4,7 +4,10 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controller
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobTypeRepository.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobReposiroty.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobLocation.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\StatsServiceImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\UserRepository.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\StatsAdminController.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\StatsService.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Category.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CompanyAdminController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPostActivityPK.java
@@ -25,6 +28,7 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPo
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\BusinessType.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\CateRepositoryImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobType.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\StatsRepositoryImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\CompanyRepository.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\UserAccountController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\CompanyService.java
@@ -44,6 +48,7 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\Us
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\WebAppContextConfig.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\IndexController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CateAdminController.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\StatsRepository.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\JobServiceImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\NewsAdminController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\ApiAccountController.java

@@ -23,9 +23,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -49,6 +51,24 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName"),
     @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")})
 public class UserAccount implements Serializable {
+
+    @Size(max = 200)
+    @Column(name = "about_me")
+    private String aboutMe;
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -102,6 +122,8 @@ public class UserAccount implements Serializable {
     @ManyToOne
     @JsonIgnore
     private UserType userTypeId;
+    @Transient
+    private MultipartFile file;
 
     public UserAccount() {
     }
@@ -264,6 +286,14 @@ public class UserAccount implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.pojo.UserAccount[ id=" + id + " ]";
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
     }
     
 }
