@@ -35,7 +35,7 @@ function loadAdminCompany(endpoint) {
                        
                     </td>
                     <td class="date">    ${new Date(data[i][3]).toLocaleDateString()} - (MM/dd/yyyy)</td>
-                    <td class="web" value="${data[i][4]}" > 
+                    <td class="web" value="${data[i][4]}" > <a href="${data[i][4]}">${data[i][4]}</a></td>
                     <td class="action">
                         <div class="spinner-border text-success" style="display:none" id="load${data[i][0]}"></div>
                         <button class="btn btn-danger" onclick="deleteCom('${endpoint + '/' + data[i][0]}', ${data[i][0]}, this)">Delete</button>

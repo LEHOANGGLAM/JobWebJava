@@ -116,6 +116,57 @@ public class JobRepositoryImpl implements JobReposiroty {
     }
 
     @Override
+    public List<Object[]> getJobsByComid(int comId,int page) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+
+        Root<JobPost> jRoot = q.from(JobPost.class);
+        Root<Location> jLocaRoot = q.from(Location.class);
+        Root<Company> cRoot = q.from(Company.class);
+
+        q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+                b.equal(jRoot.get("companyId"), cRoot.get("id")),
+                  b.equal(jRoot.get("companyId"), comId  ));
+
+        q = q.multiselect(
+                jRoot.get("jobTitle"),
+                jRoot.get("jobMinSalary"),
+                jRoot.get("jobMaxSalary"),
+                jRoot.get("yearExperRequire"),
+                jRoot.get("createdDate"),
+                jRoot.get("jobStreet"),
+                jLocaRoot.get("city"),
+                cRoot.get("companyName"),
+                jRoot.get("expirationDate"),
+                jRoot.get("id"),
+                cRoot.get("image")
+        );
+       
+      
+        q.groupBy(jRoot.get("id"));
+        q.orderBy(b.desc(jRoot.get("id")));
+
+        Query query = session.createQuery(q);
+
+        if (page > 0) {
+            int size = Integer.parseInt(env.getProperty("page.size").toString());
+            int start = (page - 1) * size;
+            query.setFirstResult(start);
+            query.setMaxResults(size);
+        }
+
+        List<Object[]> kq = query.getResultList();
+
+//        kq.forEach(k -> {
+//            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
+//        });
+        return kq;
+
+    }
+
+    @Override
     public int countJobPosts() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         Query q = session.createQuery("SELECT Count(*) FROM JobPost");
