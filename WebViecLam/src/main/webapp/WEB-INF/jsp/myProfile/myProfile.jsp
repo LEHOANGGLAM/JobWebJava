@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                         <h1>My Profile</h1>  
                         <!-- Breadcrumbs -->
-                      
+
                     </div>
                 </div>
             </div>
@@ -32,7 +32,9 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="dashboard-list-box margin-top-0">
                         <h4 class="gray">Profile Details</h4>
-                        <form method="post" enctype='multipart/form-data' id="edit_user" action="https://workscout.in/my-profile/">
+                        <c:url value="/myProfile" var="action"/>
+                     
+                        <form:form method="post" enctype='multipart/form-data' modelAttribute="u" id="edit_user" action="${action}">
                             <div class="dashboard-list-box-static">
 
 
@@ -44,26 +46,27 @@
 
                                         <img class="profile-pic" src="https://workscout.in/wp-content/uploads/2022/01/user-profile-avatar-590x590-1.jpg" alt="" />
                                         <div class="upload-button"></div>
-                                        <input class="file-upload"  name="workscout_core_avatar_id" id="workscout_core_avatar_id"  type="file" accept="image/*"/>
+                                          
+                                        <form:input class="file-upload"  name="workscout_core_avatar_id" id="workscout_core_avatar_id"  type="file" path="file"/>
                                     </div>	
 
                                     <div class="clearfix"></div>
 
 
                                     <label for="first-name">First Name</label>
-                                    <input class="text-input" name="first-name" type="text" id="first-name" value="${u.firstName}" />
+                                    <form:input class="text-input" name="first-name" type="text" id="first-name" value="${u.firstName}" path="firstName" />
 
                                     <label for="last-name">Last Name</label>
-                                    <input class="text-input" name="last-name" type="text" id="last-name" value="${u.lastName}" />
+                                    <form:input class="text-input" name="last-name" type="text" id="last-name" value="${u.lastName}" path="lastName"/>
 
                                     <label for="phone">Phone</label>
-                                    <input class="text-input" name="phone" type="text" id="phone" value="${u.contactNumber}" type="text">
+                                    <form:input class="text-input" name="phone" type="text" id="phone" value="${u.contactNumber}"  path="contactNumber" />
 
                                     <label for="email">E-mail</label>
-                                    <input class="text-input" name="email" type="text" id="email" value="${u.email}" />
+                                    <form:input class="text-input" name="email" type="text" id="email" value="${u.email}" path="email" />
 
                                     <label for="description">About me</label>
-                                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                                    <form:textarea name="description" id="description" cols="30" rows="10"   path="aboutMe"/>
                                     <div id="my-profile_socials" style="display: none;">
 
 
@@ -105,7 +108,7 @@
                             </div>
                     </div>
                 </div>
-                </form>
+                </form:form>
                 <!-- Change Password -->
                 <div class="col-lg-6 col-md-12">
                     <div class="dashboard-list-box margin-top-0">
@@ -148,7 +151,7 @@
 
 
 
-          
+
 
         </div>
     </div>

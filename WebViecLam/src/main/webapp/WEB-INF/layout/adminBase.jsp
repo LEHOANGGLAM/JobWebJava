@@ -107,8 +107,6 @@
         <script src="<c:url value="/js/plugins.js" />"></script>
         <script src="<c:url value="/js/main.js" />"></script>
 
-
-
     </body>
 </html>
 
