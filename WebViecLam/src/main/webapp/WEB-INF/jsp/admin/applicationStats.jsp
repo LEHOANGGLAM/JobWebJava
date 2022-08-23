@@ -57,10 +57,55 @@
             </div>
 
         </div>
+        <div class="row">
+            <!-- Left content -->
+            <!-- Select job items start -->
 
-        <div>
-            <canvas id="myChart"></canvas>
+            <div class="select-job-items">
+                <label for="quarter" class="form-label"  style="display: inline-block;">Quarter:</label>
+                <c:url value="/admin/stats" var="action" />
+                <form action="${action}">
+
+
+
+
+
+                    <select  style="display: inline-flex;
+                             "  class="form-control" id="quarter" placeholder="Enter quarter" name="quarter" >
+                        <c:forEach begin="0" end="4" var="i">
+
+                            <option value="${i}" ${tagQuarter == i ? "selected":""}>${i == 0 ? "All" : i}</option>
+                        </c:forEach>
+                    </select>
+
+                    <div class="clearfix">
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="form-label" style="padding: 10px">Year:</label>
+                        <input type="number" class="form-control" id="year" placeholder="Enter year" name="year"
+                               style="display: inline-block; width: 200px" value="${tagYear}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+
+
+            <!-- Right content -->
+            <div class="col-xl-9 col-lg-9 col-md-8">
+                <!-- Featured_job_start -->
+                <section class="featured-job-area">
+                    <div class="container">
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+                <!-- Featured_job_end -->
+            </div>
         </div>
+
 
     </div>
 </div>

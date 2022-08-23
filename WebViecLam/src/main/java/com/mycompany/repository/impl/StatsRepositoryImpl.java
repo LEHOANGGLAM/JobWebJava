@@ -10,6 +10,7 @@ import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.JobType;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.StatsRepository;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -33,7 +34,7 @@ public class StatsRepositoryImpl implements StatsRepository {
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
-    public List<Object[]> applicationStats() {
+    public List<Object[]> applicationStats(int quarter, int year) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
@@ -41,16 +42,23 @@ public class StatsRepositoryImpl implements StatsRepository {
 
         Root<JobPostActivity> jARoot = q.from(JobPostActivity.class);
         Root<JobPost> jRoot = q.from(JobPost.class);
-    
 
-        q.multiselect(jRoot.get("jobTypeId"), b.count(jARoot.get("jobPost"))).where(b.equal(jARoot.get("jobPost"), jRoot.get("id"))
-                                                   );
+        if (quarter == 0) {
+            q.multiselect(jRoot.get("jobTypeId"), b.count(jARoot.get("jobPost"))).where(b.equal(jARoot.get("jobPost"), jRoot.get("id")),
+                    b.equal(b.function("YEAR", Integer.class, jARoot.get("applyDate")), year));
+
+        } else {
+            q.multiselect(jRoot.get("jobTypeId"), b.count(jARoot.get("jobPost"))).where(b.equal(jARoot.get("jobPost"), jRoot.get("id")),
+                    b.equal(b.function("QUARTER", Integer.class, jARoot.get("applyDate")), quarter),
+                    b.equal(b.function("YEAR", Integer.class, jARoot.get("applyDate")), year));
+        }
 
         q.groupBy(jRoot.get("jobTypeId"));
-        
+
         Query query = session.createQuery(q);
         List<Object[]> cList = query.getResultList();
         return cList;
     }
 
+  
 }

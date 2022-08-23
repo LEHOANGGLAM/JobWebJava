@@ -4,6 +4,7 @@
  */
 package com.mycompany.repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,5 +12,6 @@ import java.util.List;
  * @author dell
  */
 public interface StatsRepository {
-    List<Object[]> applicationStats();
+    List<Object[]> applicationStats(int quarter,int year);
+   
 }
