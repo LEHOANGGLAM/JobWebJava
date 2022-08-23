@@ -106,6 +106,7 @@ public class JobPost implements Serializable {
     private Collection<JobPostSkillSet> jobPostSkillSetCollection;
 
     public JobPost() {
+        createdDate = new Date();
     }
 
     public JobPost(Integer id) {

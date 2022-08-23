@@ -4,6 +4,7 @@
  */
 package com.mycompany.service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,5 +13,6 @@ import java.util.List;
  */
 
 public interface StatsService {
-     List<Object[]> applicationStats();
+      List<Object[]> applicationStats(int quarter,int year);
+     List<Object[]> applicationStatsAccordingToDate(String kw,Date fromDate, Date toDate);
 }
