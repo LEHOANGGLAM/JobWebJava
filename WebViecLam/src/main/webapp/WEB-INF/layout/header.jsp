@@ -35,7 +35,7 @@
                                         <c:if test="${currentUser.getUserTypeId().getId() == 2}">
                                             <c:forEach items="${cate}" var="cate" varStatus="loop">
                                                 <c:if test="${(cate.userTypeId.getId() == 2 || cate.userTypeId.getId() == 4) && cate.parentCateId == 0}">
-                                                    <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
+                                                    <li><a href="${pageContext.request.contextPath}/${cate.linkCate}">${cate.categoryName}</a>
 
 
                                                         <c:forEach items="${cateChild}" var="a">
@@ -62,7 +62,7 @@
                                         <c:if test="${currentUser.getUserTypeId().getId() == 3}">
                                             <c:forEach items="${cate}" var="cate" varStatus="loop">
                                                 <c:if test="${(cate.userTypeId.getId() == 3 || cate.userTypeId.getId() == 4) && cate.parentCateId == 0}">
-                                                    <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
+                                                    <li><a href="${pageContext.request.contextPath}/${cate.linkCate}">${cate.categoryName}</a>
 
 
                                                         <c:forEach items="${cateChild}" var="a">
@@ -89,7 +89,7 @@
                                         <c:if test="${currentUser.getUserTypeId().getId() == 1}">
                                             <c:forEach items="${cate}" var="cate" varStatus="loop">
                                                 <c:if test="${(cate.userTypeId.getId() == 1) && cate.parentCateId == 0}">
-                                                    <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
+                                                    <li><a href="${pageContext.request.contextPath}/admin/${cate.linkCate}">${cate.categoryName}</a>
 
 
                                                         <c:forEach items="${cateChild}" var="a">
@@ -99,7 +99,7 @@
                                                                     <c:forEach items="${cateChild}" var="cateChild">
                                                                         <c:if test="${cateChild.parentCateId == cate.id}">    
 
-                                                                              <li><a href="${pageContext.request.contextPath}/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
+                                                                              <li><a href="${pageContext.request.contextPath}/admin/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
 
                                                                         </c:if>
                                                                     </c:forEach>

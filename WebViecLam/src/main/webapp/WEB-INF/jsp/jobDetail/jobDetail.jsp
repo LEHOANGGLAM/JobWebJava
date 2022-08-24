@@ -130,7 +130,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-tittle text-center">
-                    <h2 style="padding-top: 20px">   Recently posted jobs</h2>
+                    <h2 style="padding-top: 40px;">   Recently posted jobs</h2>
 
                 </div>
             </div>
