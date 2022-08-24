@@ -12,6 +12,7 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Categ
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CompanyAdminController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPostActivityPK.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\JobService.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\handlers\LoginHandler.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\HibernateConfig.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Street.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\JobTypeRepositoryImpl.java
@@ -23,6 +24,7 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\DispatcherServletInit.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\SkillSet.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\CateService.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\handlers\LogoutHandler.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Location.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPostActivity.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\BusinessType.java

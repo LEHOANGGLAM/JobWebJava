@@ -97,7 +97,7 @@ public class UserAccount implements Serializable {
     @Size(max = 10)
     @Column(name = "contact_number")
     private String contactNumber;
-    @Size(max = 45)
+    @Size(max = 100)
     @Column(name = "user_image")
     private String userImage;
     @Column(name = "registration_date")

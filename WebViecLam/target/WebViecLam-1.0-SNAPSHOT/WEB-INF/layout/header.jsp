@@ -55,15 +55,55 @@
                                 </nav>
                             </div>          
                             <!-- Header-btn -->
-                            <div class="header-btn d-none f-right d-lg-block">
-                                <a href="<c:url value="/register"/>" class="btn head-btn1">Register</a>
-                                <c:if test="${pageContext.request.userPrincipal.name == null}">
+
+                            <sec:authorize access="!isAuthenticated()">
+                                <div class="header-btn d-none f-right d-lg-block">
+                                    <a href="<c:url value="/register"/>" class="btn head-btn1">Register</a>
+
                                     <a href="<c:url value="/login"/>" class="btn head-btn2">Login</a>
-                                </c:if>
+
+
+                                </div>
+                            </sec:authorize>
+
+
+                            <sec:authorize access="isAuthenticated()">
                                 <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                    <a href="<c:url value="/"/>" class="btn head-btn2">${pageContext.request.userPrincipal.name}</a>
+                                    <div class="main-menu">
+                                        <nav class="d-none d-lg-block">
+                                            <ul>
+
+                                                <li><a href="<c:url value="/"/>" class="btn head-btn2">
+                                                        
+                                                        <c:if test="${currentUser.getUserImage() == null || currentUser.getUserImage().isEmpty()}">
+                                                            <c:url value="/img/default_ava.jpg" var="imgLink"/>
+                                                            <img class = "ava" style=""src="${imgLink}" class="" alt="null">
+                                                        </c:if>
+                                                        <c:if test="${currentUser.getUserImage() != null && !currentUser.getUserImage().isEmpty()}">
+                                                            <img class = "ava" style=""src="${currentUser.getUserImage()}"alt="">
+                                                        </c:if>
+                                                          
+                                                        ${pageContext.session.getAttribute("currentUser").firstName}
+                                                        ${pageContext.session.getAttribute("currentUser").lastName}
+
+                                                    </a>
+                                                    <ul class="submenu">
+
+                                                        <li><a href="<c:url value="/" />">Messenger</a>   </li>
+                                                        <li id="${uId}"><a href="<c:url value="/myProfile" />">My Profile</a>   </li>
+                                                        <li><a href="<c:url value="/logout" />">Logout</a>   </li>
+
+                                                    </ul>
+
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </c:if>
-                            </div>
+
+
+                            </sec:authorize>
+
                         </div>
                     </div>
                     <!-- Mobile Menu -->
@@ -77,5 +117,4 @@
     <!-- Header End -->
 </header>
 
-                                
-                                
+

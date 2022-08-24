@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -45,15 +46,15 @@ public class MyProfileController {
     @Autowired
     private UserService userService;
 
-    
-    @GetMapping("/myProfile/{uId}")
-    public String getInfo(Model model, @PathVariable(value = "uId") int uId, @RequestParam Map<String, String> params) {    
-        model.addAttribute("u", this.userService.getUserById(uId));
+    @GetMapping("/myProfile")
+    public String getInfo(Model model, Authentication a) {
+        UserAccount u = this.userService.getUserByUsername(a.getName());
+        model.addAttribute("u", u);
         return "myProfile";
     }
 
     @PutMapping("/myProfile")
-    public String updateProfile(@RequestBody UserAccount params, HttpSession session,@PathVariable(value = "uId") int uId) {
+    public String updateProfile(@RequestBody UserAccount params, HttpSession session, @PathVariable(value = "uId") int uId) {
 
         try {
             Map r = this.cloudinary.uploader().upload(params.getFile().getBytes(),
