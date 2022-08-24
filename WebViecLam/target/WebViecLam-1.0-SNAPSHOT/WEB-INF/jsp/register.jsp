@@ -25,64 +25,44 @@
                 ${errMsg}
             </div>
         </c:if>
+        <c:url value="/register" var="action"/>
         <form:form method="post" action="${action}" modelAttribute="user">
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
-<!--            <div class="social-login">
-                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
-                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
-            </div>-->
-<!--            <p style="text-align:center"> OR  </p>-->
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
+            <!--            <div class="social-login">
+                            <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                            <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
+                        </div>-->
+            <!--            <p style="text-align:center"> OR  </p>-->
             <div class="form-group">
-            <label>Username</label>
-            <form:input type="username" id="username"  path="userName" class="form-control" placeholder="Username" required="" />
-            <label>Password</label>
-            <form:input type="password" id="password"  path="userName" class="form-control" placeholder="Password" required=""/>
+                <label>Username</label>
+                <form:input type="username" id="username"  path="username" class="form-control" placeholder="Username" required="" />
+                <label>Password</label>
+                <form:input type="password" id="password"  path="password" class="form-control" placeholder="Password" required=""/>
             </div>
-            <label>Confirm Password</label>
-            <form:input type="password" id="confirmed-password"  path="confirmedPassword" class="form-control" placeholder="Username" required="" />
-             <label>First Name</label>
+
+            <label>First Name</label>
             <form:input type="text" id="first-name"  path="firstName" class="form-control" placeholder="First Name" required=""/>
-             <label>Last Name</label>
+            <label>Last Name</label>
             <form:input type="text" id="last-name"  path="lastName" class="form-control" placeholder="Last Name" required=""/>
             <label>Email</label>
             <form:input type="email" id="email"  path="email" class="form-control" placeholder="Email" required=""/>
             <label>Phone</label>
-            <form:input type="text" id="text"  path="contactNumber" class="form-control" placeholder="Email" required=""/>
-            
+            <form:input type="text" id="text"  path="contactNumber" class="form-control" placeholder="Phone Number" required=""/>
+
             <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-            </div>
-      
-            <hr>
-            <!-- <p>Don't have an account!</p>  -->
-            
-        </form:form>
+        </div>
 
-        
-        <br>
+        <hr>
+        <!-- <p>Don't have an account!</p>  -->
 
-    </div>
-    <p style="text-align:center">
-        <a href="http://bit.ly/2RjWFMfunction toggleResetPswd(e){
-           e.preventDefault();
-           $('#logreg-forms .form-signin').toggle() // display:block or none
-           $('#logreg-forms .form-reset').toggle() // display:block or none
-           }
+    </form:form>
 
-           function toggleSignUp(e){
-           e.preventDefault();
-           $('#logreg-forms .form-signin').toggle(); // display:block or none
-           $('#logreg-forms .form-signup').toggle(); // display:block or none
-           }
 
-           $(()=>{
-           // Login Register Form
-           $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
-           $('#logreg-forms #cancel_reset').click(toggleResetPswd);
-           $('#logreg-forms #btn-signup').click(toggleSignUp);
-           $('#logreg-forms #cancel_signup').click(toggleSignUp);
-           })g" target="_blank" style="color:black"></a>
-    </p>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="/script.js"></script>
+    <br>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/script.js"></script>
 </body>

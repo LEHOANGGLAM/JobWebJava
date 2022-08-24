@@ -52,13 +52,12 @@ public class RegisterController {
     @PostMapping("/register")
     public String register(Model model, @ModelAttribute(value = "user") UserAccount user) {
         String errMsg = "";
-        if (user.getPassword().equals(user.ConfirmedPassword)) {
+     
             if (this.userService.addUser(user) == true)
                 return "redirect:/login";
             else 
                 errMsg = "Da co loi xay ra!";
-        } else 
-            errMsg = "Mat khau khong dung";
+   
         
         model.addAttribute("err", errMsg); 
         

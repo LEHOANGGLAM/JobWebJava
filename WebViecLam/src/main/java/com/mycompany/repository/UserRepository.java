@@ -16,7 +16,7 @@ public interface UserRepository {
 
     boolean addUser(UserAccount user);
 
-    List<UserAccount> getUserByUsername(String username);
+    UserAccount getUserByUsername(String username);
 
     boolean deleteUser(int id);
     List<UserAccount> getUsers();
