@@ -16,10 +16,10 @@
                 <div class="single-job-items mb-50">
                     <div class="job-items">
                         <div class="company-img">
-                            <a href="${pageContext.request.contextPath}/companyDetail/${c.id}">  <img class="img-fluid" src="<c:url value="${c.image}"/>" alt="alt"/></a>
+                            <a href="#">  <img class="img-fluid" src="<c:url value="${c.image}"/>" alt="alt"/></a>
                         </div>
                         <div class="job-tittle">
-                            <a href="${pageContext.request.contextPath}/companyDetail/${c.id}">
+                            <a href="<c:url value="companyDetail/${job.id}"/>">
                                 <h4>${job.jobTitle}</h4>
                             </a>
                             <ul>
@@ -85,17 +85,16 @@
                         <h4>Company Information</h4>
                     </div>
 
-                    <li >Name: <a href="${pageContext.request.contextPath}/companyDetail/${c.id}">${c.companyName} </a><b></b></li>
+                    <li >Name: <a href="#">${c.companyName} </a><b></b></li>
                     <br>
-                    <li>Web : <b> <a href="${c.companyWebsite}">  Visit our Website</a></b></li>
+                    <li>Web : <b> ${c.companyWebsite}</b></li>
                     <br>
                     <li>Email: <b>${c.companyEmail}</b></li>
                     </ul>
                 </div>
-                <form action="${pageContext.request.contextPath}/companyDetail/${c.id}">
-                    <input  class="btn btn-primary" type="submit" value="View Company" />
-                </form>
-
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Launch demo modal
+                </button>
 
             </div>
         </div>
@@ -123,20 +122,7 @@
         </div>
     </div>
 </div>
-<%@include file="../home/_howItWork.jsp"%>
-<section class="featured-job-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-tittle text-center">
-                    <h2 style="padding-top: 20px">   Recently posted jobs</h2>
 
-                </div>
-            </div>
-        </div>
-        <%@include file="../jobList/_listing.jsp"%>
-    </div>
-</div>
 <script>
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')

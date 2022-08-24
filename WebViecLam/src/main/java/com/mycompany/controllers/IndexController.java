@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.service.LocationService;
 
-
 /**
  *
  * @author dell
@@ -39,8 +38,6 @@ public class IndexController {
     @Autowired
     private Environment env;
 
-    
-
     @ModelAttribute
     public void commonAttribute(Model model) {
         model.addAttribute("cate", this.cateService.getCateList());
@@ -54,8 +51,6 @@ public class IndexController {
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
 
-        //System.out.println(context.getContextPath());
-        
         return "index";
     }
 }
