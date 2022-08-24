@@ -21,7 +21,6 @@ import com.mycompany.service.LocationService;
 import javax.servlet.http.HttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
 /**
  *
  * @author dell
@@ -44,9 +43,6 @@ public class IndexController {
      @Autowired
     private LoginHandler loginHandler;
 
-     @Autowired
-    BCryptPasswordEncoder passwordEncoder;
-
     @ModelAttribute
     public void commonAttribute(Model model , HttpSession session) {
         model.addAttribute("cate", this.cateService.getCateList());
@@ -61,8 +57,6 @@ public class IndexController {
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
 
-    
-        
         return "index";
     }
 }
