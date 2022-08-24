@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.User;
  */
 public interface UserRepository {
 
-    boolean addUser(User user);
+    boolean addUser(UserAccount user);
 
     List<UserAccount> getUserByUsername(String username);
 

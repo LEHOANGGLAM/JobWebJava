@@ -5,6 +5,7 @@
 package com.mycompany.service.impl;
 
 import com.mycompany.pojo.UserAccount;
+import com.mycompany.pojo.UserType;
 import com.mycompany.repository.UserRepository;
 import com.mycompany.service.UserService;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,9 +29,16 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository UserRepository;
-
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+    
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(UserAccount user) {
+
+        String pass = user.getPassword();
+        user.setPassword(this.passwordEncoder.encode(pass));
+        user.setUserTypeID(user.USER);
+        
         return this.UserRepository.addUser(user);
     }
     @Override
