@@ -26,31 +26,91 @@
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
 
-                                        <c:forEach items="${cate}" var="cate" varStatus="loop">
-                                            <c:if test="${(cate.userTypeId.getId() == 2 || cate.userTypeId.getId() == 4) && cate.parentCateId == 0}">
-                                                <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
+
+                                        <sec:authorize access="!isAuthenticated()">
+                                               <li><a href="<c:url value="/about"/>">About Us</a></li>     
+                                                 <li><a href="<c:url value="/contact"/>">Contact Us</a></li>     
+                                        </sec:authorize>
+                                        <!--                                            JOBSEEKER---------------->
+                                        <c:if test="${currentUser.getUserTypeId().getId() == 2}">
+                                            <c:forEach items="${cate}" var="cate" varStatus="loop">
+                                                <c:if test="${(cate.userTypeId.getId() == 2 || cate.userTypeId.getId() == 4) && cate.parentCateId == 0}">
+                                                    <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
 
 
-                                                    <c:forEach items="${cateChild}" var="a">
-                                                        <c:if test="${a.parentCateId == cate.id}"> 
+                                                        <c:forEach items="${cateChild}" var="a">
+                                                            <c:if test="${a.parentCateId == cate.id}"> 
 
-                                                            <ul class="submenu">
-                                                                <c:forEach items="${cateChild}" var="cateChild">
-                                                                    <c:if test="${cateChild.parentCateId == cate.id}">    
+                                                                <ul class="submenu">
+                                                                    <c:forEach items="${cateChild}" var="cateChild">
+                                                                        <c:if test="${cateChild.parentCateId == cate.id}">    
 
-                                                                        <li><a href="<c:url value="${cateChild.linkCate}"/>">${cateChild.categoryName}</a></li>                                                       
+                                                                            <li><a href="${pageContext.request.contextPath}/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
 
-                                                                    </c:if>
-                                                                </c:forEach>
-                                                            </ul>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </ul>
 
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </li>
-                                            </c:if>
-                                        </c:forEach>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:if>
 
 
+                                        <c:if test="${currentUser.getUserTypeId().getId() == 3}">
+                                            <c:forEach items="${cate}" var="cate" varStatus="loop">
+                                                <c:if test="${(cate.userTypeId.getId() == 3 || cate.userTypeId.getId() == 4) && cate.parentCateId == 0}">
+                                                    <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
+
+
+                                                        <c:forEach items="${cateChild}" var="a">
+                                                            <c:if test="${a.parentCateId == cate.id}"> 
+
+                                                                <ul class="submenu">
+                                                                    <c:forEach items="${cateChild}" var="cateChild">
+                                                                        <c:if test="${cateChild.parentCateId == cate.id}">    
+
+                                                                               <li><a href="${pageContext.request.contextPath}/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
+
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </ul>
+
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:if>
+
+
+                                        <c:if test="${currentUser.getUserTypeId().getId() == 1}">
+                                            <c:forEach items="${cate}" var="cate" varStatus="loop">
+                                                <c:if test="${(cate.userTypeId.getId() == 1) && cate.parentCateId == 0}">
+                                                    <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a>
+
+
+                                                        <c:forEach items="${cateChild}" var="a">
+                                                            <c:if test="${a.parentCateId == cate.id}"> 
+
+                                                                <ul class="submenu">
+                                                                    <c:forEach items="${cateChild}" var="cateChild">
+                                                                        <c:if test="${cateChild.parentCateId == cate.id}">    
+
+                                                                              <li><a href="${pageContext.request.contextPath}/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
+
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </ul>
+
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:if>
                                     </ul>
                                 </nav>
                             </div>          
@@ -74,7 +134,7 @@
                                             <ul>
 
                                                 <li><a href="<c:url value="/"/>" class="btn head-btn2">
-                                                        
+
                                                         <c:if test="${currentUser.getUserImage() == null || currentUser.getUserImage().isEmpty()}">
                                                             <c:url value="/img/default_ava.jpg" var="imgLink"/>
                                                             <img class = "ava" style=""src="${imgLink}" class="" alt="null">
@@ -82,7 +142,7 @@
                                                         <c:if test="${currentUser.getUserImage() != null && !currentUser.getUserImage().isEmpty()}">
                                                             <img class = "ava" style=""src="${currentUser.getUserImage()}"alt="">
                                                         </c:if>
-                                                          
+
                                                         ${pageContext.session.getAttribute("currentUser").firstName}
                                                         ${pageContext.session.getAttribute("currentUser").lastName}
 
