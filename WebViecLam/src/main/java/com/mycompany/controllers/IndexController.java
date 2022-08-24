@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.service.LocationService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
 /**
  *
  * @author dell
@@ -40,9 +39,6 @@ public class IndexController {
     @Autowired
     private Environment env;
 
-     @Autowired
-    BCryptPasswordEncoder passwordEncoder;
-
     @ModelAttribute
     public void commonAttribute(Model model) {
         model.addAttribute("cate", this.cateService.getCateList());
@@ -56,9 +52,6 @@ public class IndexController {
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
 
-        System.out.printf("aaaaaaaaaaaaaaaaaaaaaaaa"+this.passwordEncoder.encode("123456"));
-        //System.out.println(context.getContextPath());
-        
         return "index";
     }
 }
