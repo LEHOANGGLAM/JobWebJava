@@ -18,24 +18,35 @@
     <div class="single-job-items mb-30">
         <div class="job-items">
             <div class="company-img">
-                <a href="jobDetail/${j[9]}">  <img class="img-fluid" src="<c:url value="${j[10]}"/>" alt="alt"/></a>
+                <a href="jobDetail/${j[8]}">  <img class="img-fluid" src="<c:url value="${j[9].getImage()}"/>" alt="alt"/></a>
             </div>
             <div class="job-tittle job-tittle2">
 
-                <a href="jobDetail/${j[9]}">
+                <a href="jobDetail/${j[8]}">
                     <h4>${j[0]} </h4>
                 </a>
                 <ul>
-                    <li>${j[7]}</li>
-                    <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
+                    <li>${j[9].getCompanyName()}</li>
+                  
+                    <li><i class="fas fa-map-marker-alt"></i>
+                        <c:choose>
+                            <c:when test="${j[5].length() + j[6].length() >22}">
+                                ${j[6]}
+                            </c:when>    
+                            <c:otherwise>
+                                ${j[5]}, ${j[6]}
+                            </c:otherwise>
+                        </c:choose>
+
+                    </li>
                     <li>${j[1]} - ${j[2]}$</li>                                                                               
                 </ul>
             </div>
         </div>
         <div class="items-link items-link2 f-right">
-            <a href="jobDetail/${j[9]}">Watch</a>
+            <a href="jobDetail/${j[8]}">Watch</a>
             <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
-                            pattern="yyyy-MM-dd" value="${j[8]}" /></span>
+                            pattern="yyyy-MM-dd" value="${j[7]}" /></span>
         </div>
     </div>
 
