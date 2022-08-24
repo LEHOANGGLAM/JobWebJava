@@ -7,11 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<c:forEach items="${cate}" var="cate" varStatus="loop">
-    <c:if test="${cate.userTypeId.getId() == 1}">
-        <li><a href="<c:url value="${cate.linkCate}"/>">${cate.categoryName}</a></li>
-        </c:if>
-    </c:forEach>
 
 
 <div class="job-post-company pt-120 pb-120">
