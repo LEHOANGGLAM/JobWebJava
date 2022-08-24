@@ -38,7 +38,7 @@
                                                                 <c:forEach items="${cateChild}" var="cateChild">
                                                                     <c:if test="${cateChild.parentCateId == cate.id}">    
 
-                                                                        <li><a href="<c:url value="${cateChild.linkCate}"/>">${cateChild.categoryName}</a></li>                                                       
+                                                                        <li><a href="${pageContext.request.contextPath}/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
 
                                                                     </c:if>
                                                                 </c:forEach>

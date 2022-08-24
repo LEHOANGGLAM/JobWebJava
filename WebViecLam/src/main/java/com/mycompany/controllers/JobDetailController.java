@@ -25,6 +25,7 @@ import com.mycompany.service.LocationService;
  */
 @Controller
 @ControllerAdvice
+@PropertySource("classpath:messages.properties")
 public class JobDetailController {
 
     @Autowired
@@ -37,11 +38,15 @@ public class JobDetailController {
     private JFrame outFrame = new JFrame("demo");
     
     @GetMapping("/jobDetail/{jId}")
-    public String jobDetail(Model model, @PathVariable(value = "jId") int jId) {
+    public String jobDetail(Model model, @PathVariable(value = "jId") int jId,@RequestParam Map<String, String> params) {
         model.addAttribute("job", this.jobService.getJobById(jId));
         model.addAttribute("c", this.companyService.getCompanyByJobPostId(jId));
         model.addAttribute("l", this.jobLocaService.getLocationByJobPostId(jId));
 
+        
+        
+        int page = Integer.parseInt(params.getOrDefault("page", "1"));
+        model.addAttribute("jobposts", this.jobService.getJobs(params, page));
         return "jobDetail";
     }
 }
