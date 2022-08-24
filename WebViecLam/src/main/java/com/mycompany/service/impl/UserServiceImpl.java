@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
         String pass = user.getPassword();
         user.setPassword(this.passwordEncoder.encode(pass));
-        user.setUserTypeID(user.USER);
+        //user.setUserTypeId(user.getUserTypeId().setId(2));
         
         return this.UserRepository.addUser(user);
     }
@@ -56,20 +56,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserAccount> getUserByUsername(String username) {
+    public UserAccount getUserByUsername(String username) {
         return this.UserRepository.getUserByUsername(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<UserAccount> users = this.getUserByUsername(username);
-        if (!users.isEmpty()) {
+        UserAccount user = this.getUserByUsername(username);
+        if (user == null) {
             throw new UsernameNotFoundException("User does not exist!");
         }
-        UserAccount user = users.get(0);
+     
 
         Set<GrantedAuthority> auth = new HashSet<>();
-        auth.add(new SimpleGrantedAuthority(user.getUserTypeId().toString()));
+        auth.add(new SimpleGrantedAuthority(String.valueOf(user.getUserTypeId())));
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), auth);
     }

@@ -128,8 +128,7 @@ public class UserAccount implements Serializable {
     @JsonIgnore
     private UserType userTypeId;
     
-    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
-    private Integer userTypeID;
+  
     @Transient
     private MultipartFile file;
     
@@ -307,18 +306,5 @@ public class UserAccount implements Serializable {
         this.aboutMe = aboutMe;
     }
 
-    /**
-     * @return the userTypeID
-     */
-    public Integer getUserTypeID() {
-        return userTypeID;
-    }
-
-    /**
-     * @param userTypeID the userTypeID to set
-     */
-    public void setUserTypeID(Integer userTypeID) {
-        this.userTypeID = userTypeID;
-    }
-    
+  
 }
