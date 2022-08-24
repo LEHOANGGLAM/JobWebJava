@@ -4,6 +4,7 @@
  */
 package com.mycompany.controllers;
 
+import com.mycompany.handlers.LoginHandler;
 import com.mycompany.service.CateService;
 import com.mycompany.service.JobService;
 import com.mycompany.service.JobTypeService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.service.LocationService;
+import javax.servlet.http.HttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -39,14 +41,17 @@ public class IndexController {
     private JobService jobService;
     @Autowired
     private Environment env;
+     @Autowired
+    private LoginHandler loginHandler;
 
      @Autowired
     BCryptPasswordEncoder passwordEncoder;
 
     @ModelAttribute
-    public void commonAttribute(Model model) {
+    public void commonAttribute(Model model , HttpSession session) {
         model.addAttribute("cate", this.cateService.getCateList());
         model.addAttribute("cateChild", this.cateService.getCateChild());
+        model.addAttribute("currentUser", session.getAttribute("currentUser"));
     }
 
     @RequestMapping("/")
@@ -56,8 +61,7 @@ public class IndexController {
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
 
-        System.out.printf("aaaaaaaaaaaaaaaaaaaaaaaa"+this.passwordEncoder.encode("123456"));
-        //System.out.println(context.getContextPath());
+    
         
         return "index";
     }

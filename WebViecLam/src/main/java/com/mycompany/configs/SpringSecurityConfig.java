@@ -4,6 +4,8 @@
  */
 package com.mycompany.configs;
 
+import com.mycompany.handlers.LoginHandler;
+import com.mycompany.handlers.LogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,10 +27,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
     "com.mycompany.repository",
-    "com.mycompany.service"
-})
+    "com.mycompany.service",
+    "com.mycompany.handlers",})
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private LoginHandler loginHandler;
+    @Autowired
+    private LogoutHandler logoutHanlder;
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -50,7 +56,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password");
 
         http.formLogin().defaultSuccessUrl("/").failureUrl("/login?error");
-        
+        http.formLogin().successHandler(loginHandler);
+
+        http.logout().logoutSuccessHandler(logoutHanlder);
+//        http.authorizeRequests().antMatchers("/").permitAll()
+//                .antMatchers("/**/comments").authenticated()
+//                .antMatchers("/admin/**")
+//                .access("hasRole('ROLE_ADMIN')");
         http.csrf().disable();
     }
 }

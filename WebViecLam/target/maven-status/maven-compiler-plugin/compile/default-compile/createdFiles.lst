@@ -40,6 +40,7 @@ com\mycompany\controllers\CateAdminController.class
 com\mycompany\controllers\CompanyDetailController.class
 com\mycompany\pojo\UserType.class
 com\mycompany\pojo\SkillSet_.class
+com\mycompany\handlers\LoginHandler.class
 com\mycompany\controllers\NewsAdminController.class
 com\mycompany\pojo\Company_.class
 com\mycompany\service\CompanyService.class
@@ -61,6 +62,7 @@ com\mycompany\controllers\DefaultPageController.class
 com\mycompany\pojo\BusinessType.class
 com\mycompany\controllers\ApiAccountController.class
 com\mycompany\pojo\JobPostActivity.class
+com\mycompany\handlers\LogoutHandler.class
 com\mycompany\controllers\JobDetailController.class
 com\mycompany\controllers\MyProfileController.class
 com\mycompany\service\impl\CompanyServiceImpl.class
