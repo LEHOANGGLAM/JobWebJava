@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -32,7 +33,14 @@ public class UserRepositoryImpl implements UserRepository {
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(UserAccount user) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.save(user);
+            return true;
+        } catch (HibernateException e) {
+            System.err.println(e.getMessage());
+        }
         return false;
     }
 

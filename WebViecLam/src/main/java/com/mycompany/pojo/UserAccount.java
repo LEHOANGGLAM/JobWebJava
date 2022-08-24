@@ -71,6 +71,11 @@ public class UserAccount implements Serializable {
     }
 
     private static final long serialVersionUID = 1L;
+    
+    public static final int USER = 2;
+    public static final int ADMIN = 1;
+    public static final int RECRUITER = 3;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -122,9 +127,15 @@ public class UserAccount implements Serializable {
     @ManyToOne
     @JsonIgnore
     private UserType userTypeId;
+    
+    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
+    private Integer userTypeID;
     @Transient
     private MultipartFile file;
-
+    
+    @Transient
+    public String ConfirmedPassword;
+    
     public UserAccount() {
     }
 
@@ -294,6 +305,20 @@ public class UserAccount implements Serializable {
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
+    }
+
+    /**
+     * @return the userTypeID
+     */
+    public Integer getUserTypeID() {
+        return userTypeID;
+    }
+
+    /**
+     * @param userTypeID the userTypeID to set
+     */
+    public void setUserTypeID(Integer userTypeID) {
+        this.userTypeID = userTypeID;
     }
     
 }

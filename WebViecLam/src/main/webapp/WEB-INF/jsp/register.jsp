@@ -6,111 +6,83 @@
 <%@include file="../taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    </head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="resources/css/register.css">
-    <!------ Include the above in your HEAD tag ---------->
 
-    <div class="container register">
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                <h3>Welcome</h3>
-                <p style="color: white">You are 30 seconds away from earning your own money!</p>
-                <input type="submit" name="" value="Login"/><br/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/css/login.css">
+    <title>Register</title>
+</head>
+<body>
+
+    <div id="logreg-forms">
+        <c:if test="${errMsg !=null}" >
+            <div class="alert alert-danger">
+                ${errMsg}
             </div>
-            <div class="col-md-9 register-right">
-                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Employee</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Apply as a Employee</h3>
-                        <div class="row register-form">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Last Name *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <div class="maxl">
-                                        <label class="radio inline"> 
-                                            <input type="radio" name="gender" value="male" checked>
-                                            <span> Male </span> 
-                                        </label>
-                                        <label class="radio inline"> 
-                                            <input type="radio" name="gender" value="female">
-                                            <span>Female </span> 
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
-                                </div>
-                   
-                                <input type="submit" class="btnRegister"  value="Register"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h3  class="register-heading">Apply as a Hirer</h3>
-                        <div class="row register-form">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Last Name *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
-                                </div>
-
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
-                                </div>
-                                
-                                <input type="submit" class="btnRegister"  value="Register"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </c:if>
+        <form:form method="post" action="${action}" modelAttribute="user">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+<!--            <div class="social-login">
+                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
+            </div>-->
+<!--            <p style="text-align:center"> OR  </p>-->
+            <div class="form-group">
+            <label>Username</label>
+            <form:input type="username" id="username"  path="userName" class="form-control" placeholder="Username" required="" />
+            <label>Password</label>
+            <form:input type="password" id="password"  path="userName" class="form-control" placeholder="Password" required=""/>
             </div>
-        </div>
+            <label>Confirm Password</label>
+            <form:input type="password" id="confirmed-password"  path="confirmedPassword" class="form-control" placeholder="Username" required="" />
+             <label>First Name</label>
+            <form:input type="text" id="first-name"  path="firstName" class="form-control" placeholder="First Name" required=""/>
+             <label>Last Name</label>
+            <form:input type="text" id="last-name"  path="lastName" class="form-control" placeholder="Last Name" required=""/>
+            <label>Email</label>
+            <form:input type="email" id="email"  path="email" class="form-control" placeholder="Email" required=""/>
+            <label>Phone</label>
+            <form:input type="text" id="text"  path="contactNumber" class="form-control" placeholder="Email" required=""/>
+            
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+            </div>
+      
+            <hr>
+            <!-- <p>Don't have an account!</p>  -->
+            
+        </form:form>
+
+        
+        <br>
 
     </div>
+    <p style="text-align:center">
+        <a href="http://bit.ly/2RjWFMfunction toggleResetPswd(e){
+           e.preventDefault();
+           $('#logreg-forms .form-signin').toggle() // display:block or none
+           $('#logreg-forms .form-reset').toggle() // display:block or none
+           }
+
+           function toggleSignUp(e){
+           e.preventDefault();
+           $('#logreg-forms .form-signin').toggle(); // display:block or none
+           $('#logreg-forms .form-signup').toggle(); // display:block or none
+           }
+
+           $(()=>{
+           // Login Register Form
+           $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
+           $('#logreg-forms #cancel_reset').click(toggleResetPswd);
+           $('#logreg-forms #btn-signup').click(toggleSignUp);
+           $('#logreg-forms #cancel_signup').click(toggleSignUp);
+           })g" target="_blank" style="color:black"></a>
+    </p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/script.js"></script>
 </body>
-</html>
