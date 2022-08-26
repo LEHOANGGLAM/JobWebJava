@@ -8,6 +8,7 @@ import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.JobPostActivityPK;
 import com.mycompany.repository.AppliRepository;
 import com.mycompany.service.AppliService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,15 @@ public class AppliServiceImpl implements AppliService {
     @Override
     public boolean addAppliPK(JobPostActivityPK appli) {
         return this.appliRepository.addAppliPK(appli);
+    }
+
+    @Override
+    public List<JobPostActivity> getAppliByUserId(int id) {
+          return this.appliRepository.getAppliByUserId(id);
+    }
+
+    @Override
+    public JobPostActivity isApplied(int uId, int jId) {
+         return this.appliRepository.isApplied(uId, jId);
     }
 }

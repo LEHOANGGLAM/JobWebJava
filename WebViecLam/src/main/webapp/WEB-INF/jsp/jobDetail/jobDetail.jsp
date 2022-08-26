@@ -74,12 +74,38 @@
                                           maxIntegerDigits = "9" value = "${job.jobMaxSalary*12}" /> yearly</span></li>
                         <li>Application date : <span>${job.expirationDate}</span></li>
                     </ul>
+                    <sec:authorize access="!isAuthenticated()">
+                        <div class="apply-btn2">
 
-                    <div class="apply-btn2">
+                            <a href="${pageContext.request.contextPath}/login"class="btn" >Login to Apply</a>
+                        </div>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <c:if test="${job.expirationDate >= d}">
+                            <c:if test="${jobApplied == null}">
+                                <div class="apply-btn2">
 
-                        <a id="myBtn" class="btn" style="margin-right: 20px" >Apply Now</a>
-                        <a href="#" class="btn head-btn2">Save</a>
-                    </div>
+                                    <a id="myBtn" class="btn" style="margin-right: 20px" >Apply Now</a>
+                                    <a href="#" class="btn head-btn2">Save</a>
+                                </div>
+                            </c:if>
+                            <c:if test="${jobApplied != null}">
+                                <div class="apply-btn2">
+
+                                    <a id="myBtn2" class="btn" style="margin-right: 20px" >Reapply</a>
+
+                                    <!--                                    <a href="#" class="btn head-btn2">Send Message</a>-->
+                                </div>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${job.expirationDate < d}">
+                            <div class="apply-btn2">
+
+                                <p class="btn" style="margin-right: 20px" >Out of date </a>
+
+                            </div>
+                        </c:if>
+                    </sec:authorize>
 
                 </div>
                 <div class="post-details4  mb-50">
@@ -112,10 +138,10 @@
         <c:url value="/jobDetail/${job.id}" var="action"/>
         <form method="post" action="${action}" id="form-apply-cv" modelAttribute="a" enctype="multipart/form-data">
             <div>
-              
-                <input type="text"  path="userAccount" class="form-control" value="${currentUser}"  required=""/>
-                
-               
+
+                <input type="hidden"  path="userAccount" class="form-control" value="${currentUser}"  required=""/>
+
+
                 <div class="modal-header ">
 
                     <h4 class="modal-title bold">Apply <span class="text-highlight">${job.jobTitle}</span></h4>
@@ -146,7 +172,7 @@
                                         <td style="vertical-align: top; padding-left: 5px;">: ${currentUser.getContactNumber()}</td>
                                     </tr>
                                 </tbody></table>
-                          
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn head-btn2" data-dismiss="modal" id="close">Close</button>
@@ -198,6 +224,9 @@
     var btn = document.getElementById("myBtn");
 
     // Get the button that opens the modal
+    var btn2 = document.getElementById("myBtn2");
+
+    // Get the button that opens the modal
     var btnClose = document.getElementById("close");
 
 // Get the button that opens the modal
@@ -205,6 +234,10 @@
 
 // When the user clicks on the button, open the modal
     btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    btn2.onclick = function () {
         modal.style.display = "block";
     }
 
@@ -225,12 +258,3 @@
     }
 </script>
 
-
-<!-- job post company End -->.
-<div class="modal fade" id="modal-apply-cv" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-        </div>
-    </div>
-</div>

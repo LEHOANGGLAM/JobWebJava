@@ -6,6 +6,7 @@ package com.mycompany.service;
 
 import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.JobPostActivityPK;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,8 @@ public interface AppliService {
     boolean addAppli(JobPostActivity appli);
 
     boolean addAppliPK(JobPostActivityPK appli);
+
+    List<JobPostActivity> getAppliByUserId(int id);
+
+    JobPostActivity isApplied(int uId, int jId);
 }

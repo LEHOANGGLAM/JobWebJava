@@ -49,7 +49,7 @@ public class JobPostActivity implements Serializable {
     private UserAccount userAccount;
 
     public JobPostActivity() {
-        applyDate = new Date();
+      
     }
 
     public JobPostActivity(JobPostActivityPK jobPostActivityPK) {

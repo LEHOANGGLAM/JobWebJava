@@ -5,6 +5,8 @@
 package com.mycompany.controllers;
 
 import com.mycompany.pojo.JobType;
+import com.mycompany.pojo.UserAccount;
+import com.mycompany.service.AppliService;
 import com.mycompany.service.JobService;
 import com.mycompany.service.JobTypeService;
 import java.util.Map;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.service.LocationService;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,6 +37,8 @@ public class JobListController {
     private JobTypeService jobTypeService;
     @Autowired
     private LocationService jobLocaService;
+    @Autowired
+    private AppliService appliService;
 
     @Autowired
     private JobService jobService;
@@ -41,7 +46,7 @@ public class JobListController {
     private Environment env;
 
     @RequestMapping("/joblist")
-    public String list(Model model, @RequestParam Map<String, String> params, HttpServletRequest hsr) {
+    public String list(Model model, @RequestParam Map<String, String> params, HttpServletRequest hsr, HttpSession session) {
 
         model.addAttribute("getJobTypes", this.jobTypeService.getJobTypes());
         model.addAttribute("getJobLocations", this.jobLocaService.getJobLocations());
@@ -57,6 +62,8 @@ public class JobListController {
         model.addAttribute("tagPage", page);
         model.addAttribute("tagCate", typeId);
         model.addAttribute("tagLoca", locaId);
+
+      
         return "jobList";
     }
 }

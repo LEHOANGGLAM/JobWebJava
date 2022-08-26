@@ -6,6 +6,7 @@ package com.mycompany.repository;
 
 import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.JobPostActivityPK;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,8 @@ public interface AppliRepository {
     boolean addAppli(JobPostActivity appli);
 
     boolean addAppliPK(JobPostActivityPK appli);
+
+    List<JobPostActivity> getAppliByUserId(int id);
+
+    JobPostActivity isApplied(int uId, int jId);
 }
