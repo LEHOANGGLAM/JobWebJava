@@ -52,7 +52,7 @@ public class RegisterController {
     @PostMapping("/register")
     public String register(Model model, @ModelAttribute(value = "user") UserAccount user) {
         String errMsg = "";
-     
+            
             if (this.userService.addUser(user) == true)
                 return "redirect:/login";
             else 

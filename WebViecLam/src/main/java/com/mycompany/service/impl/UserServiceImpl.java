@@ -79,4 +79,9 @@ public class UserServiceImpl implements UserService {
          return this.UserRepository.updateConfirmUser(id,isComfirm);
     }
 
+    @Override
+    public UserAccount getInfo(int id) {
+        return this.UserRepository.getInfo(id);
+    }
+
 }
