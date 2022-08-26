@@ -4,6 +4,11 @@
  */
 package com.mycompany.controllers;
 
+import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.JobPostActivity;
+import com.mycompany.pojo.JobPostActivityPK;
+import com.mycompany.pojo.UserAccount;
+import com.mycompany.service.AppliService;
 import com.mycompany.service.CompanyService;
 import com.mycompany.service.JobService;
 import java.util.Map;
@@ -18,6 +23,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.service.LocationService;
+import java.io.IOException;
+import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -33,17 +42,44 @@ public class JobDetailController {
     private CompanyService companyService;
     @Autowired
     private LocationService jobLocaService;
+    @Autowired
+    private AppliService appliService;
 
     private JFrame outFrame = new JFrame("demo");
-    
+
     @GetMapping("/jobDetail/{jId}")
-    public String jobDetail(Model model, @PathVariable(value = "jId") int jId,@RequestParam Map<String, String> params) {
+    public String jobDetail(Model model, @PathVariable(value = "jId") int jId, @RequestParam Map<String, String> params) {
         model.addAttribute("job", this.jobService.getJobById(jId));
         model.addAttribute("c", this.companyService.getCompanyByJobPostId(jId));
         model.addAttribute("l", this.jobLocaService.getLocationByJobPostId(jId));
 
-         int page = Integer.parseInt(params.getOrDefault("page", "1"));
+        int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
+
+        model.addAttribute("a", new JobPostActivity());
         return "jobDetail";
+    }
+
+    @PostMapping("/jobDetail/{jId}")
+    public String addApplication(
+            @PathVariable(value = "jId") int jId,
+            @ModelAttribute(value = "a") JobPostActivity a,
+            HttpSession session,
+            Model model) {
+       // JobPost jobtemp = (JobPost) session.getAttribute("job");
+     //   UserAccount userTemp = (UserAccount) session.getAttribute("currentUser");
+     //   a.setIsSave(0);
+        a.setJobPost(this.jobService.getJobById(jId));
+    //   a.setUserAccountId(userTemp.getId());
+
+        System.out.println(this.appliService.addAppli(a));
+//        String errMsg="test";
+//        if (this.appliService.addAppli(jpa) == true) {
+//            errMsg = "Successful Aplly";
+//        } else {
+//            errMsg = "Error";
+//        }
+//        model.addAttribute("err", errMsg);
+        return "index";
     }
 }

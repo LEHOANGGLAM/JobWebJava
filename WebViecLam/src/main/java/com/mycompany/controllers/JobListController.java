@@ -53,9 +53,10 @@ public class JobListController {
 
         String typeId = params.getOrDefault("jobTypeId", "");
         String locaId = params.getOrDefault("jobLocationId", "");
-        hsr.setAttribute("tagPage", page);
-        hsr.setAttribute("tagCate", typeId);
-        hsr.setAttribute("tagLoca", locaId);
+
+        model.addAttribute("tagPage", page);
+        model.addAttribute("tagCate", typeId);
+        model.addAttribute("tagLoca", locaId);
         return "jobList";
     }
 }
