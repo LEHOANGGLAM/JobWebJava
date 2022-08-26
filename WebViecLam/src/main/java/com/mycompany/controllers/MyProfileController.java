@@ -46,14 +46,19 @@ public class MyProfileController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/myProfile")
-    public String getInfo(Model model, Authentication a) {
-        UserAccount u = this.userService.getUserByUsername(a.getName());
-        model.addAttribute("u", u);
+    @GetMapping("/myProfile/{uId}")
+    public String getInfo(@PathVariable(value = "uId") int uId, Model model, Authentication a) {
+        
+        model.addAttribute("u", this.userService.getUserById(uId));
         return "myProfile";
     }
-
-    @PutMapping("/myProfile")
+    
+//    @GetMapping("/myProfile")
+//    public String myProfile() {
+//        return "myProfile";
+//    }
+    
+    @PutMapping("/myProfile/{uId}")
     public String updateProfile(@RequestBody UserAccount params, HttpSession session, @PathVariable(value = "uId") int uId) {
 
         try {
