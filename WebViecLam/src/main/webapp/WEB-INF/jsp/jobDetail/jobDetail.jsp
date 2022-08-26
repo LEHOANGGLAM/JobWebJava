@@ -82,17 +82,23 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <c:if test="${job.expirationDate >= d}">
-                            <c:if test="${jobApplied == null}">
+                            <c:if test="${jobApplied == null || (jobApplied.isSave == 1)}">
                                 <div class="apply-btn2">
+                                    <c:url value="/jobDetail/${job.id}" var="action"/>
+                                    <form:form method="post" action="${action}" id="form-apply-cv" modelAttribute="a" enctype="multipart/form-data">
+                                        <a id="myBtn" class="btn" style="margin-right: 20px" >Apply Now</a>
 
-                                    <a id="myBtn" class="btn" style="margin-right: 20px" >Apply Now</a>
-                                    <a href="#" class="btn head-btn2">Save</a>
+                                        <form:input type="hidden"  path="isSave"  class="form-control" value="1" />
+                                        <button type="submit" class="btn head-btn2 btn-topcv-primary btn-theme" id="btn-apply">
+                                            ${jobApplied.isSave == 1 ? "Saved" : "Save"}</button>
+                                    </form:form>
+
                                 </div>
                             </c:if>
-                            <c:if test="${jobApplied != null}">
+                            <c:if test="${jobApplied != null && jobApplied.isSave != 1}">
                                 <div class="apply-btn2">
 
-                                    <a id="myBtn2" class="btn" style="margin-right: 20px" >Reapply</a>
+                                    <a id="myBtn" class="btn" style="margin-right: 20px" >Reapply</a>
 
                                     <!--                                    <a href="#" class="btn head-btn2">Send Message</a>-->
                                 </div>
@@ -136,11 +142,11 @@
     <!-- Modal content -->
     <div class="modal-content">
         <c:url value="/jobDetail/${job.id}" var="action"/>
-        <form method="post" action="${action}" id="form-apply-cv" modelAttribute="a" enctype="multipart/form-data">
+        <form:form method="post" action="${action}" id="form-apply-cv" modelAttribute="a" enctype="multipart/form-data">
             <div>
 
-                <input type="hidden"  path="userAccount" class="form-control" value="${currentUser}"  required=""/>
-
+              
+                <form:input type="hidden"  path="isSave"  class="form-control" value="0" />
 
                 <div class="modal-header ">
 
@@ -179,23 +185,23 @@
                             <button type="submit" class="btn btn-topcv-primary btn-theme" id="btn-apply">Apply CV</button>
                         </div>
                     </div>
-                    <div id="sucess-apply" style="display: block;">
+                    <!--                    <div id="sucess-apply" style="display: block;">
+                    
+                                            <div style="margin-top: 8px; border: 1px dashed #ccc; padding: 5px 10px;">
+                    
+                    <c:if test="${errMsg!=null}">
+                        <div class="notification notice margin-bottom-25">${errMsg}</div>
+                    </c:if>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn head-btn2" data-dismiss="modal" id="close">Close</button>
+                    <a href="" class="btn" style="margin-right: 20px" >Review Job Applied</a>
 
-                        <div style="margin-top: 8px; border: 1px dashed #ccc; padding: 5px 10px;">
-
-                            <c:if test="${errMsg!=null}">
-                                <div class="notification notice margin-bottom-25">${errMsg}</div>
-                            </c:if>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn head-btn2" data-dismiss="modal" id="close2">Close</button>
-                            <a href="" class="btn" style="margin-right: 20px" >Review Job Applied</a>
-
-                        </div>
-                    </div>
+                </div>
+            </div>-->
                 </div>
             </div>
-        </form>
+        </form:form>
 
     </div>
 
@@ -223,32 +229,26 @@
 // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
 
-    // Get the button that opens the modal
-    var btn2 = document.getElementById("myBtn2");
+
 
     // Get the button that opens the modal
     var btnClose = document.getElementById("close");
 
-// Get the button that opens the modal
-    var btnClose2 = document.getElementById("close2");
+
 
 // When the user clicks on the button, open the modal
     btn.onclick = function () {
         modal.style.display = "block";
     }
 
-    btn2.onclick = function () {
-        modal.style.display = "block";
-    }
+
 
 // When the user clicks on <span> (x), close the modal
     btnClose.onclick = function () {
         modal.style.display = "none";
     }
 
-    btnClose2.onclick = function () {
-        modal.style.display = "none";
-    }
+
 
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {

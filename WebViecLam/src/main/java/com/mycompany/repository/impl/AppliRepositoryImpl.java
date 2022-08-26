@@ -92,7 +92,8 @@ public class AppliRepositoryImpl implements AppliRepository {
         Root<JobPostActivity> jRoot = q.from(JobPostActivity.class);
 
         q.where(b.equal(jRoot.get("userAccount"), uId),
-                b.equal(jRoot.get("jobPost"), jId));
+                b.equal(jRoot.get("jobPost"), jId)
+              );
         q.select(jRoot);
 
         Query query = session.createQuery(q);

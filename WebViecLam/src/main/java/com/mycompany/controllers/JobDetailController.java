@@ -84,8 +84,8 @@ public class JobDetailController {
 
         a.setApplyDate(new Date());
         a.setJobPostActivityPK(activityPK);
-        a.setIsSave(0);
-        a.setJobPost(this.jobService.getJobById(jId));
+       // a.setIsSave(0);
+      //  a.setJobPost(this.jobService.getJobById(jId));
 
         String errMsg;
         if (this.appliService.addAppli(a) == true) {
