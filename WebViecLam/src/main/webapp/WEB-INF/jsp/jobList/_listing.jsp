@@ -32,11 +32,22 @@
                 </ul>
             </div>
         </div>
-        <div class="items-link items-link2 f-right">
-            <a href="jobDetail/${j[9]}">Watch</a>
-            <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
-                            pattern="yyyy-MM-dd" value="${j[8]}" /></span>
-        </div>
+        <sec:authorize access="isAuthenticated()">
+            <div class="items-link items-link2 f-right">
+                <a href="jobDetail/${j[9]}">Watch</a>
+                <!--                <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
+                                pattern="yyyy-MM-dd" value="${j[8]}" />
+                </span>-->
+
+            </div>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+            <div class="items-link items-link2 f-right">
+              <a href="${pageContext.request.contextPath}/login" >Login to Watch More</a>
+
+            </div>
+        </sec:authorize>
+
     </div>
 
 

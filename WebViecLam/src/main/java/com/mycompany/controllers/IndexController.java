@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.service.LocationService;
+import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -48,6 +49,7 @@ public class IndexController {
         model.addAttribute("cate", this.cateService.getCateList());
         model.addAttribute("cateChild", this.cateService.getCateChild());
         model.addAttribute("currentUser", session.getAttribute("currentUser"));
+        model.addAttribute("d", new Date());
     }
 
     @RequestMapping("/")

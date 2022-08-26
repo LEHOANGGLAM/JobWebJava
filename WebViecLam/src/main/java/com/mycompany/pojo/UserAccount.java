@@ -49,8 +49,23 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "UserAccount.findByUsername", query = "SELECT u FROM UserAccount u WHERE u.username = :username"),
     @NamedQuery(name = "UserAccount.findByIsComfirm", query = "SELECT u FROM UserAccount u WHERE u.isComfirm = :isComfirm"),
     @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName"),
-    @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")})
+    @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName"),
+    @NamedQuery(name = "UserAccount.findByCV", query = "SELECT u FROM UserAccount u WHERE u.cv = :cv")})
 public class UserAccount implements Serializable {
+
+    /**
+     * @return the cv
+     */
+    public String getCv() {
+        return cv;
+    }
+
+    /**
+     * @param cv the cv to set
+     */
+    public void setCv(String cv) {
+        this.cv = cv;
+    }
 
     @Size(max = 200)
     @Column(name = "about_me")
@@ -71,11 +86,11 @@ public class UserAccount implements Serializable {
     }
 
     private static final long serialVersionUID = 1L;
-    
+
     public static final int USER = 2;
     public static final int ADMIN = 1;
     public static final int RECRUITER = 3;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -114,6 +129,8 @@ public class UserAccount implements Serializable {
     @Size(max = 45)
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "cv")
+    private String cv;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
     @JsonIgnore
     private Collection<JobPostActivity> jobPostActivityCollection;
@@ -127,14 +144,13 @@ public class UserAccount implements Serializable {
     @ManyToOne
     @JsonIgnore
     private UserType userTypeId;
-    
-  
+
     @Transient
     private MultipartFile file;
-    
+
     @Transient
     public String ConfirmedPassword;
-    
+
     public UserAccount() {
     }
 
@@ -306,5 +322,4 @@ public class UserAccount implements Serializable {
         this.aboutMe = aboutMe;
     }
 
-  
 }
