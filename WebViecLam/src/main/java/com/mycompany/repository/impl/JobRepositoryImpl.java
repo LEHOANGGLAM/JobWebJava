@@ -6,11 +6,13 @@ package com.mycompany.repository.impl;
 
 import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.Location;
 import com.mycompany.repository.JobReposiroty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -116,7 +118,7 @@ public class JobRepositoryImpl implements JobReposiroty {
     }
 
     @Override
-    public List<Object[]> getJobsByComid(int comId,int page) {
+    public List<Object[]> getJobsByComid(int comId, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
@@ -128,7 +130,7 @@ public class JobRepositoryImpl implements JobReposiroty {
 
         q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
                 b.equal(jRoot.get("companyId"), cRoot.get("id")),
-                  b.equal(jRoot.get("companyId"), comId  ));
+                b.equal(jRoot.get("companyId"), comId));
 
         q = q.multiselect(
                 jRoot.get("jobTitle"),
@@ -143,8 +145,7 @@ public class JobRepositoryImpl implements JobReposiroty {
                 jRoot.get("id"),
                 cRoot.get("image")
         );
-       
-      
+
         q.groupBy(jRoot.get("id"));
         q.orderBy(b.desc(jRoot.get("id")));
 
@@ -177,5 +178,37 @@ public class JobRepositoryImpl implements JobReposiroty {
     public JobPost getJobById(int id) {
         Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(JobPost.class, id);
+    }
+
+    @Override
+    public List<JobPost> getJobsAppliedOrSaved(int uId,int isSave) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<JobPost> q = b.createQuery(JobPost.class);
+
+        Root<JobPostActivity> appliRoot = q.from(JobPostActivity.class);
+
+        q.where(
+                b.equal(appliRoot.get("userAccount"), uId),
+                 b.equal(appliRoot.get("isSave"), isSave)
+        );
+
+        q = q.select(appliRoot.get("jobPost"));
+               
+
+
+        Query query = session.createQuery(q);
+
+        try {
+            List<JobPost> kq = query.getResultList();
+//            kq.forEach(k -> {
+//                System.out.printf("%s - name, \n ", k.getJobTitle());
+//            });
+            return kq;
+        } catch (NoResultException nre) {
+            return null;
+        }
+
     }
 }

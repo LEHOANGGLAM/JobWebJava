@@ -63,7 +63,18 @@ public class JobListController {
         model.addAttribute("tagCate", typeId);
         model.addAttribute("tagLoca", locaId);
 
-      
         return "jobList";
     }
+
+    @RequestMapping("/jobApplied")
+    public String jobApplied(Model model, @RequestParam Map<String, String> params, HttpServletRequest hsr, HttpSession session) {
+
+        UserAccount user = (UserAccount) session.getAttribute("currentUser");
+
+        model.addAttribute("jobApplied", this.jobService.getJobsAppliedOrSaved(user.getId(), -1));
+        model.addAttribute("jobSave", this.jobService.getJobsAppliedOrSaved(user.getId(), 1));
+
+        return "jobApplied";
+    }
+
 }

@@ -31,7 +31,7 @@ function loadAdminCompany(endpoint) {
                     <td class="company-title">${data[i][1]}</td>
                     <td class="status" id="${data[i][5]}"> 
          <button class="btn head-btn2"  id="${data[i][5]}"
-        onclick="updateAcc(${data[i][2]},${data[i][5]})">  ${data[i][2] == 1 ? "Approved" : "Pending Review"}</button>
+        onclick="updateAcc(${data[i][5]})">  ${data[i][2] == 1 ? "Approved" : "Pending Review"}</button>
                        
                     </td>
                     <td class="date">    ${new Date(data[i][3]).toLocaleDateString()} - (MM/dd/yyyy)</td>
@@ -46,17 +46,16 @@ function loadAdminCompany(endpoint) {
         let d = document.getElementById("mainId");
         d.innerHTML = msg;
 
-      
+
     })
 }
 
-function updateAcc(obj, accId) {
+function updateAcc( accId) {
 
     fetch("api/accounts", {
         method: "put",
         body: JSON.stringify({
-            "id": accId,
-            "isComfirm": obj
+            "id": accId
         }),
         headers: {
             "Content-Type": "application/json"
@@ -64,9 +63,13 @@ function updateAcc(obj, accId) {
     }).then(function (res) {
         return res.json()
     }).then(function (data) {
-        document.getElementById(accId).innerHTML  = (data == 1 ? "Approved" : "Pending Review")       
+    
+       document.getElementById(accId).innerHTML =  `<button class="btn head-btn2"  
+    onclick="updateAcc(${accId})" id="${accId}">  ${data == 1 ? "Approved" : "Pending Review"}</button>`
     })
 }
+
+
 //
 //function updateInfo(obj, accId) {
 //
@@ -122,7 +125,7 @@ function loadAdminCate(endpoint) {
         let d = document.getElementById("mainId");
         d.innerHTML = msg;
 
-      
+
     })
 }
 

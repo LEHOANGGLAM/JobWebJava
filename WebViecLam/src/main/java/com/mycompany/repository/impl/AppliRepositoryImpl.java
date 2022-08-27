@@ -49,13 +49,30 @@ public class AppliRepositoryImpl implements AppliRepository {
     }
 
     @Override
-    public boolean addAppliPK(JobPostActivityPK appli) {
+    public boolean updAppli(JobPostActivity appli) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
+            session.update(appli);
+            return true;
+        } catch (HibernateException e) {
+            System.err.println("update Application-------------" + e.getMessage());
+        }
+        return false;
+
+    }
+
+    @Override
+    public boolean updateIsSave(JobPostActivity appli) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            if(appli.getIsSave() == 1)
+                appli.setIsSave(0);
+            else if(appli.getIsSave() == 0 || appli.getIsSave() == null)
+                appli.setIsSave(1);
             session.save(appli);
             return true;
         } catch (HibernateException e) {
-            System.err.println("add ApplicationPK-------------" + e.getMessage());
+            System.err.println("UPDate ISave-------------" + e.getMessage());
         }
         return false;
     }
@@ -93,7 +110,7 @@ public class AppliRepositoryImpl implements AppliRepository {
 
         q.where(b.equal(jRoot.get("userAccount"), uId),
                 b.equal(jRoot.get("jobPost"), jId)
-              );
+        );
         q.select(jRoot);
 
         Query query = session.createQuery(q);

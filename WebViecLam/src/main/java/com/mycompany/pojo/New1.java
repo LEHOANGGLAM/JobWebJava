@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "new")
@@ -154,5 +154,5 @@ public class New1 implements Serializable {
     public String toString() {
         return "com.mycompany.pojo.New1[ id=" + id + " ]";
     }
-    
+
 }

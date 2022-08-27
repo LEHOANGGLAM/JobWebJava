@@ -28,8 +28,8 @@ public class AppliServiceImpl implements AppliService {
     }
     
     @Override
-    public boolean addAppliPK(JobPostActivityPK appli) {
-        return this.appliRepository.addAppliPK(appli);
+    public boolean updAppli(JobPostActivity appli) {
+        return this.appliRepository.updAppli(appli);
     }
 
     @Override
@@ -40,5 +40,10 @@ public class AppliServiceImpl implements AppliService {
     @Override
     public JobPostActivity isApplied(int uId, int jId) {
          return this.appliRepository.isApplied(uId, jId);
+    }
+
+    @Override
+    public boolean updateIsSave(JobPostActivity appli) {
+        return this.appliRepository.updateIsSave(appli);
     }
 }

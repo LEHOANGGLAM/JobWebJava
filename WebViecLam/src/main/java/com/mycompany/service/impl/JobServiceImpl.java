@@ -42,4 +42,9 @@ public class JobServiceImpl implements JobService {
     public List<Object[]> getJobsByComid(int comId,int page) {
         return this.jobReposiroty.getJobsByComid(comId, page);
     }
+
+    @Override
+    public List<JobPost> getJobsAppliedOrSaved(int uId,int isSave){
+         return this.jobReposiroty.getJobsAppliedOrSaved(uId,isSave);
+    }
 }

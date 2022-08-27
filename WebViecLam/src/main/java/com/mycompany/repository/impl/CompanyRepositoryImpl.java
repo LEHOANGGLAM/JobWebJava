@@ -9,10 +9,13 @@ import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobPost;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.CompanyRepository;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
+@PropertySource("classpath:messages.properties")
 public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Autowired
@@ -108,6 +112,47 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     @Override
+    public List<Company> getCompanyList(Map<String, String> params, int page) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Company> q = b.createQuery(Company.class);
+
+        Root<Company> cRoot = q.from(Company.class);
+
+        q.select(cRoot);
+        if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                Predicate p = b.like(cRoot.get("companyName").as(String.class), String.format("%%%s%%", kw));
+                predicates.add(p);
+            }
+
+            q.where(predicates.toArray(Predicate[]::new));
+        }
+        Query query = session.createQuery(q);
+
+        if (page > 0) {
+            int size = Integer.parseInt(env.getProperty("page.size").toString());
+            int start = (page - 1) * size;
+            query.setFirstResult(start);
+            query.setMaxResults(size);
+        }
+
+        List<Company> cList = query.getResultList();
+
+        return cList;
+    }
+
+    @Override
+    public int countCompanies() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("SELECT Count(*) FROM Company");
+        return Integer.parseInt(q.getSingleResult().toString());
+    }
+
+    @Override
     public Company getComById(int id) {
         Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(Company.class, id);
@@ -126,5 +171,3 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         return query.getResultList();
     }
 }
-
-

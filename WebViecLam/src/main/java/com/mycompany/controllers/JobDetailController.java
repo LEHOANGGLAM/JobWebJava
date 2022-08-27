@@ -29,6 +29,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -37,7 +39,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @ControllerAdvice
 public class JobDetailController {
-
+    
     @Autowired
     private JobService jobService;
     @Autowired
@@ -46,9 +48,9 @@ public class JobDetailController {
     private LocationService jobLocaService;
     @Autowired
     private AppliService appliService;
-
+    
     private JFrame outFrame = new JFrame("demo");
-
+    
     @GetMapping("/jobDetail/{jId}")
     public String jobDetail(Model model, @PathVariable(value = "jId") int jId, @RequestParam Map<String, String> params,
             HttpSession session) {
@@ -59,41 +61,66 @@ public class JobDetailController {
         //view jobpost below
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
-
+        
         model.addAttribute("a", new JobPostActivity());
 
         //Xét job này đã apply chưa
         UserAccount user = (UserAccount) session.getAttribute("currentUser");
         model.addAttribute("jobApplied", this.appliService.isApplied(user.getId(), jId));
-
+        
         return "jobDetail";
     }
-
+    
     @PostMapping("/jobDetail/{jId}")
     public String addApplication(
             @PathVariable(value = "jId") int jId,
             @ModelAttribute(value = "a") JobPostActivity a,
             HttpSession session,
             Model model) {
-
+        
         UserAccount user = (UserAccount) session.getAttribute("currentUser");
-
-        JobPostActivityPK activityPK = new JobPostActivityPK();
-        activityPK.setJobPostId(this.jobService.getJobById(jId).getId());
-        activityPK.setUserAccountId(user.getId());
-
-        a.setApplyDate(new Date());
-        a.setJobPostActivityPK(activityPK);
-       // a.setIsSave(0);
-      //  a.setJobPost(this.jobService.getJobById(jId));
-
-        String errMsg;
-        if (this.appliService.addAppli(a) == true) {
-            errMsg = "Successful Aplly";
-        } else {
-            errMsg = "Error";
+        JobPostActivity jobPostActivity = this.appliService.isApplied(user.getId(), jId);
+        if (jobPostActivity == null) {
+            JobPostActivityPK jobPostActivityPK = new JobPostActivityPK();
+            jobPostActivityPK.setJobPostId(this.jobService.getJobById(jId).getId());
+            jobPostActivityPK.setUserAccountId(user.getId());
+            
+            a.setApplyDate(new Date());
+            a.setJobPostActivityPK(jobPostActivityPK);
+            a.setIsSave(-1);
+            //  a.setJobPost(this.jobService.getJobById(jId));
+            
+            this.appliService.addAppli(a);
+             return "index";
         }
-        model.addAttribute("err", errMsg);
+        
+        jobPostActivity.setApplyDate(new Date());
+        this.appliService.updAppli(jobPostActivity);
+//        String errMsg;
+//        if (this.appliService.addAppli(a) == true) {
+//            errMsg = "Successful Aplly";
+//        } else {
+//            errMsg = "Error";
+//        }
+//        model.addAttribute("err", errMsg);
         return "index";
     }
+    
+    @PutMapping("/jobDetail/**")
+    public int updateSave(@RequestBody JobPostActivityPK params,
+            // @PathVariable(value = "jId") int jId,
+            HttpSession session) {
+        
+        System.out.print("aaaaaaaaaaaa");
+        JobPostActivityPK jobPostActivityPK = new JobPostActivityPK();
+        jobPostActivityPK.setJobPostId(params.getJobPostId());
+        jobPostActivityPK.setUserAccountId(params.getUserAccountId());
+        
+        JobPostActivity jobPostActivity = new JobPostActivity();
+        jobPostActivity.setJobPostActivityPK(jobPostActivityPK);
+        
+        this.appliService.updateIsSave(jobPostActivity);
+        return jobPostActivity.getIsSave();
+    }
+    
 }
