@@ -4,6 +4,7 @@ com\mycompany\service\impl\JobServiceImpl.class
 META-INF\spring.components
 com\mycompany\pojo\Street.class
 com\mycompany\pojo\UserAccount_.class
+com\mycompany\service\impl\AppliServiceImpl.class
 com\mycompany\configs\TilesConfig.class
 com\mycompany\repository\impl\StatsRepositoryImpl.class
 com\mycompany\pojo\JobLocation_.class
@@ -41,6 +42,7 @@ com\mycompany\controllers\CompanyDetailController.class
 com\mycompany\pojo\UserType.class
 com\mycompany\pojo\SkillSet_.class
 com\mycompany\handlers\LoginHandler.class
+com\mycompany\repository\AppliRepository.class
 com\mycompany\controllers\NewsAdminController.class
 com\mycompany\pojo\Company_.class
 com\mycompany\service\CompanyService.class
@@ -63,11 +65,13 @@ com\mycompany\pojo\BusinessType.class
 com\mycompany\controllers\ApiAccountController.class
 com\mycompany\pojo\JobPostActivity.class
 com\mycompany\handlers\LogoutHandler.class
+com\mycompany\repository\impl\AppliRepositoryImpl.class
 com\mycompany\controllers\JobDetailController.class
 com\mycompany\controllers\MyProfileController.class
 com\mycompany\service\impl\CompanyServiceImpl.class
 com\mycompany\pojo\JobPostSkillSet_.class
 com\mycompany\pojo\UserAccount.class
+com\mycompany\service\AppliService.class
 com\mycompany\pojo\JobPostActivityPK_.class
 com\mycompany\pojo\JobPost_.class
 com\mycompany\service\impl\UserServiceImpl.class

@@ -150,7 +150,7 @@
                                                     <ul class="submenu">
 
                                                         <li><a href="<c:url value="/" />">Messenger</a>   </li>
-                                                        <li id="${uId}"><a href="<c:url value="/myProfile" />">My Profile</a>   </li>
+                                                        <li id="${uId}"><a href="<c:url value="/myProfile/${uId}" />">My Profile</a>   </li>
                                                         <li><a href="<c:url value="/logout" />">Logout</a>   </li>
 
                                                     </ul>
