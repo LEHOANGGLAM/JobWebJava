@@ -53,13 +53,18 @@ public class RegisterController {
     public String register(Model model, @ModelAttribute(value = "user") UserAccount user) {
         String errMsg = "";
             
-            if (this.userService.addUser(user) == true)
+        if (user.getPassword().equals(user.getConfirmedPassword())){
+            
+        }else 
+            errMsg = "The passwords doesn't match!";
+            
+        if (this.userService.addUser(user) == true)
                 return "redirect:/login";
             else 
                 errMsg = "Da co loi xay ra!";
    
         
-        model.addAttribute("err", errMsg); 
+        model.addAttribute("errMsg", errMsg); 
         
         return "register";
     }
