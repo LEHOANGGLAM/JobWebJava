@@ -109,7 +109,21 @@ public class UserRepositoryImpl implements UserRepository {
             return false;
         }
     }
+    
+    
+    @Override
+    public UserAccount getInfo(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
 
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<UserAccount> q = b.createQuery(UserAccount.class);
+        Root root = q.from(UserAccount.class);
+        q.select(root);
+        q.where(b.equal(root.get("id"), id));
+        
+        Query query = session.createQuery(q);
+        return (UserAccount) query.getSingleResult();
+    }
 //    @Override
 //    public boolean updateInfo(UserAccount u) {
 //        Session session = this.sessionFactory.getObject().getCurrentSession();

@@ -135,7 +135,7 @@
                                     <label for="pass2">Confirm New Password</label>
                                     <input name="pass2" type="password">
 
-                                    <input type="submit" name="wp-submit" id="wp-submit" class="margin-top-20 button" value="Save Changes" />
+                                    <input type="submit" name="submit" id="submit" class="margin-top-20 button" value="Save Changes" />
 
                                     <input type="hidden" name="workscout_core-password-change" value="1" />
                                 </form>

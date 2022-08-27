@@ -8,6 +8,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-28T04:24:50")
+
 @StaticMetamodel(Location.class)
 public class Location_ { 
 
