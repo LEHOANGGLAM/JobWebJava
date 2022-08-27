@@ -4,9 +4,9 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\Lo
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\JobDetailController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobTypeRepository.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobReposiroty.java
-C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobLocation.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\StatsServiceImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\UserRepository.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CompanyController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\StatsAdminController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\StatsService.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Category.java
@@ -47,7 +47,6 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\im
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPost.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\AppliServiceImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\UserRepositoryImpl.java
-C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CompanyDetailController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\SecurityWebApplicationInitializer.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\UserService.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\WebAppContextConfig.java

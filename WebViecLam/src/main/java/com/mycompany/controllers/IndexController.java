@@ -41,15 +41,16 @@ public class IndexController {
     private JobService jobService;
     @Autowired
     private Environment env;
-     @Autowired
+    @Autowired
     private LoginHandler loginHandler;
 
     @ModelAttribute
-    public void commonAttribute(Model model , HttpSession session) {
+    public void commonAttribute(Model model, HttpSession session) {
         model.addAttribute("cate", this.cateService.getCateList());
         model.addAttribute("cateChild", this.cateService.getCateChild());
         model.addAttribute("currentUser", session.getAttribute("currentUser"));
         model.addAttribute("d", new Date());
+        model.addAttribute("err", null);
     }
 
     @RequestMapping("/")

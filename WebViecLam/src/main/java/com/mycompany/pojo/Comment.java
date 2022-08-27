@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "comment")
@@ -54,7 +54,7 @@ public class Comment implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private UserAccount userId;
-    
+
     public Comment() {
     }
 

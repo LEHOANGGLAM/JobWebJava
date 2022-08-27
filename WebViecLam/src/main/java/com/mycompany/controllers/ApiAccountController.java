@@ -47,14 +47,14 @@ public class ApiAccountController {
     @PutMapping("/accounts")
     public int updateAcc(@RequestBody UserAccount params, HttpSession session) {
 
-        int isComfirm = params.getIsComfirm();
+      
+       UserAccount account = userService.getUserById(params.getId());
+        int isComfirm = account.getIsComfirm();
         if (isComfirm == 1) {
             isComfirm = 0;
         } else {
             isComfirm = 1;
         }
-       //UserAccount account = userService.getUserById(params.getId());
-      //  account.setIsComfirm(isComfirm);
       
       
       

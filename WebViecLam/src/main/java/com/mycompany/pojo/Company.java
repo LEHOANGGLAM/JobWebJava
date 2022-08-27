@@ -5,12 +5,11 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "company")
@@ -81,11 +80,11 @@ public class Company implements Serializable {
     @Column(name = "company_size")
     private String companySize;
     @OneToMany(mappedBy = "companyId")
-    private Collection<Street> streetCollection;
+    private Set<Street> streetSet;
     @OneToMany(mappedBy = "companyId")
-    private Collection<JobPost> jobPostCollection;
-    @OneToMany(mappedBy = "companyId", fetch = FetchType.EAGER)
-    private Collection<Comment> commentCollection;
+    private Set<JobPost> jobPostSet;
+    @OneToMany(mappedBy = "companyId")
+    private Set<Comment> commentSet;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
     private BusinessType businessTypeId;
@@ -181,30 +180,30 @@ public class Company implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Street> getStreetCollection() {
-        return streetCollection;
+    public Set<Street> getStreetSet() {
+        return streetSet;
     }
 
-    public void setStreetCollection(Collection<Street> streetCollection) {
-        this.streetCollection = streetCollection;
-    }
-
-    @XmlTransient
-    public Collection<JobPost> getJobPostCollection() {
-        return jobPostCollection;
-    }
-
-    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
-        this.jobPostCollection = jobPostCollection;
+    public void setStreetSet(Set<Street> streetSet) {
+        this.streetSet = streetSet;
     }
 
     @XmlTransient
-    public Collection<Comment> getCommentCollection() {
-        return commentCollection;
+    public Set<JobPost> getJobPostSet() {
+        return jobPostSet;
     }
 
-    public void setCommentCollection(Collection<Comment> commentCollection) {
-        this.commentCollection = commentCollection;
+    public void setJobPostSet(Set<JobPost> jobPostSet) {
+        this.jobPostSet = jobPostSet;
+    }
+
+    @XmlTransient
+    public Set<Comment> getCommentSet() {
+        return commentSet;
+    }
+
+    public void setCommentSet(Set<Comment> commentSet) {
+        this.commentSet = commentSet;
     }
 
     public BusinessType getBusinessTypeId() {

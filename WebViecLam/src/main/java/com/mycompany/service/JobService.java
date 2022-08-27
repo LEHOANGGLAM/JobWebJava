@@ -19,5 +19,8 @@ public interface JobService {
     int countJobPosts();
 
     JobPost getJobById(int id);
-    List<Object[]> getJobsByComid(int comId,int page);
+
+    List<Object[]> getJobsByComid(int comId, int page);
+
+    List<JobPost> getJobsAppliedOrSaved(int uId, int isSave);
 }

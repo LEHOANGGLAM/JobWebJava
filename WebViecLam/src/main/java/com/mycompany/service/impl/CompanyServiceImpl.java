@@ -10,6 +10,7 @@ import com.mycompany.repository.CompanyRepository;
 import com.mycompany.repository.JobReposiroty;
 import com.mycompany.service.CompanyService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,9 +48,19 @@ public class CompanyServiceImpl implements CompanyService {
     public Company getComById(int id) {
         return this.companyRepository.getComById(id);
     }
-    
+
     @Override
     public List<Comment> getComments(int companyId) {
         return this.companyRepository.getComments(companyId);
+    }
+
+    @Override
+    public List<Company> getCompanyList(Map<String, String> params, int page) {
+        return this.companyRepository.getCompanyList(params, page);
+    }
+
+    @Override
+    public int countCompanies() {
+        return this.companyRepository.countCompanies();
     }
 }

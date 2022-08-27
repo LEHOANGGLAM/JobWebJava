@@ -16,9 +16,11 @@ public interface AppliRepository {
 
     boolean addAppli(JobPostActivity appli);
 
-    boolean addAppliPK(JobPostActivityPK appli);
+   boolean updAppli(JobPostActivity appli);
 
     List<JobPostActivity> getAppliByUserId(int id);
 
     JobPostActivity isApplied(int uId, int jId);
+
+    boolean updateIsSave(JobPostActivity appli);
 }

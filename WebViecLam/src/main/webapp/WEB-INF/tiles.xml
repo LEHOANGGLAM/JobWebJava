@@ -15,31 +15,40 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/layout/footer.jsp" />
     </definition>
     <definition name="index" extends="baseLayout">
-        <put-attribute name="title" value="Trang chủ" />
+        <put-attribute name="title" value="Home" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/home/index.jsp" />
     </definition>
     <definition name="jobList" extends="baseLayout">
-        <put-attribute name="title" value="Tìm kiếm việc làm" />
+        <put-attribute name="title" value="Find Job" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/jobList/jobList.jsp" />
     </definition>
     <definition name="companyDetail" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết công ty" />
+        <put-attribute name="title" value="Company Detail" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/companyDetail.jsp" />
     </definition>
     <definition name="jobDetail" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết việc làm" />
+        <put-attribute name="title" value="Job Detail" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/jobDetail/jobDetail.jsp" />
     </definition>
     <definition name="defaultPage" extends="baseLayout">
-        <put-attribute name="title" value="WorkFun - Tìm kiếm việc làm thông minh" />
+        <put-attribute name="title" value="WorkFun - Smart Job Search Engine" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/defaultPage/defaultPage.jsp" />
     </definition>
-    
+    <definition name="jobApplied" extends="baseLayout">
+        <put-attribute name="title" value="Job Appied" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/jobApplied.jsp" />
+    </definition>
+    <definition name="companyList" extends="baseLayout">
+        <put-attribute name="title" value="Company List" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/companyList/companyList.jsp" />
+    </definition>
     
     <!--    LAYOUT LOGIN PAGE-->
     <definition name="loginBase"

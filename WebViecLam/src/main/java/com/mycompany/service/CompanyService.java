@@ -7,6 +7,7 @@ package com.mycompany.service;
 import com.mycompany.pojo.Comment;
 import com.mycompany.pojo.Company;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -25,4 +26,6 @@ public interface CompanyService {
     Company getComById(int id);
     
     List<Comment> getComments(int Id);
+    List<Company> getCompanyList(Map<String, String> params, int page) ;
+     int countCompanies();
 }
