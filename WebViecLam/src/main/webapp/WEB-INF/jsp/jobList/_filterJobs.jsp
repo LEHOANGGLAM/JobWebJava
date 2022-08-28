@@ -62,10 +62,10 @@
             <!-- Select job items start -->
             <div class="select-job-items2">
 
-                <select onchange="return addOrUpdateUrlParam('jobLocationId', this.value)" name="select">
+                <select onchange="return addOrUpdateUrlParam('cityId', this.value)" name="select">
                     <option value="">Anywhere</option>                 
-                    <c:forEach items="${getJobLocations}" var="jL">
-                        <option value="${jL.id}" ${tagLoca == jL.id ? "selected":""}>${jL.city}</option>
+                    <c:forEach items="${cities}" var="ci">
+                        <option value="${ci.id}" ${tagLoca == ci.id ? "selected":""}>${ci.city}</option>
                     </c:forEach>
                 </select>
             </div>

@@ -32,7 +32,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
-    public List<Location> getJobLocations() {
+    public List<Location> getCities() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
@@ -44,42 +44,25 @@ public class LocationRepositoryImpl implements LocationRepository {
         return query.getResultList();
     }
 
+   
+
     @Override
-    public Location getLocationByJobPostId(int id) {
+    public List<Street> getLocaByComId(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Location> q = b.createQuery(Location.class);
-
-        Root<JobPost> jRoot = q.from(JobPost.class);
-        Root<Location> jLocaRoot = q.from(Location.class);
-
-        q.select(jLocaRoot).where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
-                b.equal(jRoot.get("id"), id));
-        Query query = session.createQuery(q);
-        List<Location> jLocaList = query.getResultList();
-        Location j = jLocaList.get(0);
-        return j;
-        //return null;
-    }
-
-    @Override
-    public List<Location> getLocaByComId(int id) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
-
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Location> q = b.createQuery(Location.class);
+        CriteriaQuery<Street> q = b.createQuery(Street.class);
 
         Root<Company> cRoot = q.from(Company.class);
         Root<Street> sRoot = q.from(Street.class);
-        Root<Location> lRoot = q.from(Location.class);
+      
 
-        q.select(lRoot).where(b.equal(cRoot.get("id"), sRoot.get("companyId")),
-                b.equal(sRoot.get("id"), lRoot.get("streetId")),
+        q.select(sRoot).where(b.equal(cRoot.get("id"), sRoot.get("companyId")),
+              
                 b.equal(cRoot.get("id"), id));
 
         Query query = session.createQuery(q);
-        List<Location> sList = query.getResultList();
+        List<Street> sList = query.getResultList();
 
         return sList;
 

@@ -24,7 +24,7 @@
                             </a>
                             <ul>
                                 <li>${c.companyName}</li>
-                                <li><i class="fas fa-map-marker-alt"></i>${job.jobStreet}, ${l.city}</li>
+                                <li><i class="fas fa-map-marker-alt"></i> ${job.jobStreetId.getStreetName()}, ${job.jobStreetId.getCityId().getCity()}</li>
                                 <li>${job.jobMinSalary} - ${job.jobMaxSalary}$</li>
                             </ul>
                         </div>
@@ -67,7 +67,7 @@
                     <ul>
                         <li>Posted date : <span> <fmt:formatDate type="date" dateStyle = "short" 
                                         pattern="yyyy-MM-dd" value="${job.createdDate}" /></span></li>
-                        <li>Location : <span>${l.city}</span></li>
+                        <li>Location : <span> ${job.jobStreetId.getStreetName()}, ${job.jobStreetId.getCityId().getCity()}</span></li>
                         <li>Vacancy : <span>${job.vacancy}</span></li>
                         <li>Job nature : <span>${job.jobNature}</span></li>
                         <li>Salary :  <span>$<fmt:formatNumber type = "number" 

@@ -25,17 +25,12 @@ public class LocationServiceImpl implements LocationService {
     private LocationRepository jobLocaRepository;
 
     @Override
-    public List<Location> getJobLocations() {
-        return this.jobLocaRepository.getJobLocations();
+    public  List<Location> getCities()  {
+        return this.jobLocaRepository.getCities();
     }
 
     @Override
-    public Location getLocationByJobPostId(int id) {
-        return this.jobLocaRepository.getLocationByJobPostId(id);
-    }
-    
-    @Override
-    public List<Location> getLocaByComId(int id) {
+    public List<Street> getLocaByComId(int id) {
         return this.jobLocaRepository.getLocaByComId(id);
     }
     

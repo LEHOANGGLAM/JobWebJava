@@ -39,7 +39,8 @@
                         </a>
                         <ul>
                             <li>${j.companyId.getCompanyName()}</li>
-                            <li><i class="fas fa-map-marker-alt"></i>${j.jobStreet}, ${j.jobLocationId.getCity()}</li>
+                            <li><i class="fas fa-map-marker-alt"></i>
+                            ${j.jobStreetId.getStreetName()}, ${j.jobStreetId.getCityId().getCity()}</li>
                             <li>${j.jobMinSalary} -  ${j.jobMaxSalary}$</li>                                                                               
                         </ul>
                     </div>
@@ -99,7 +100,7 @@
                         </a>
                         <ul>
                             <li>${j.companyId.getCompanyName()}</li>
-                            <li><i class="fas fa-map-marker-alt"></i>${j.jobStreet}, ${j.jobLocationId.getCity()}</li>
+                            <li><i class="fas fa-map-marker-alt"></i>${j.jobStreetId.getStreetName()}, ${j.jobStreetId.getCityId().getCity()}</li>
                             <li>${j.jobMinSalary} -  ${j.jobMaxSalary}$</li>                                                                               
                         </ul>
                     </div>

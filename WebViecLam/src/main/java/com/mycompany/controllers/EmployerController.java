@@ -8,9 +8,12 @@ import com.mycompany.pojo.JobPost;
 import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.JobPostActivityPK;
 import com.mycompany.pojo.UserAccount;
+import com.mycompany.service.JobService;
+import com.mycompany.service.LocationService;
 import java.util.Date;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,8 +32,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @ControllerAdvice
 public class EmployerController {
 
+    @Autowired
+    private JobService jobService;
+        @Autowired
+    private LocationService locationService;
+
     @RequestMapping("/postJob")
-    public String postJob(Model model, @RequestParam Map<String, String> params) {
+    public String postJob(Model model) {
+        model.addAttribute("loca",this.locationService.getCities());
+        
         return "postJob";
     }
 
@@ -39,8 +49,9 @@ public class EmployerController {
             @ModelAttribute(value = "j") JobPost j,
             HttpSession session,
             Model model) {
-            
-        return "index";
+
+        this.jobService.addOrUpdateJobPost(j);
+        return "postJob";
     }
 
 }

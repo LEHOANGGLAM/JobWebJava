@@ -56,7 +56,7 @@ public class JobDetailController {
             HttpSession session) {
         model.addAttribute("job", this.jobService.getJobById(jId));
         model.addAttribute("c", this.companyService.getCompanyByJobPostId(jId));
-        model.addAttribute("l", this.jobLocaService.getLocationByJobPostId(jId));
+    
 
         //view jobpost below
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
@@ -75,8 +75,7 @@ public class JobDetailController {
     public String addApplication(
             @PathVariable(value = "jId") int jId,
             @ModelAttribute(value = "a") JobPostActivity a,
-            HttpSession session,
-            Model model) {
+            HttpSession session) {
         
         UserAccount user = (UserAccount) session.getAttribute("currentUser");
         JobPostActivity jobPostActivity = this.appliService.isApplied(user.getId(), jId);
@@ -103,7 +102,7 @@ public class JobDetailController {
 //            errMsg = "Error";
 //        }
 //        model.addAttribute("err", errMsg);
-        return "jobApplied";
+        return "index";
     }
     
     @PutMapping("/jobDetail/**")

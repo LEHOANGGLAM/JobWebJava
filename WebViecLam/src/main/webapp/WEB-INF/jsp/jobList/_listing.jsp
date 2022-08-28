@@ -18,27 +18,24 @@
     <div class="single-job-items mb-30">
         <div class="job-items">
             <div class="company-img">
-                <a href="jobDetail/${j[9]}">  <img class="img-fluid" src="<c:url value="${j[10]}"/>" alt="alt"/></a>
+                <a href="jobDetail/${j[0].id}">  <img class="img-fluid" src="<c:url value="${j[1].image}"/>" alt="alt"/></a>
             </div>
             <div class="job-tittle job-tittle2">
 
-                <a href="jobDetail/${j[9]}">
-                    <h4>${j[0]} </h4>
+                <a href="jobDetail/${j[0].id}">
+                    <h4>${j[0].jobTitle} </h4>
                 </a>
                 <ul>
-                    <li>${j[7]}</li>
-                    <li><i class="fas fa-map-marker-alt"></i>${j[5]}, ${j[6]}</li>
-                    <li>${j[1]} - ${j[2]}$</li>                                                                               
+                    <li>${j[1].companyName}</li>
+                    <li><i class="fas fa-map-marker-alt"></i>${j[2].streetName}, ${j[2].cityId.getCity()}</li>
+                    <li>${j[0].jobMinSalary} - ${j[0].jobMaxSalary}$</li>                                                                               
                 </ul>
             </div>
         </div>
         <sec:authorize access="isAuthenticated()">
             <div class="items-link items-link2 f-right">
-                <a href="jobDetail/${j[9]}">Watch</a>
-                <!--                <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
-                                pattern="yyyy-MM-dd" value="${j[8]}" />
-                </span>-->
-
+                <a href="jobDetail/${j[0].id}">Watch</a>
+         
             </div>
         </sec:authorize>
         <sec:authorize access="!isAuthenticated()">

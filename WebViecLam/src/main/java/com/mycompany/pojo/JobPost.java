@@ -45,7 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "JobPost.findByJobMinSalary", query = "SELECT j FROM JobPost j WHERE j.jobMinSalary = :jobMinSalary"),
     @NamedQuery(name = "JobPost.findByJobMaxSalary", query = "SELECT j FROM JobPost j WHERE j.jobMaxSalary = :jobMaxSalary"),
     @NamedQuery(name = "JobPost.findByYearExperRequire", query = "SELECT j FROM JobPost j WHERE j.yearExperRequire = :yearExperRequire"),
-    @NamedQuery(name = "JobPost.findByJobStreet", query = "SELECT j FROM JobPost j WHERE j.jobStreet = :jobStreet"),
+   
     @NamedQuery(name = "JobPost.findByJobNature", query = "SELECT j FROM JobPost j WHERE j.jobNature = :jobNature"),
     @NamedQuery(name = "JobPost.findByVacancy", query = "SELECT j FROM JobPost j WHERE j.vacancy = :vacancy"),
     @NamedQuery(name = "JobPost.findByIndividualRight", query = "SELECT j FROM JobPost j WHERE j.individualRight = :individualRight")})
@@ -80,9 +80,7 @@ public class JobPost implements Serializable {
     private Integer jobMaxSalary;
     @Column(name = "year_exper_require")
     private Integer yearExperRequire;
-    @Size(max = 45)
-    @Column(name = "job_street")
-    private String jobStreet;
+   
     @Size(max = 45)
     @Column(name = "job_nature")
     private String jobNature;
@@ -99,9 +97,9 @@ public class JobPost implements Serializable {
     @JoinColumn(name = "job_type_id", referencedColumnName = "id")
     @ManyToOne
     private JobType jobTypeId;
-    @JoinColumn(name = "job_location_id", referencedColumnName = "id")
+    @JoinColumn(name = "job_street_id", referencedColumnName = "id")
     @ManyToOne
-    private Location jobLocationId;
+    private Street jobStreetId;
 
     public JobPost() {
     }
@@ -190,13 +188,7 @@ public class JobPost implements Serializable {
         this.yearExperRequire = yearExperRequire;
     }
 
-    public String getJobStreet() {
-        return jobStreet;
-    }
 
-    public void setJobStreet(String jobStreet) {
-        this.jobStreet = jobStreet;
-    }
 
     public String getJobNature() {
         return jobNature;
@@ -247,12 +239,12 @@ public class JobPost implements Serializable {
         this.jobTypeId = jobTypeId;
     }
 
-    public Location getJobLocationId() {
-        return jobLocationId;
+    public Street getJobStreetId() {
+        return jobStreetId;
     }
 
-    public void setJobLocationId(Location jobLocationId) {
-        this.jobLocationId = jobLocationId;
+    public void setJobStreetId(Street jobStreetId) {
+        this.jobStreetId = jobStreetId;
     }
 
     @Override

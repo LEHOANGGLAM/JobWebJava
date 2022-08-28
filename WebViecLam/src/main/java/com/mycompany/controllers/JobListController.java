@@ -49,7 +49,7 @@ public class JobListController {
     public String list(Model model, @RequestParam Map<String, String> params, HttpServletRequest hsr, HttpSession session) {
 
         model.addAttribute("getJobTypes", this.jobTypeService.getJobTypes());
-        model.addAttribute("getJobLocations", this.jobLocaService.getJobLocations());
+        model.addAttribute("cities", this.jobLocaService.getCities());
 
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         model.addAttribute("jobposts", this.jobService.getJobs(params, page));
@@ -57,12 +57,13 @@ public class JobListController {
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
 
         String typeId = params.getOrDefault("jobTypeId", "");
-        String locaId = params.getOrDefault("jobLocationId", "");
+        String locaId = params.getOrDefault("cityId", "");
+        String search = params.getOrDefault("kw", "Search...");
 
         model.addAttribute("tagPage", page);
         model.addAttribute("tagCate", typeId);
         model.addAttribute("tagLoca", locaId);
-
+        model.addAttribute("se", search);
         return "jobList";
     }
 

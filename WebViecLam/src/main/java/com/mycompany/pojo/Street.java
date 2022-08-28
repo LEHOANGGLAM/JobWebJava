@@ -47,8 +47,11 @@ public class Street implements Serializable {
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
     private Company companyId;
-    @OneToMany(mappedBy = "streetId")
-    private Collection<Location> locationCollection;
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    @ManyToOne
+    private Location cityId;
+    @OneToMany(mappedBy = "jobStreetId")
+    private Collection<JobPost> jobPostCollection;
 
     public Street() {
     }
@@ -81,13 +84,21 @@ public class Street implements Serializable {
         this.companyId = companyId;
     }
 
-    @XmlTransient
-    public Collection<Location> getLocationCollection() {
-        return locationCollection;
+    public Location getCityId() {
+        return cityId;
     }
 
-    public void setLocationCollection(Collection<Location> locationCollection) {
-        this.locationCollection = locationCollection;
+    public void setCityId(Location cityId) {
+        this.cityId = cityId;
+    }
+
+    @XmlTransient
+    public Collection<JobPost> getJobPostCollection() {
+        return jobPostCollection;
+    }
+
+    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
+        this.jobPostCollection = jobPostCollection;
     }
 
     @Override

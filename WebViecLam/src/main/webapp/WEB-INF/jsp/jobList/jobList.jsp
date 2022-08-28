@@ -32,7 +32,7 @@
                                         <form class="navbar-form navbar-left" action="${window.location.href}">
                                             <div class="input-group">
                                                 <input name="kw" type="text"  
-                                                       class="form-control" placeholder="Search...">
+                                                       class="form-control" placeholder="${se}">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-default" type="submit">
                                                         <i class="flaticon-search"></i>
@@ -64,11 +64,9 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">
                             <c:forEach begin="1" end="${Math.ceil(jobCounter/pageSize)}" var="i">
-                                <c:url value="/joblist" var="u">
-                                    <c:param name="page" value="${i}"></c:param>
-                                </c:url>
+                             
                                 <li class="page-item ${tagPage == i ? "active":""}">                            
-                                    <a class="page-link" href="${u}">${i}</a>
+                                    <a class="page-link" onclick="return addOrUpdateUrlParam('page', ${i})">${i}</a>
                                 </li>                          
                             </c:forEach>   
 

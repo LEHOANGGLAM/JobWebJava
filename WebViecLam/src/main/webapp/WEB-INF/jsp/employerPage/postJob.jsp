@@ -16,27 +16,29 @@
 
                 <div class="submit-page">
                     <!-- Job Information Fields -->
-                    <form>
+                    <c:url value="/postJob" var="action"/>
+                    <form:form method="post" action="${action}" id="form-apply-cv" modelAttribute="j" enctype="multipart/form-data">
                         <fieldset class="form fieldset-job_title">
                             <label for="job_title">Job Title</label>
                             <div class="field required-field">
-                                <input type="text" class="input-text" name="job_title" id="job_title" placeholder="" value="" maxlength="" required="">
+                                <input type="text" class="input-text" name="jobTitle" path="jobTitle" id="job_title" placeholder="" value="" maxlength="" required="">
                             </div>
                         </fieldset>
                         <fieldset class="form fieldset-job_location" style="width: 50%; display: inline-block; margin-right: 20px">
                             <label for="job_location">Street <small>(optional)</small></label>
                             <div class="field ">
-                                <input type="text" class="input-text" name="job_location" id="job_location" placeholder="e.g. &quot;London&quot;" value="" maxlength="" autocomplete="off"><div id="leaflet-geocode-cont"><ul></ul></div>
+                                <input type="text" class="input-text" name="job_location" id="job_location" placeholder="e.g. &quot;12 Nguyễn Đình Chiểu&quot;" value="" maxlength="" autocomplete="off"><div id="leaflet-geocode-cont"><ul></ul></div>
                                 <a href="#"><i title="Find My Location" class="tooltip left la la-map-marked-alt"></i></a>
                                 <span class="type-and-hit-enter">type and hit enter</span> 						</div>
                         </fieldset>
                         <fieldset class="form fieldset-job_region" style="width: 40%; display: inline-block">
                             <label for="job_region">City</label>
                             <div class="field required-field">
-                                <select name="job_region" id="job_region" class="select2-single select2-hidden-accessible" tabindex="-1" aria-hidden="true">
-                                    <option value="">Select Region</option>
-                                    <option class="level-0" value="2731">California</option>
-
+                                <select name="select"  name="jobLocationId" path="jobLocationId">
+                                    <option value="">Select City</option>
+                                    <c:forEach items="${loca}" var="l">
+                                        <option value="${l.id}">${l.city}</option>
+                                    </c:forEach>
                                 </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-job_region-container"><span class="select2-selection__rendered" id="select2-job_region-container" title="Select Region"><span class="select2-selection__clear">×</span>Select Region</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                             </div>
                         </fieldset>
@@ -101,8 +103,8 @@
                                             <input type="text" class="input-text" name="apply_link" id="apply_link" placeholder="http://" value="" maxlength="">
                                         </div>
                                     </fieldset>-->
-
-                    </form>
+                        <button type="submit" class="btn btn-topcv-primary btn-theme" >Add Job Post</button>
+                    </form:form>
                     <!-- Company Information Fields -->
                 </div>
             </div>

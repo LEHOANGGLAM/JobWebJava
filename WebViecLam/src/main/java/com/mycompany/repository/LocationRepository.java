@@ -15,9 +15,8 @@ import java.util.List;
  */
 public interface LocationRepository {
 
-    List<Location> getJobLocations();
+    List<Location> getCities();
 
-    Location getLocationByJobPostId(int id);
-    List<Location> getLocaByComId(int id);
+    List<Street> getLocaByComId(int id);
     int countLocaByComId(int id);
 }
