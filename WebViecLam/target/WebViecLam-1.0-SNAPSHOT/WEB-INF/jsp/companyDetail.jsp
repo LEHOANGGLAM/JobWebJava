@@ -59,7 +59,7 @@
                         <li>Location (${l.size()}) :
                             <c:forEach items="${l}" var="l" varStatus="loop">
                                 <c:if test="${loop.index <5}">
-                                <li>-  ${l.streetId.getStreetName()}, ${l.city}</li>
+                                <li>-  ${l.streetName}, ${l.cityId.getCity()}</li>
                                 </c:if>
                             </c:forEach>
 

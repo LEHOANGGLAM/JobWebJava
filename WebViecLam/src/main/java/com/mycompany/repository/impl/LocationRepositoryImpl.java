@@ -64,22 +64,22 @@ public class LocationRepositoryImpl implements LocationRepository {
     }
 
     @Override
-    public List<Location> getLocaByComId(int id) {
+    public List<Street> getLocaByComId(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Location> q = b.createQuery(Location.class);
+        CriteriaQuery<Street> q = b.createQuery(Street.class);
 
         Root<Company> cRoot = q.from(Company.class);
         Root<Street> sRoot = q.from(Street.class);
-        Root<Location> lRoot = q.from(Location.class);
+      
 
-        q.select(lRoot).where(b.equal(cRoot.get("id"), sRoot.get("companyId")),
-                b.equal(sRoot.get("id"), lRoot.get("streetId")),
+        q.select(sRoot).where(b.equal(cRoot.get("id"), sRoot.get("companyId")),
+              
                 b.equal(cRoot.get("id"), id));
 
         Query query = session.createQuery(q);
-        List<Location> sList = query.getResultList();
+        List<Street> sList = query.getResultList();
 
         return sList;
 

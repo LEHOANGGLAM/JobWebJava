@@ -75,8 +75,7 @@ public class JobDetailController {
     public String addApplication(
             @PathVariable(value = "jId") int jId,
             @ModelAttribute(value = "a") JobPostActivity a,
-            HttpSession session,
-            Model model) {
+            HttpSession session) {
         
         UserAccount user = (UserAccount) session.getAttribute("currentUser");
         JobPostActivity jobPostActivity = this.appliService.isApplied(user.getId(), jId);

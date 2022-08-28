@@ -35,7 +35,7 @@ public class LocationServiceImpl implements LocationService {
     }
     
     @Override
-    public List<Location> getLocaByComId(int id) {
+    public List<Street> getLocaByComId(int id) {
         return this.jobLocaRepository.getLocaByComId(id);
     }
     

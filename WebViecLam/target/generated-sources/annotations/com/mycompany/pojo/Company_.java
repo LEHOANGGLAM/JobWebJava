@@ -11,7 +11,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-29T01:33:43")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-29T05:19:04")
 @StaticMetamodel(Company.class)
 public class Company_ { 
 

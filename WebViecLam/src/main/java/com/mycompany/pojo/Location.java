@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -43,11 +41,10 @@ public class Location implements Serializable {
     @Size(max = 50)
     @Column(name = "city")
     private String city;
+    @OneToMany(mappedBy = "cityId")
+    private Collection<Street> streetCollection;
     @OneToMany(mappedBy = "jobLocationId")
     private Collection<JobPost> jobPostCollection;
-    @JoinColumn(name = "street_id", referencedColumnName = "id")
-    @ManyToOne
-    private Street streetId;
 
     public Location() {
     }
@@ -73,20 +70,21 @@ public class Location implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Street> getStreetCollection() {
+        return streetCollection;
+    }
+
+    public void setStreetCollection(Collection<Street> streetCollection) {
+        this.streetCollection = streetCollection;
+    }
+
+    @XmlTransient
     public Collection<JobPost> getJobPostCollection() {
         return jobPostCollection;
     }
 
     public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
         this.jobPostCollection = jobPostCollection;
-    }
-
-    public Street getStreetId() {
-        return streetId;
-    }
-
-    public void setStreetId(Street streetId) {
-        this.streetId = streetId;
     }
 
     @Override
