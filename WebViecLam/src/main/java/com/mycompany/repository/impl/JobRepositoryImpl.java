@@ -8,6 +8,7 @@ import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobPost;
 import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.Location;
+import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.JobReposiroty;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -181,7 +183,7 @@ public class JobRepositoryImpl implements JobReposiroty {
     }
 
     @Override
-    public List<JobPost> getJobsAppliedOrSaved(int uId,int isSave) {
+    public List<JobPost> getJobsAppliedOrSaved(int uId, int isSave) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
@@ -191,12 +193,10 @@ public class JobRepositoryImpl implements JobReposiroty {
 
         q.where(
                 b.equal(appliRoot.get("userAccount"), uId),
-                 b.equal(appliRoot.get("isSave"), isSave)
+                b.equal(appliRoot.get("isSave"), isSave)
         );
 
         q = q.select(appliRoot.get("jobPost"));
-               
-
 
         Query query = session.createQuery(q);
 
@@ -208,6 +208,33 @@ public class JobRepositoryImpl implements JobReposiroty {
             return kq;
         } catch (NoResultException nre) {
             return null;
+        }
+
+    }
+
+    @Override
+    public boolean addOrUpdateJobPost(JobPost j) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.save(j);
+            return true;
+        } catch (HibernateException e) {
+            System.err.println(e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteJobPost(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        try {
+            JobPost p = session.get(JobPost.class, id);
+            session.delete(p);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
         }
 
     }

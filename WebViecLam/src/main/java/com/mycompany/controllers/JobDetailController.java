@@ -103,7 +103,7 @@ public class JobDetailController {
 //            errMsg = "Error";
 //        }
 //        model.addAttribute("err", errMsg);
-        return "jobApplied";
+        return "index";
     }
     
     @PutMapping("/jobDetail/**")

@@ -23,4 +23,8 @@ public interface JobService {
     List<Object[]> getJobsByComid(int comId, int page);
 
     List<JobPost> getJobsAppliedOrSaved(int uId, int isSave);
+
+    boolean addOrUpdateJobPost(JobPost j);
+
+    boolean deleteJobPost(int id);
 }

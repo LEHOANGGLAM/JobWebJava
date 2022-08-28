@@ -19,9 +19,13 @@ public interface JobReposiroty {
     int countJobPosts();
 
     JobPost getJobById(int id);
+
     // int countJobPosts();
-    List<Object[]> getJobsByComid(int comId,int page);
-    
-    List<JobPost> getJobsAppliedOrSaved(int uId,int isSave);
-   
+    List<Object[]> getJobsByComid(int comId, int page);
+
+    List<JobPost> getJobsAppliedOrSaved(int uId, int isSave);
+
+    boolean addOrUpdateJobPost(JobPost j);
+
+    boolean deleteJobPost(int id);
 }

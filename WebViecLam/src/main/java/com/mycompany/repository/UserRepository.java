@@ -4,6 +4,7 @@
  */
 package com.mycompany.repository;
 
+import com.mycompany.pojo.JobPost;
 import com.mycompany.pojo.UserAccount;
 import java.util.List;
 import org.springframework.security.core.userdetails.User;
@@ -22,4 +23,5 @@ public interface UserRepository {
     List<UserAccount> getUsers();
     UserAccount getUserById(int id);
     boolean updateConfirmUser(int id, int isComfirm);
+  
 }

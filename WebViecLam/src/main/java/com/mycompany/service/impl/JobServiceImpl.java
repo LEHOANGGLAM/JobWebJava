@@ -47,4 +47,14 @@ public class JobServiceImpl implements JobService {
     public List<JobPost> getJobsAppliedOrSaved(int uId,int isSave){
          return this.jobReposiroty.getJobsAppliedOrSaved(uId,isSave);
     }
+
+    @Override
+    public boolean addOrUpdateJobPost(JobPost j) {
+          return this.jobReposiroty.addOrUpdateJobPost(j);
+    }
+
+    @Override
+    public boolean deleteJobPost(int id) {
+          return this.jobReposiroty.deleteJobPost(id);
+    }
 }
