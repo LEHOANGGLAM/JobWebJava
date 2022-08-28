@@ -39,7 +39,7 @@ public class EmployerController {
 
     @RequestMapping("/postJob")
     public String postJob(Model model) {
-        model.addAttribute("loca",this.locationService.getJobLocations());
+        model.addAttribute("loca",this.locationService.getCities());
         
         return "postJob";
     }

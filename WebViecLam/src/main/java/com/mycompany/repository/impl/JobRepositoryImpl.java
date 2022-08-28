@@ -8,6 +8,7 @@ import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobPost;
 import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.Location;
+import com.mycompany.pojo.Street;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.JobReposiroty;
 import java.util.ArrayList;
@@ -51,24 +52,14 @@ public class JobRepositoryImpl implements JobReposiroty {
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
 
         Root<JobPost> jRoot = q.from(JobPost.class);
-        Root<Location> jLocaRoot = q.from(Location.class);
+        Root<Street> sRoot = q.from(Street.class);
         Root<Company> cRoot = q.from(Company.class);
 
-        q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+        q.where(b.equal(jRoot.get("jobStreetId"), sRoot.get("id")),
                 b.equal(jRoot.get("companyId"), cRoot.get("id")));
 
         q = q.multiselect(
-                jRoot.get("jobTitle"),
-                jRoot.get("jobMinSalary"),
-                jRoot.get("jobMaxSalary"),
-                jRoot.get("yearExperRequire"),
-                jRoot.get("createdDate"),
-                jRoot.get("jobStreet"),
-                jLocaRoot.get("city"),
-                cRoot.get("companyName"),
-                jRoot.get("expirationDate"),
-                jRoot.get("id"),
-                cRoot.get("image")
+               jRoot,cRoot,sRoot
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
@@ -83,18 +74,14 @@ public class JobRepositoryImpl implements JobReposiroty {
                 Predicate p = b.equal(jRoot.get("jobTypeId"), Integer.parseInt(jobTypeId));
                 predicates.add(p);
             }
+//
+//            String jobLocationId = params.get("cityId");
+//            if (jobLocationId != null && !jobLocationId.isEmpty()) {
+//                Predicate p = b.equal(jRoot.get("jobStreetId"), Integer.parseInt(jobLocationId));
+//                predicates.add(p);
+//            }
 
-            String jobLocationId = params.get("jobLocationId");
-            if (jobLocationId != null && !jobLocationId.isEmpty()) {
-                Predicate p = b.equal(jRoot.get("jobLocationId"), Integer.parseInt(jobLocationId));
-                predicates.add(p);
-            }
-
-            String jobId = params.get("jId");
-            if (jobId != null && !jobId.isEmpty()) {
-                Predicate p = b.equal(jRoot.get("id"), Integer.parseInt(jobId));
-                predicates.add(p);
-            }
+          
             q.where(predicates.toArray(Predicate[]::new));
         }
 
@@ -127,27 +114,17 @@ public class JobRepositoryImpl implements JobReposiroty {
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
 
         Root<JobPost> jRoot = q.from(JobPost.class);
-        Root<Location> jLocaRoot = q.from(Location.class);
+        Root<Street> sRoot = q.from(Street.class);
         Root<Company> cRoot = q.from(Company.class);
 
-        q.where(b.equal(jRoot.get("jobLocationId"), jLocaRoot.get("id")),
+       q.where(b.equal(jRoot.get("jobStreetId"), sRoot.get("id")),
                 b.equal(jRoot.get("companyId"), cRoot.get("id")),
-                b.equal(jRoot.get("companyId"), comId));
+                 b.equal(jRoot.get("companyId"), comId));
+              
 
-        q = q.multiselect(
-                jRoot.get("jobTitle"),
-                jRoot.get("jobMinSalary"),
-                jRoot.get("jobMaxSalary"),
-                jRoot.get("yearExperRequire"),
-                jRoot.get("createdDate"),
-                jRoot.get("jobStreet"),
-                jLocaRoot.get("city"),
-                cRoot.get("companyName"),
-                jRoot.get("expirationDate"),
-                jRoot.get("id"),
-                cRoot.get("image")
+       q = q.multiselect(
+               jRoot,cRoot,sRoot
         );
-
         q.groupBy(jRoot.get("id"));
         q.orderBy(b.desc(jRoot.get("id")));
 

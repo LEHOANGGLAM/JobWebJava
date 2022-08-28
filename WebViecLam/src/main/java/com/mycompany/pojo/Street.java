@@ -5,6 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -47,6 +50,8 @@ public class Street implements Serializable {
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     @ManyToOne
     private Location cityId;
+    @OneToMany(mappedBy = "jobStreetId")
+    private Collection<JobPost> jobPostCollection;
 
     public Street() {
     }
@@ -85,6 +90,15 @@ public class Street implements Serializable {
 
     public void setCityId(Location cityId) {
         this.cityId = cityId;
+    }
+
+    @XmlTransient
+    public Collection<JobPost> getJobPostCollection() {
+        return jobPostCollection;
+    }
+
+    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
+        this.jobPostCollection = jobPostCollection;
     }
 
     @Override

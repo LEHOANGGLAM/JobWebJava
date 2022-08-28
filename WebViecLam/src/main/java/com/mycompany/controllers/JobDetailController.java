@@ -56,7 +56,7 @@ public class JobDetailController {
             HttpSession session) {
         model.addAttribute("job", this.jobService.getJobById(jId));
         model.addAttribute("c", this.companyService.getCompanyByJobPostId(jId));
-        model.addAttribute("l", this.jobLocaService.getLocationByJobPostId(jId));
+    
 
         //view jobpost below
         int page = Integer.parseInt(params.getOrDefault("page", "1"));

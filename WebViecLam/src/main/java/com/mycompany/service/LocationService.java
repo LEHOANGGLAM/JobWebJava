@@ -13,8 +13,8 @@ import java.util.List;
  * @author dell
  */
 public interface LocationService {
-     List<Location> getJobLocations();
-     Location getLocationByJobPostId(int id);
+     List<Location> getCities();
+    
      List<Street> getLocaByComId(int id);
       int countLocaByComId(int id);
 }
