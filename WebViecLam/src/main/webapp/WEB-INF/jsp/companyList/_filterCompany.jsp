@@ -26,24 +26,19 @@
             <!-- Select job items start -->
             <div class="select-job-items2">
 
+                <select onchange="return addOrUpdateUrlParam('businessTypeId', this.value)" name="select">
+                    <option value="">All Category</option>                 
+                    <c:forEach items="${getBusinessType}" var="b">
+                        <option value="${b.id}" ${tagCate == b.id ? "selected":""}>${b.businessTypeName}</option>
+                    </c:forEach>
+                </select>
             </div>
             <!--  Select job items End-->
            
           
         </div>
         <!-- single two -->
-        <div class="single-listing">
-            <div class="small-section-tittle2">
-                <h4>Job Location</h4>
-            </div>
-            <!-- Select job items start -->
-            <div class="select-job-items2">
-
-            </div>
-            <!--  Select job items End-->
-          
-        </div>
-        <!-- single three -->
+       
         
       
     </div>

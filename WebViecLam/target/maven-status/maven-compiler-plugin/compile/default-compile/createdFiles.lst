@@ -22,7 +22,6 @@ com\mycompany\configs\HibernateConfig.class
 com\mycompany\configs\SpringSecurityConfig.class
 com\mycompany\repository\impl\JobRepositoryImpl.class
 com\mycompany\pojo\Category.class
-com\mycompany\pojo\JobPostSkillSet.class
 com\mycompany\pojo\JobType_.class
 com\mycompany\service\StatsService.class
 com\mycompany\repository\impl\UserRepositoryImpl.class
@@ -37,7 +36,7 @@ com\mycompany\repository\impl\CateRepositoryImpl.class
 com\mycompany\pojo\BusinessType_.class
 com\mycompany\controllers\CateAdminController.class
 com\mycompany\pojo\UserType.class
-com\mycompany\pojo\SkillSet_.class
+com\mycompany\controllers\EmployerController.class
 com\mycompany\controllers\CompanyController.class
 com\mycompany\handlers\LoginHandler.class
 com\mycompany\repository\AppliRepository.class
@@ -67,14 +66,12 @@ com\mycompany\repository\impl\AppliRepositoryImpl.class
 com\mycompany\controllers\JobDetailController.class
 com\mycompany\controllers\MyProfileController.class
 com\mycompany\service\impl\CompanyServiceImpl.class
-com\mycompany\pojo\JobPostSkillSet_.class
 com\mycompany\pojo\UserAccount.class
 com\mycompany\service\AppliService.class
 com\mycompany\pojo\JobPostActivityPK_.class
 com\mycompany\pojo\JobPost_.class
 com\mycompany\service\impl\UserServiceImpl.class
 com\mycompany\service\JobService.class
-com\mycompany\pojo\SkillSet.class
 com\mycompany\controllers\CompanyAdminController.class
 com\mycompany\service\CateService.class
 com\mycompany\controllers\LoginAdminController.class

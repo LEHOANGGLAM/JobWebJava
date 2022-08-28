@@ -4,6 +4,7 @@
  */
 package com.mycompany.repository;
 
+import com.mycompany.pojo.BusinessType;
 import com.mycompany.pojo.Comment;
 import com.mycompany.pojo.Company;
 import java.util.List;
@@ -30,4 +31,5 @@ public interface CompanyRepository {
     List<Company> getCompanyList(Map<String, String> params, int page);
 
     int countCompanies();
+     List<BusinessType> getBusinesstype();
 }

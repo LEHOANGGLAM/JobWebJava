@@ -72,9 +72,9 @@ public class New1 implements Serializable {
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     @ManyToOne
     private Category cateId;
+
     @Transient
     private MultipartFile file;
-
     public New1() {
     }
 
@@ -154,5 +154,5 @@ public class New1 implements Serializable {
     public String toString() {
         return "com.mycompany.pojo.New1[ id=" + id + " ]";
     }
-
+    
 }

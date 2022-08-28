@@ -60,14 +60,12 @@ public class CompanyController {
         model.addAttribute("com", this.companyService.getCompanyList(params, 1));
         model.addAttribute("comCounter", this.companyService.countCompanies());
         model.addAttribute("pageSize", Integer.parseInt(env.getProperty("page.size")));
-//     
-//
-//        String typeId = params.getOrDefault("jobTypeId", "");
-//        String locaId = params.getOrDefault("jobLocationId", "");
+
+        model.addAttribute("getBusinessType", this.companyService.getBusinesstype());
+        String typeId = params.getOrDefault("businessTypeId", "");
 
         model.addAttribute("tagPage", page);
-//        model.addAttribute("tagCate", typeId);
-//        model.addAttribute("tagLoca", locaId);
+        model.addAttribute("tagCate", typeId);
 
         return "companyList";
     }
