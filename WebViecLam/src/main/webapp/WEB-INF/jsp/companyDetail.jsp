@@ -59,7 +59,7 @@
                         <li>Location (${l.size()}) :
                             <c:forEach items="${l}" var="l" varStatus="loop">
                                 <c:if test="${loop.index <5}">
-                                <li>-  ${l.streetName}, ${l.cityId.getCity()}</li>
+                                <li>-  ${l.streetId.getStreetName()}, ${l.city}</li>
                                 </c:if>
                             </c:forEach>
 
@@ -119,8 +119,7 @@
                 </div>
                 <div class="items-link items-link2 f-right">
                     <a href="jobDetail/${j[9]}">Watch</a>
-                    <span>Expiration:  <fmt:formatDate type="date" dateStyle = "short" 
-                                    pattern="yyyy-MM-dd" value="${j[8]}" /></span>
+
                 </div>
             </div>
 

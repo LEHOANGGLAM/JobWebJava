@@ -5,7 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,7 +59,7 @@ public class Category implements Serializable {
     @Column(name = "link_cate")
     private String linkCate;
     @OneToMany(mappedBy = "cateId")
-    private Set<New1> new1Set;
+    private Collection<New1> new1Collection;
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     @ManyToOne
     private UserType userTypeId;
@@ -120,12 +120,12 @@ public class Category implements Serializable {
     }
 
     @XmlTransient
-    public Set<New1> getNew1Set() {
-        return new1Set;
+    public Collection<New1> getNew1Collection() {
+        return new1Collection;
     }
 
-    public void setNew1Set(Set<New1> new1Set) {
-        this.new1Set = new1Set;
+    public void setNew1Collection(Collection<New1> new1Collection) {
+        this.new1Collection = new1Collection;
     }
 
     public UserType getUserTypeId() {

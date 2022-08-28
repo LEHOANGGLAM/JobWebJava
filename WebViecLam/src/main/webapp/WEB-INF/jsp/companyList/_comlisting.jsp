@@ -27,7 +27,7 @@
                 </a>
                 <ul>
                     <li>${c.businessTypeId.getBusinessTypeName()}</li>
-                    <li><i class="fas fa-map-marker-alt"></i>${c.companySize} </li>
+                    <li>      <a href="${c.companyWebsite}"> Visit Website</a> </li>
                     <li>Size: ${c.companySize} <i class="fas fa-user-alt"></i></li>                                                                               
                 </ul>
             </div>

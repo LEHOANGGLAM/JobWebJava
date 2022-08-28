@@ -5,11 +5,13 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -41,10 +43,11 @@ public class Location implements Serializable {
     @Size(max = 50)
     @Column(name = "city")
     private String city;
-    @OneToMany(mappedBy = "cityId")
-    private Set<Street> streetSet;
     @OneToMany(mappedBy = "jobLocationId")
-    private Set<JobPost> jobPostSet;
+    private Collection<JobPost> jobPostCollection;
+    @JoinColumn(name = "street_id", referencedColumnName = "id")
+    @ManyToOne
+    private Street streetId;
 
     public Location() {
     }
@@ -70,21 +73,20 @@ public class Location implements Serializable {
     }
 
     @XmlTransient
-    public Set<Street> getStreetSet() {
-        return streetSet;
+    public Collection<JobPost> getJobPostCollection() {
+        return jobPostCollection;
     }
 
-    public void setStreetSet(Set<Street> streetSet) {
-        this.streetSet = streetSet;
+    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
+        this.jobPostCollection = jobPostCollection;
     }
 
-    @XmlTransient
-    public Set<JobPost> getJobPostSet() {
-        return jobPostSet;
+    public Street getStreetId() {
+        return streetId;
     }
 
-    public void setJobPostSet(Set<JobPost> jobPostSet) {
-        this.jobPostSet = jobPostSet;
+    public void setStreetId(Street streetId) {
+        this.streetId = streetId;
     }
 
     @Override

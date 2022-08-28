@@ -49,6 +49,23 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/companyList/companyList.jsp" />
     </definition>
+    <definition name="candidateList" extends="baseLayout">
+        <put-attribute name="title" value="Find Candidate" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/employerPage/candidateList.jsp" />
+    </definition>
+    <definition name="postJob" extends="base2">
+        <put-attribute name="title" value="Submit Job" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/employerPage/postJob.jsp" />
+    </definition>
+    
+    <definition name="jobPostManager" extends="baseLayout">
+        <put-attribute name="title" value="Manage Jobs" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/employerPage/jobPostManager.jsp" />
+    </definition>
+    
     
     <!--    LAYOUT LOGIN PAGE-->
     <definition name="loginBase"
@@ -72,6 +89,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/register.jsp" />
     </definition>
+    
     
     
     

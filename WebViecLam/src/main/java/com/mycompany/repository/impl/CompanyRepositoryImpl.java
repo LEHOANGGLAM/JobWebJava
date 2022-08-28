@@ -4,9 +4,12 @@
  */
 package com.mycompany.repository.impl;
 
+import com.mycompany.pojo.BusinessType;
 import com.mycompany.pojo.Comment;
 import com.mycompany.pojo.Company;
 import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.Location;
+import com.mycompany.pojo.Street;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.CompanyRepository;
 import java.util.ArrayList;
@@ -128,7 +131,11 @@ public class CompanyRepositoryImpl implements CompanyRepository {
                 Predicate p = b.like(cRoot.get("companyName").as(String.class), String.format("%%%s%%", kw));
                 predicates.add(p);
             }
-
+            String businessTypeId = params.get("businessTypeId");
+            if (businessTypeId != null && !businessTypeId.isEmpty()) {
+                Predicate p = b.equal(cRoot.get("businessTypeId"), Integer.parseInt(businessTypeId));
+                predicates.add(p);
+            }
             q.where(predicates.toArray(Predicate[]::new));
         }
         Query query = session.createQuery(q);
@@ -169,5 +176,13 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
         org.hibernate.query.Query query = session.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public List<BusinessType> getBusinesstype() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("From BusinessType");
+
+        return q.getResultList();
     }
 }

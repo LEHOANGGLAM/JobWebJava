@@ -18,6 +18,6 @@ public interface LocationRepository {
     List<Location> getJobLocations();
 
     Location getLocationByJobPostId(int id);
-    List<Street> getLocaByComId(int id);
+    List<Location> getLocaByComId(int id);
     int countLocaByComId(int id);
 }

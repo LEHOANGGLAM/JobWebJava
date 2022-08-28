@@ -4,6 +4,7 @@
  */
 package com.mycompany.service.impl;
 
+import com.mycompany.pojo.BusinessType;
 import com.mycompany.pojo.Comment;
 import com.mycompany.pojo.Company;
 import com.mycompany.repository.CompanyRepository;
@@ -62,5 +63,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public int countCompanies() {
         return this.companyRepository.countCompanies();
+    }
+
+    @Override
+    public List<BusinessType> getBusinesstype() {
+        return this.companyRepository.getBusinesstype();
     }
 }

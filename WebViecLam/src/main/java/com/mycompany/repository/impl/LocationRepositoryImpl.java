@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -64,20 +64,22 @@ public class LocationRepositoryImpl implements LocationRepository {
     }
 
     @Override
-    public List<Street> getLocaByComId(int id) {
+    public List<Location> getLocaByComId(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Street> q = b.createQuery(Street.class);
+        CriteriaQuery<Location> q = b.createQuery(Location.class);
 
         Root<Company> cRoot = q.from(Company.class);
         Root<Street> sRoot = q.from(Street.class);
+        Root<Location> lRoot = q.from(Location.class);
 
-        q.select(sRoot).where(b.equal(cRoot.get("id"), sRoot.get("companyId")),
+        q.select(lRoot).where(b.equal(cRoot.get("id"), sRoot.get("companyId")),
+                b.equal(sRoot.get("id"), lRoot.get("streetId")),
                 b.equal(cRoot.get("id"), id));
 
         Query query = session.createQuery(q);
-        List<Street> sList = query.getResultList();
+        List<Location> sList = query.getResultList();
 
         return sList;
 
