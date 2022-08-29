@@ -5,6 +5,7 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Street.findById", query = "SELECT s FROM Street s WHERE s.id = :id"),
     @NamedQuery(name = "Street.findByStreetName", query = "SELECT s FROM Street s WHERE s.streetName = :streetName")})
 public class Street implements Serializable {
+
+    @OneToMany(mappedBy = "jobStreetId")
+    private Collection<JobPost> jobPostCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,6 +116,15 @@ public class Street implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.pojo.Street[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<JobPost> getJobPostCollection() {
+        return jobPostCollection;
+    }
+
+    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
+        this.jobPostCollection = jobPostCollection;
     }
     
 }

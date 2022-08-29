@@ -51,6 +51,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "JobPost.findByIndividualRight", query = "SELECT j FROM JobPost j WHERE j.individualRight = :individualRight")})
 public class JobPost implements Serializable {
 
+    @JoinColumn(name = "job_street_id", referencedColumnName = "id")
+    @ManyToOne
+    private Street jobStreetId;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -290,6 +294,14 @@ public class JobPost implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.pojo.JobPost[ id=" + id + " ]";
+    }
+
+    public Street getJobStreetId() {
+        return jobStreetId;
+    }
+
+    public void setJobStreetId(Street jobStreetId) {
+        this.jobStreetId = jobStreetId;
     }
     
 }
