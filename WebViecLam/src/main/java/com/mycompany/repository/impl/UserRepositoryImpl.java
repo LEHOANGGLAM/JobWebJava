@@ -124,19 +124,26 @@ public class UserRepositoryImpl implements UserRepository {
         Query query = session.createQuery(q);
         return (UserAccount) query.getSingleResult();
     }
-//    @Override
-//    public boolean updateInfo(UserAccount u) {
-//        Session session = this.sessionFactory.getObject().getCurrentSession();
-//
-//        try {
-//
-//            session.save(u);
-//            return true;
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//            return false;
-//        }
-//
-//    }
+    
+    
+
+    @Override
+    public boolean updateProfile(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        try {
+            UserAccount p = session.get(UserAccount.class, id);
+            p.setFirstName(p.getFirstName());
+            p.setLastName(p.getLastName());
+            p.setContactNumber(p.getContactNumber());
+            p.setEmail(p.getEmail());
+            p.setAboutMe(p.getAboutMe());
+            session.save(p);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 
 }

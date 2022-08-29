@@ -68,31 +68,7 @@
                                     <label for="description">About me</label>
                                     <form:textarea name="description" id="description" cols="30" rows="10"   path="aboutMe"/>
                                     <div id="my-profile_socials" style="display: none;">
-
-
-                                        <label><i class="fa fa-twitter"></i> Twitter</label>
-                                        <input class="text-input" name="twitter" type="text" id="twitter" value="" />
-
-                                        <label><i class="fa fa-facebook-square"></i> Facebook</label>
-                                        <input class="text-input" name="facebook" type="text" id="facebook" value="" />
-
-
-                                        <label><i class="fa fa-linkedin"></i> Linkedin</label>
-                                        <input class="text-input" name="linkedin" type="text" id="linkedin" value="" />
-
-
-                                        <label><i class="fa fa-instagram"></i> Instagram</label>
-                                        <input class="text-input" name="instagram" type="text" id="instagram" value="" />
-
-                                        <label><i class="fa fa-youtube"></i> YouTube</label>
-                                        <input class="text-input" name="youtube" type="text" id="youtube" value="" />
-
-                                        <label><i class="fa fa-whatsapp"></i> WhatsApp</label>
-                                        <input class="text-input" name="whatsapp" type="text" id="whatsapp" value="" />
-
-                                        <label><i class="fa fa-skype"></i> Skype</label>
-                                        <input class="text-input" name="skype" type="text" id="skype" value="" />
-
+                                  
                                     </div>
 
 

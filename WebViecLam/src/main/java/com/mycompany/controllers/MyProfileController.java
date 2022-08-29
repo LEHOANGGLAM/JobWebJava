@@ -50,6 +50,7 @@ public class MyProfileController {
     public String getInfo(@PathVariable(value = "uId") int uId, Model model, Authentication a) {
         
         model.addAttribute("u", this.userService.getUserById(uId));
+        
         return "myProfile";
     }
     
@@ -58,18 +59,19 @@ public class MyProfileController {
 //        return "myProfile";
 //    }
     
-    @PutMapping("/myProfile/{uId}")
-    public String updateProfile(@RequestBody UserAccount params, HttpSession session, @PathVariable(value = "uId") int uId) {
-
-        try {
-            Map r = this.cloudinary.uploader().upload(params.getFile().getBytes(),
-                    ObjectUtils.asMap("resource_type", "auto"));
-            String img = (String) r.get("secure_url");
-            //Phuong thuc update UserAccount
-        } catch (IOException ex) {
-            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    @RequestMapping("myProfile/{uId}")
+    public String updateProfile(@ModelAttribute("product") UserAccount user, Model model, @PathVariable(value = "uId") int uId) {
+            
+//        try {
+//            Map r = this.cloudinary.uploader().upload(params.getFile().getBytes(),
+//                    ObjectUtils.asMap("resource_type", "auto"));
+//            String img = (String) r.get("secure_url");
+//            //Phuong thuc update UserAccount
+//        } catch (IOException ex) {
+//            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        this.userService.updateProfile(uId);
+        
         return "myProfile";
     }
 

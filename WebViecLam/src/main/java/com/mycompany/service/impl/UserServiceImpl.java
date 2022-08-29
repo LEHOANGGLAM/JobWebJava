@@ -84,4 +84,8 @@ public class UserServiceImpl implements UserService {
         return this.UserRepository.getInfo(id);
     }
 
+    @Override
+    public boolean updateProfile(int id) {
+       return this.UserRepository.updateProfile(id);
+    }
 }
