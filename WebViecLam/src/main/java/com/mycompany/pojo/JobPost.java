@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "job_post")
@@ -45,11 +45,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "JobPost.findByJobMinSalary", query = "SELECT j FROM JobPost j WHERE j.jobMinSalary = :jobMinSalary"),
     @NamedQuery(name = "JobPost.findByJobMaxSalary", query = "SELECT j FROM JobPost j WHERE j.jobMaxSalary = :jobMaxSalary"),
     @NamedQuery(name = "JobPost.findByYearExperRequire", query = "SELECT j FROM JobPost j WHERE j.yearExperRequire = :yearExperRequire"),
-   
+    @NamedQuery(name = "JobPost.findByJobStreet", query = "SELECT j FROM JobPost j WHERE j.jobStreet = :jobStreet"),
     @NamedQuery(name = "JobPost.findByJobNature", query = "SELECT j FROM JobPost j WHERE j.jobNature = :jobNature"),
     @NamedQuery(name = "JobPost.findByVacancy", query = "SELECT j FROM JobPost j WHERE j.vacancy = :vacancy"),
     @NamedQuery(name = "JobPost.findByIndividualRight", query = "SELECT j FROM JobPost j WHERE j.individualRight = :individualRight")})
 public class JobPost implements Serializable {
+
+    @JoinColumn(name = "job_street_id", referencedColumnName = "id")
+    @ManyToOne
+    private Street jobStreetId;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -80,7 +84,9 @@ public class JobPost implements Serializable {
     private Integer jobMaxSalary;
     @Column(name = "year_exper_require")
     private Integer yearExperRequire;
-   
+    @Size(max = 45)
+    @Column(name = "job_street")
+    private String jobStreet;
     @Size(max = 45)
     @Column(name = "job_nature")
     private String jobNature;
@@ -97,11 +103,14 @@ public class JobPost implements Serializable {
     @JoinColumn(name = "job_type_id", referencedColumnName = "id")
     @ManyToOne
     private JobType jobTypeId;
-    @JoinColumn(name = "job_street_id", referencedColumnName = "id")
+    @JoinColumn(name = "job_location_id", referencedColumnName = "id")
     @ManyToOne
-    private Street jobStreetId;
+    private Location jobLocationId;
+    @OneToMany(mappedBy = "jobPostId")
+    private Collection<JobPostSkillSet> jobPostSkillSetCollection;
 
     public JobPost() {
+        createdDate = new Date();
     }
 
     public JobPost(Integer id) {
@@ -188,7 +197,13 @@ public class JobPost implements Serializable {
         this.yearExperRequire = yearExperRequire;
     }
 
+    public String getJobStreet() {
+        return jobStreet;
+    }
 
+    public void setJobStreet(String jobStreet) {
+        this.jobStreet = jobStreet;
+    }
 
     public String getJobNature() {
         return jobNature;
@@ -239,12 +254,21 @@ public class JobPost implements Serializable {
         this.jobTypeId = jobTypeId;
     }
 
-    public Street getJobStreetId() {
-        return jobStreetId;
+    public Location getJobLocationId() {
+        return jobLocationId;
     }
 
-    public void setJobStreetId(Street jobStreetId) {
-        this.jobStreetId = jobStreetId;
+    public void setJobLocationId(Location jobLocationId) {
+        this.jobLocationId = jobLocationId;
+    }
+
+    @XmlTransient
+    public Collection<JobPostSkillSet> getJobPostSkillSetCollection() {
+        return jobPostSkillSetCollection;
+    }
+
+    public void setJobPostSkillSetCollection(Collection<JobPostSkillSet> jobPostSkillSetCollection) {
+        this.jobPostSkillSetCollection = jobPostSkillSetCollection;
     }
 
     @Override
@@ -270,6 +294,14 @@ public class JobPost implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.pojo.JobPost[ id=" + id + " ]";
+    }
+
+    public Street getJobStreetId() {
+        return jobStreetId;
+    }
+
+    public void setJobStreetId(Street jobStreetId) {
+        this.jobStreetId = jobStreetId;
     }
     
 }

@@ -7,6 +7,7 @@ package com.mycompany.controllers;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import static com.cloudinary.utils.ObjectUtils.asMap;
+import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.New1;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.service.UserService;
@@ -59,16 +60,27 @@ public class MyProfileController {
 //    }
     
     @PutMapping("/myProfile/{uId}")
-    public String updateProfile(@RequestBody UserAccount params, HttpSession session, @PathVariable(value = "uId") int uId) {
-
-        try {
-            Map r = this.cloudinary.uploader().upload(params.getFile().getBytes(),
-                    ObjectUtils.asMap("resource_type", "auto"));
-            String img = (String) r.get("secure_url");
-            //Phuong thuc update UserAccount
-        } catch (IOException ex) {
-            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public String updateProfile(HttpSession session, 
+            @PathVariable(value = "uId") int uId,
+            @ModelAttribute(value = "u") UserAccount u) {
+            
+          UserAccount user = userService.getUserById(uId);
+          
+        
+          user.setFirstName(u.getFirstName());
+          user.setLastName(u.getLastName());
+          user.setContactNumber(u.getContactNumber());
+          user.setEmail(u.getEmail());
+          
+          this.userService.updateUser(user);
+//        try {
+//            Map r = this.cloudinary.uploader().upload(params.getFile().getBytes(),
+//                    ObjectUtils.asMap("resource_type", "auto"));
+//            String img = (String) r.get("secure_url");
+//            //Phuong thuc update UserAccount
+//        } catch (IOException ex) {
+//            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
         return "myProfile";
     }

@@ -124,19 +124,17 @@ public class UserRepositoryImpl implements UserRepository {
         Query query = session.createQuery(q);
         return (UserAccount) query.getSingleResult();
     }
-//    @Override
-//    public boolean updateInfo(UserAccount u) {
-//        Session session = this.sessionFactory.getObject().getCurrentSession();
-//
-//        try {
-//
-//            session.save(u);
-//            return true;
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//            return false;
-//        }
-//
-//    }
+    @Override
+    public boolean updateUser(UserAccount u) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.update(u);
+            return true;
+        } catch (HibernateException e) {
+            System.err.println("update Application-------------" + e.getMessage());
+        }
+        return false;
+
+    }
 
 }
