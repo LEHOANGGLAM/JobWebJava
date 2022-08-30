@@ -85,12 +85,21 @@
                             <c:if test="${jobApplied == null || (jobApplied.isSave == 1) || (jobApplied.isSave == 0)}">
                                 <div class="apply-btn2">
 
-                                    <a id="myBtn" class="btn" style="margin-right: 20px" >Apply Now</a>
 
 
-                                    <button class="btn head-btn2 btn-topcv-primary btn-theme" id="btn-save"
-                                            onclick="updateSave(${job.id},${currentUser.getId()})">
-                                        ${jobApplied.isSave == 1 ? "Saved" : "Save"}</button>
+                                    <c:url value="/jobDetail/${job.id}" var="go"/>
+                                    <form:form method="post" action="${go}" modelAttribute="a" 
+                                               enctype="multipart/form-data">
+                                        <a id="myBtn" class="btn" style="margin-right: 20px" >Apply Now</a>
+
+                                        <form:input type="hidden"  path="isSave"  class="form-control" value="${jobApplied.isSave == 1 ? 0 : 1}" />
+                                        <button class="btn head-btn2 btn-topcv-primary btn-theme" id="btn-save"
+                                                type="submit" >
+                                            ${jobApplied.isSave == 1 ? "Saved" : "Save"}
+                                        </button>
+
+
+                                    </form:form>
 
 
                                 </div>
@@ -146,7 +155,7 @@
             <div>
 
 
-                <form:input type="hidden"  path="isSave"  class="form-control" value="0" />
+                <form:input type="hidden"  path="isSave"  class="form-control" value="-1" />
 
                 <div class="modal-header ">
 
@@ -258,23 +267,21 @@
     }
 
 
+    function updateSave() {
 
-    function updateSave(jId, uId) {
-
-        fetch("jobDetail/**", {
+        fetch(window.location.href, {
             method: "put",
             body: JSON.stringify({
-                "jobPostId": jId,
-                "userAccountId": uId
+
             }),
-            headers: {
-                "Content-Type": "application/json"
-            }
+
         }).then(function (res) {
             return res.json()
         }).then(function (data) {
-            document.getElementById("btn-save").innerHTML = (data == 1 ? "Saved" : "Save")
+
         })
     }
+
+
 </script>
 

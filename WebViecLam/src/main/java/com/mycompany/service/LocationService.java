@@ -17,4 +17,5 @@ public interface LocationService {
     
      List<Street> getLocaByComId(int id);
       int countLocaByComId(int id);
+      Street getStreetById(int id);
 }

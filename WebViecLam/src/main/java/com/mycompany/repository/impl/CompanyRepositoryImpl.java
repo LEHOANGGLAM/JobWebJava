@@ -61,6 +61,24 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     @Override
+    public Company getCompanyByUserId(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Company> q = b.createQuery(Company.class);
+
+        Root<UserAccount> uRoot = q.from(UserAccount.class);
+        Root<Company> cRoot = q.from(Company.class);
+
+        q.select(cRoot).where(b.equal(uRoot.get("id"), cRoot.get("userAccountId")),
+                b.equal(uRoot.get("id"), id));
+        Query query = session.createQuery(q);
+        List<Company> cList = query.getResultList();
+        Company c = cList.get(0);
+        return c;
+    }
+
+    @Override
     public List<Object[]> getCompanies() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
