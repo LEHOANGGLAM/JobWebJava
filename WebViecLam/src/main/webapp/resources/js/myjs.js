@@ -96,8 +96,27 @@ function updateAcc( accId) {
 
 
 
+function deleteJobPost(endpoint, id, obj) {
+    let d = document.getElementById("load" + id)
+    d.style.display = "block";
+    obj.style.display = "none";
 
-function loadAdminCate(endpoint) {
+    fetch(endpoint, {
+        method: "delete"
+    }).then(function (res) {
+        if (res.status === 204)
+        {
+            let r = document.getElementById("row" + id);
+            r.style.display = "none";
+        }
+
+    }).catch(function (err) {
+        console.error(err)
+    })
+}
+
+
+function loadJobPostManager(endpoint) {
     fetch(endpoint).then(function (res) {
         return res.json();
     }).then(function (data) {
@@ -110,11 +129,11 @@ function loadAdminCate(endpoint) {
                     <td class="company-title">${data[i][1]}</td>
                     <td class="status" id="${data[i][5]}"> 
          <button class="btn head-btn2"  id="${data[i][5]}"
-        onclick="updateAcc(${data[i][2]},${data[i][5]})">  ${data[i][2] == 1 ? "Approved" : "Pending Review"}</button>
+        onclick="updateAcc(${data[i][5]})">  ${data[i][2] == 1 ? "Approved" : "Pending Review"}</button>
                        
                     </td>
                     <td class="date">    ${new Date(data[i][3]).toLocaleDateString()} - (MM/dd/yyyy)</td>
-                    <td class="web" value="${data[i][4]}" > 
+                    <td class="web" value="${data[i][4]}" > <a href="${data[i][4]}">${data[i][4]}</a></td>
                     <td class="action">
                         <div class="spinner-border text-success" style="display:none" id="load${data[i][0]}"></div>
                         <button class="btn btn-danger" onclick="deleteCom('${endpoint + '/' + data[i][0]}', ${data[i][0]}, this)">Delete</button>
@@ -128,5 +147,3 @@ function loadAdminCate(endpoint) {
 
     })
 }
-
-

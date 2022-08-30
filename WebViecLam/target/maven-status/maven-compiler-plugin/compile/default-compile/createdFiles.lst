@@ -21,9 +21,11 @@ com\mycompany\service\impl\StatsServiceImpl.class
 com\mycompany\configs\HibernateConfig.class
 com\mycompany\configs\SpringSecurityConfig.class
 com\mycompany\repository\impl\JobRepositoryImpl.class
+com\mycompany\formatters\StreetFormatter.class
 com\mycompany\pojo\Category.class
 com\mycompany\pojo\JobType_.class
 com\mycompany\service\StatsService.class
+com\mycompany\formatters\JobPostFormatter.class
 com\mycompany\repository\impl\UserRepositoryImpl.class
 com\mycompany\controllers\StatsAdminController.class
 com\mycompany\pojo\JobPostActivityPK.class

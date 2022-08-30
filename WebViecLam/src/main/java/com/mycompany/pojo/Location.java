@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "location")
@@ -43,8 +43,6 @@ public class Location implements Serializable {
     private String city;
     @OneToMany(mappedBy = "cityId")
     private Collection<Street> streetCollection;
-    @OneToMany(mappedBy = "jobLocationId")
-    private Collection<JobPost> jobPostCollection;
 
     public Location() {
     }
@@ -76,15 +74,6 @@ public class Location implements Serializable {
 
     public void setStreetCollection(Collection<Street> streetCollection) {
         this.streetCollection = streetCollection;
-    }
-
-    @XmlTransient
-    public Collection<JobPost> getJobPostCollection() {
-        return jobPostCollection;
-    }
-
-    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
-        this.jobPostCollection = jobPostCollection;
     }
 
     @Override

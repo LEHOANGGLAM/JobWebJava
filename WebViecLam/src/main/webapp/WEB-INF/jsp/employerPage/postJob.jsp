@@ -28,7 +28,7 @@
                             <label for="job_location" style="margin-left: 50px; display: inline-block; ">Work Address </label>
                             <div class="field " style="margin-left: 50px; display: inline-block; ">
                                 <select id="streetId" name="streetId" path="streetId" > 
-                                    <option value="">Select Agency</option>
+                                   
                                     <c:forEach items="${loca}" var="l">
                                         <option value="${l.id}">${l.streetName}, ${l.cityId.getCity()}</option>
                                     </c:forEach>
@@ -44,10 +44,17 @@
                                 <input type="text" class="input-text" name="jobNature" path="jobNature" id="jobNature" placeholder="e.g Full time" value=""  required>
                             </div>
                         </fieldset>
-                        <fieldset class="form fieldset-job_category" style="width: 40%; display: block">
-                            <label for="job_category">Job category</label>
+                        <fieldset class="form fieldset-job_category" style="width: 40%; display: inline-block;">
+                            <label for="job_category"  style="margin-left: 50px; display: inline-block; ">Job category</label>
                             <div class="field required-field">
-                                <div class="field " >
+                                <div class="field "style="margin-left: 50px; display: inline-block; ">
+                                    <select id="typeId" name="typeId" path="typeId" required> 
+                                     
+                                        <c:forEach items="${jobType}" var="l">
+                                            <option value="${l.id}">${l.jobType}</option>
+                                        </c:forEach>
+
+                                    </select>	
 
                                 </div>
                             </div>
@@ -108,9 +115,9 @@
                         <fieldset class="form fieldset-job_tags" style="width: 40%; display: block; margin-top: 20px; margin-bottom: 20px">
                             <label for="job_tags">Expiration Date<small>(optional)</small></label>
                             <div class="field required-field">
-                                <input type="date" class="input-text" name="expirationDate" path="expirationDate" id="expirationDate" >
+                                <input type="date" class="input-text" name="dateString" path="dateString" id="dateString" >
                             </div>						
-                           
+
                         </fieldset>
                         <button type="submit" class="btn btn-topcv-primary btn-theme" style="margin-top: 20px">Add Job Post</button>
                     </form>

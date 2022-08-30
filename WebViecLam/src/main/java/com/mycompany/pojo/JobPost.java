@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -52,6 +53,20 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "JobPost.findByVacancy", query = "SELECT j FROM JobPost j WHERE j.vacancy = :vacancy"),
     @NamedQuery(name = "JobPost.findByIndividualRight", query = "SELECT j FROM JobPost j WHERE j.individualRight = :individualRight")})
 public class JobPost implements Serializable {
+
+    /**
+     * @return the dateString
+     */
+    public String getDateString() {
+        return dateString;
+    }
+
+    /**
+     * @param dateString the dateString to set
+     */
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
 
     /**
      * @return the streetId
@@ -134,6 +149,8 @@ public class JobPost implements Serializable {
     private int streetId;
     @Transient
     private int typeId;
+    @Transient
+    private String dateString;
 
     public JobPost() {
     }

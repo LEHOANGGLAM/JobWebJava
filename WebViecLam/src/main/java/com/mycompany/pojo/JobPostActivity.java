@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "job_post_activity")
@@ -49,7 +49,6 @@ public class JobPostActivity implements Serializable {
     private UserAccount userAccount;
 
     public JobPostActivity() {
-      
     }
 
     public JobPostActivity(JobPostActivityPK jobPostActivityPK) {
