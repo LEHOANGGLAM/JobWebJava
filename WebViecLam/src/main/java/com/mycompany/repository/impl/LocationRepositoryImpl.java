@@ -81,4 +81,10 @@ public class LocationRepositoryImpl implements LocationRepository {
         Query query = session.createQuery(q);
         return Integer.parseInt(query.getSingleResult().toString());
     }
+    
+    @Override
+    public Street getStreetById(int id) {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(Street.class, id);
+    }
 }

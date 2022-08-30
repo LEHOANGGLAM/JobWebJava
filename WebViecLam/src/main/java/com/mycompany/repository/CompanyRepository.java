@@ -32,4 +32,5 @@ public interface CompanyRepository {
 
     int countCompanies();
      List<BusinessType> getBusinesstype();
+     Company getCompanyByUserId(int id);
 }

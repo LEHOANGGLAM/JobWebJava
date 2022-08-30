@@ -38,4 +38,9 @@ public class LocationServiceImpl implements LocationService {
      public int countLocaByComId(int id){
             return this.jobLocaRepository.countLocaByComId(id);
      }
+
+    @Override
+    public Street getStreetById(int id) {
+        return this.jobLocaRepository.getStreetById(id);
+    }
 }
