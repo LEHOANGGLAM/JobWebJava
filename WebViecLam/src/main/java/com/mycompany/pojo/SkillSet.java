@@ -5,32 +5,31 @@
 package com.mycompany.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author PC
  */
 @Entity
-@Table(name = "location")
+@Table(name = "skill_set")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),
-    @NamedQuery(name = "Location.findById", query = "SELECT l FROM Location l WHERE l.id = :id"),
-    @NamedQuery(name = "Location.findByCity", query = "SELECT l FROM Location l WHERE l.city = :city")})
-public class Location implements Serializable {
+    @NamedQuery(name = "SkillSet.findAll", query = "SELECT s FROM SkillSet s"),
+    @NamedQuery(name = "SkillSet.findById", query = "SELECT s FROM SkillSet s WHERE s.id = :id"),
+    @NamedQuery(name = "SkillSet.findBySkillSetName", query = "SELECT s FROM SkillSet s WHERE s.skillSetName = :skillSetName")})
+public class SkillSet implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,17 +38,15 @@ public class Location implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Size(max = 50)
-    @Column(name = "city")
-    private String city;
-    @OneToMany(mappedBy = "cityId")
-    private Collection<Street> streetCollection;
-    @OneToMany(mappedBy = "jobLocationId")
-    private Collection<JobPost> jobPostCollection;
+    @Column(name = "skill_set_name")
+    private String skillSetName;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "skillSet")
+    private JobPostSkillSet jobPostSkillSet;
 
-    public Location() {
+    public SkillSet() {
     }
 
-    public Location(Integer id) {
+    public SkillSet(Integer id) {
         this.id = id;
     }
 
@@ -61,30 +58,20 @@ public class Location implements Serializable {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
+    public String getSkillSetName() {
+        return skillSetName;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setSkillSetName(String skillSetName) {
+        this.skillSetName = skillSetName;
     }
 
-    @XmlTransient
-    public Collection<Street> getStreetCollection() {
-        return streetCollection;
+    public JobPostSkillSet getJobPostSkillSet() {
+        return jobPostSkillSet;
     }
 
-    public void setStreetCollection(Collection<Street> streetCollection) {
-        this.streetCollection = streetCollection;
-    }
-
-    @XmlTransient
-    public Collection<JobPost> getJobPostCollection() {
-        return jobPostCollection;
-    }
-
-    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
-        this.jobPostCollection = jobPostCollection;
+    public void setJobPostSkillSet(JobPostSkillSet jobPostSkillSet) {
+        this.jobPostSkillSet = jobPostSkillSet;
     }
 
     @Override
@@ -97,10 +84,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof SkillSet)) {
             return false;
         }
-        Location other = (Location) object;
+        SkillSet other = (SkillSet) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +96,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.pojo.Location[ id=" + id + " ]";
+        return "com.mycompany.pojo.SkillSet[ id=" + id + " ]";
     }
     
 }

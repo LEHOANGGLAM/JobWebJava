@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "new")
@@ -72,9 +72,9 @@ public class New1 implements Serializable {
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     @ManyToOne
     private Category cateId;
-
     @Transient
     private MultipartFile file;
+
     public New1() {
     }
 
@@ -156,6 +156,3 @@ public class New1 implements Serializable {
     }
     
 }
-
-
-

@@ -149,7 +149,7 @@ public class UserAccount implements Serializable {
     private MultipartFile file;
 
     @Transient
-    public String ConfirmedPassword;
+    private String confirmedPassword;
 
     public UserAccount() {
     }
@@ -320,6 +320,20 @@ public class UserAccount implements Serializable {
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
+    }
+
+    /**
+     * @return the confirmedPassword
+     */
+    public String getConfirmedPassword() {
+        return confirmedPassword;
+    }
+
+    /**
+     * @param confirmedPassword the confirmedPassword to set
+     */
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
     }
 
 }

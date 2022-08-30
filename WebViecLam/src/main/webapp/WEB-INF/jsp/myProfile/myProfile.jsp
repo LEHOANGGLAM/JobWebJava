@@ -34,7 +34,7 @@
                         <h4 class="gray">Profile Details</h4>
                         <c:url value="/myProfile" var="action"/>
                      
-                        <form:form method="post" enctype='multipart/form-data' modelAttribute="u" id="edit_user" action="${action}">
+                        <form:form method="put" enctype='multipart/form-data' modelAttribute="u" id="edit_user" action="${action}">
                             <div class="dashboard-list-box-static">
 
 
@@ -70,28 +70,7 @@
                                     <div id="my-profile_socials" style="display: none;">
 
 
-                                        <label><i class="fa fa-twitter"></i> Twitter</label>
-                                        <input class="text-input" name="twitter" type="text" id="twitter" value="" />
-
-                                        <label><i class="fa fa-facebook-square"></i> Facebook</label>
-                                        <input class="text-input" name="facebook" type="text" id="facebook" value="" />
-
-
-                                        <label><i class="fa fa-linkedin"></i> Linkedin</label>
-                                        <input class="text-input" name="linkedin" type="text" id="linkedin" value="" />
-
-
-                                        <label><i class="fa fa-instagram"></i> Instagram</label>
-                                        <input class="text-input" name="instagram" type="text" id="instagram" value="" />
-
-                                        <label><i class="fa fa-youtube"></i> YouTube</label>
-                                        <input class="text-input" name="youtube" type="text" id="youtube" value="" />
-
-                                        <label><i class="fa fa-whatsapp"></i> WhatsApp</label>
-                                        <input class="text-input" name="whatsapp" type="text" id="whatsapp" value="" />
-
-                                        <label><i class="fa fa-skype"></i> Skype</label>
-                                        <input class="text-input" name="skype" type="text" id="skype" value="" />
+                                       
 
                                     </div>
 
@@ -110,12 +89,12 @@
                 </div>
                 </form:form>
                 <!-- Change Password -->
-                <div class="col-lg-6 col-md-12">
+<!--                <div class="col-lg-6 col-md-12">
                     <div class="dashboard-list-box margin-top-0">
                         <h4 class="gray">Change Password</h4>
                         <div class="dashboard-list-box-static">
 
-                            <!-- Change Password -->
+                             Change Password 
                             <div class="my-profile">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -145,7 +124,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div>-->
 
             </div>
 

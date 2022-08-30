@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "category")
@@ -50,7 +50,7 @@ public class Category implements Serializable {
     private String categoryName;
     @Column(name = "parent_cate_id")
     private Integer parentCateId;
-    @Size(max = 5000)
+    @Size(max = 45)
     @Column(name = "content")
     private String content;
     @Column(name = "active")
