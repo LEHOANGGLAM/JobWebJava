@@ -82,7 +82,7 @@ public class JobRepositoryImpl implements JobReposiroty {
 //            }
 
           
-            q.where(predicates.toArray(Predicate[]::new));
+            //q.where(predicates.toArray(Predicate[]::new));
         }
 
         q.groupBy(jRoot.get("id"));

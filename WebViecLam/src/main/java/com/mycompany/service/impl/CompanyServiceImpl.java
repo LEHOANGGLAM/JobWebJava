@@ -69,4 +69,9 @@ public class CompanyServiceImpl implements CompanyService {
     public List<BusinessType> getBusinesstype() {
         return this.companyRepository.getBusinesstype();
     }
+
+    @Override
+    public Company getCompanyByUserId(int id) {
+        return this.companyRepository.getCompanyByUserId(id);
+    }
 }

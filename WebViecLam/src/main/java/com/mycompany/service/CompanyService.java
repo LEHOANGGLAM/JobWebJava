@@ -30,4 +30,5 @@ public interface CompanyService {
     List<Company> getCompanyList(Map<String, String> params, int page) ;
      int countCompanies();
       List<BusinessType> getBusinesstype();
+      Company getCompanyByUserId(int id);
 }
