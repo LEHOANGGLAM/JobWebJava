@@ -23,5 +23,5 @@ public interface UserRepository {
     List<UserAccount> getUsers();
     UserAccount getUserById(int id);
     boolean updateConfirmUser(int id, int isComfirm);
-  
+    boolean updateUser(UserAccount user);
 }

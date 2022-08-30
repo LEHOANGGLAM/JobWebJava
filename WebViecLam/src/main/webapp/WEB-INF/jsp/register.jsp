@@ -42,6 +42,11 @@
                         <h2 class="title">Event Registration Form</h2>
                     </div>
                     <div class="card-body">
+                        <c:if   test="${errMsg != null}">
+                            <div class="alert alert-danger">
+                                ${errMsg}
+                            </div>
+                        </c:if>
                         <form:form method="post" action="${action}" modelAttribute="user">
                             <div class="form-row m-b-55">
                                 <div class="name">Name</div>
@@ -83,7 +88,7 @@
                                 <div class="name">Confirmed Password</div>
                                 <div class="value">
                                     <div class="input-group">
-
+                                        <form:input id="confirmed-password" class="input--style-5" type="password" name="confirmed-pasword" path="confirmedPassword"/>
                                     </div>
                                 </div>
                             </div>
@@ -97,11 +102,17 @@
                                 </div>
                             </div>
                             <div class="form-row">
+                                <div class="name">Date of Birth</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="name">Phone</div>
                                 <div class="value">
                                     <div class="input-group">
-
-
                                         <div class="input-group">
                                             <form:input id="phone" class="input--style-5" type="text" name="phone" path="contactNumber"/>
 

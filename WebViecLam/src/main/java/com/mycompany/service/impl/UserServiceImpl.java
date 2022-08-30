@@ -84,4 +84,9 @@ public class UserServiceImpl implements UserService {
         return this.UserRepository.getInfo(id);
     }
 
+    @Override
+    public boolean updateUser(UserAccount user) {
+        return this.UserRepository.updateUser(user);
+    }
+
 }

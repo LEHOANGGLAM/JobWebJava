@@ -21,4 +21,5 @@ public interface UserService extends UserDetailsService {
      UserAccount getUserById(int id);
       boolean updateConfirmUser(int id, int isComfirm);
       UserAccount getInfo(int id);
+      boolean updateUser(UserAccount user);
 }

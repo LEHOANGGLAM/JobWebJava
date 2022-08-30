@@ -80,6 +80,7 @@ public class JobDetailController {
         JobPostActivity jobPostActivity = this.appliService.isApplied(user.getId(), jId);
         if (jobPostActivity == null) {
             JobPostActivityPK jobPostActivityPK = new JobPostActivityPK();
+            
             jobPostActivityPK.setJobPostId(this.jobService.getJobById(jId).getId());
             jobPostActivityPK.setUserAccountId(user.getId());
 
