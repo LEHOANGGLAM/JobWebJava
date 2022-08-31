@@ -24,7 +24,7 @@ public class JobServiceImpl implements JobService {
     private JobReposiroty jobReposiroty;
 
     @Override
-    public List<Object[]> getJobs(Map<String, String> params, int page) {
+    public List<JobPost> getJobs(Map<String, String> params, int page) {
         return this.jobReposiroty.getJobs(params, page); //, page
     }
 
@@ -37,24 +37,30 @@ public class JobServiceImpl implements JobService {
     public JobPost getJobById(int id) {
         return this.jobReposiroty.getJobById(id);
     }
-    
+
     @Override
-    public List<Object[]> getJobsByComid(int comId,int page) {
-        return this.jobReposiroty.getJobsByComid(comId, page);
+    public List<JobPost> getJobsByComid(int comId) {
+        return this.jobReposiroty.getJobsByComid(comId);
     }
 
     @Override
-    public List<JobPost> getJobsAppliedOrSaved(int uId,int isSave){
-         return this.jobReposiroty.getJobsAppliedOrSaved(uId,isSave);
+    public List<JobPost> getJobsAppliedOrSaved(int uId, int isSave) {
+        return this.jobReposiroty.getJobsAppliedOrSaved(uId, isSave);
     }
 
-    @Override
-    public boolean addOrUpdateJobPost(JobPost j) {
-          return this.jobReposiroty.addOrUpdateJobPost(j);
-    }
-
+  
     @Override
     public boolean deleteJobPost(int id) {
-          return this.jobReposiroty.deleteJobPost(id);
+        return this.jobReposiroty.deleteJobPost(id);
+    }
+
+    @Override
+    public boolean addJobPost(JobPost j) {
+          return this.jobReposiroty.addJobPost(j);
+    }
+
+    @Override
+    public boolean updateJobPost(JobPost j) {
+        return this.jobReposiroty.updateJobPost(j);
     }
 }

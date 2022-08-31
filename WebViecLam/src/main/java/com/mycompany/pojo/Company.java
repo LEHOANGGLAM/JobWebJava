@@ -1,9 +1,11 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -28,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "company")
@@ -81,6 +83,7 @@ public class Company implements Serializable {
     @Column(name = "company_size")
     private String companySize;
     @OneToMany(mappedBy = "companyId")
+  
     private Collection<Street> streetCollection;
     @OneToMany(mappedBy = "companyId")
     private Collection<JobPost> jobPostCollection;
@@ -247,5 +250,5 @@ public class Company implements Serializable {
     public String toString() {
         return "com.mycompany.pojo.Company[ id=" + id + " ]";
     }
-    
+
 }

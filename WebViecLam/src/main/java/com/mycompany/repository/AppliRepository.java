@@ -23,4 +23,6 @@ public interface AppliRepository {
     JobPostActivity isApplied(int uId, int jId);
 
     boolean updateIsSave(JobPostActivity appli);
+    
+    List<Object[]> CountAppliedByComId(int id);
 }

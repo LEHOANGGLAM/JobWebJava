@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 @Entity
 @Table(name = "street")
@@ -34,9 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Street.findById", query = "SELECT s FROM Street s WHERE s.id = :id"),
     @NamedQuery(name = "Street.findByStreetName", query = "SELECT s FROM Street s WHERE s.streetName = :streetName")})
 public class Street implements Serializable {
-
-    @OneToMany(mappedBy = "jobStreetId")
-    private Collection<JobPost> jobPostCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,6 +50,8 @@ public class Street implements Serializable {
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     @ManyToOne
     private Location cityId;
+    @OneToMany(mappedBy = "jobStreetId")
+    private Collection<JobPost> jobPostCollection;
 
     public Street() {
     }
@@ -93,6 +92,15 @@ public class Street implements Serializable {
         this.cityId = cityId;
     }
 
+    @XmlTransient
+    public Collection<JobPost> getJobPostCollection() {
+        return jobPostCollection;
+    }
+
+    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
+        this.jobPostCollection = jobPostCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -116,15 +124,6 @@ public class Street implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.pojo.Street[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<JobPost> getJobPostCollection() {
-        return jobPostCollection;
-    }
-
-    public void setJobPostCollection(Collection<JobPost> jobPostCollection) {
-        this.jobPostCollection = jobPostCollection;
     }
     
 }

@@ -46,4 +46,9 @@ public class AppliServiceImpl implements AppliService {
     public boolean updateIsSave(JobPostActivity appli) {
         return this.appliRepository.updateIsSave(appli);
     }
+
+    @Override
+    public List<Object[]> CountAppliedByComId(int id) {
+         return this.appliRepository.CountAppliedByComId(id);
+    }
 }

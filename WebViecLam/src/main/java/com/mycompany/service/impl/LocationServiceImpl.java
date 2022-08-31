@@ -43,4 +43,9 @@ public class LocationServiceImpl implements LocationService {
     public Street getStreetById(int id) {
         return this.jobLocaRepository.getStreetById(id);
     }
+
+    @Override
+    public Location getCityById(int id) {
+         return this.jobLocaRepository.getCityById(id);
+    }
 }

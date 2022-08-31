@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -44,8 +44,6 @@ public class LocationRepositoryImpl implements LocationRepository {
         return query.getResultList();
     }
 
-   
-
     @Override
     public List<Street> getLocaByComId(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
@@ -55,10 +53,8 @@ public class LocationRepositoryImpl implements LocationRepository {
 
         Root<Company> cRoot = q.from(Company.class);
         Root<Street> sRoot = q.from(Street.class);
-      
 
         q.select(sRoot).where(b.equal(cRoot.get("id"), sRoot.get("companyId")),
-              
                 b.equal(cRoot.get("id"), id));
 
         Query query = session.createQuery(q);
@@ -73,18 +69,24 @@ public class LocationRepositoryImpl implements LocationRepository {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
         CriteriaQuery<Street> q = b.createQuery(Street.class);
-        
+
         Root<Street> sRoot = q.from(Street.class);
-        
+
         q.multiselect(b.count(sRoot.get("id").as(Integer.class)));
         q.where(b.equal(sRoot.get("companyId"), id));
         Query query = session.createQuery(q);
         return Integer.parseInt(query.getSingleResult().toString());
     }
-    
+
     @Override
     public Street getStreetById(int id) {
         Session s = this.sessionFactory.getObject().getCurrentSession();
         return s.get(Street.class, id);
+    }
+
+    @Override
+    public Location getCityById(int id) {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        return s.get(Location.class, id);
     }
 }

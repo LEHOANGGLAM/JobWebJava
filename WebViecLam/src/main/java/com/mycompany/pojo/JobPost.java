@@ -1,9 +1,11 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -54,6 +56,48 @@ import org.springframework.web.multipart.MultipartFile;
 public class JobPost implements Serializable {
 
     /**
+     * @return the streetName
+     */
+    public String getStreetName() {
+        return this.getJobStreetId().getStreetName();
+    }
+
+    /**
+     * @param streetName the streetName to set
+     */
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    /**
+     * @return the city
+     */
+    public String getCity() {
+        return this.getJobStreetId().getCityId().getCity();
+    }
+
+    /**
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return the dateString
+     */
+    public String getDateString() {
+        return dateString;
+    }
+
+    /**
+     * @param dateString the dateString to set
+     */
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+
+    /**
      * @return the streetId
      */
     public int getStreetId() {
@@ -93,10 +137,10 @@ public class JobPost implements Serializable {
     @Column(name = "expiration_date")
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
-    @Size(max = 45)
+    @Size(max = 500)
     @Column(name = "job_description")
     private String jobDescription;
-    @Size(max = 45)
+    @Size(max = 500)
     @Column(name = "job_requirement")
     private String jobRequirement;
     @Column(name = "is_active")
@@ -116,24 +160,41 @@ public class JobPost implements Serializable {
     private String jobNature;
     @Column(name = "vacancy")
     private Integer vacancy;
-    @Size(max = 45)
+    @Size(max = 500)
     @Column(name = "individual_right")
     private String individualRight;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobPost")
+    @JsonIgnore
     private Collection<JobPostActivity> jobPostActivityCollection;
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private Company companyId;
     @JoinColumn(name = "job_type_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private JobType jobTypeId;
     @JoinColumn(name = "job_street_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private Street jobStreetId;
     @Transient
+    @JsonIgnore
     private int streetId;
     @Transient
+    @JsonIgnore
     private int typeId;
+    @Transient
+    @JsonIgnore
+    private String dateString;
+
+    //for json
+  
+    @Transient
+    private String streetName;
+  
+    @Transient
+    private String city;
 
     public JobPost() {
     }
