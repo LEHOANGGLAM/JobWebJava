@@ -18,6 +18,10 @@ public interface LocationRepository {
     List<Location> getCities();
 
     List<Street> getLocaByComId(int id);
+
     int countLocaByComId(int id);
+
     Street getStreetById(int id);
+
+    Location getCityById(int id);
 }

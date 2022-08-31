@@ -16,6 +16,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,6 +34,20 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "JobPostActivity.findByIsSave", query = "SELECT j FROM JobPostActivity j WHERE j.isSave = :isSave")})
 public class JobPostActivity implements Serializable {
 
+    /**
+     * @return the jobPostId
+     */
+    public int getJobPostId() {
+        return jobPostId;
+    }
+
+    /**
+     * @param jobPostId the jobPostId to set
+     */
+    public void setJobPostId(int jobPostId) {
+        this.jobPostId = jobPostId;
+    }
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected JobPostActivityPK jobPostActivityPK;
@@ -47,6 +62,8 @@ public class JobPostActivity implements Serializable {
     @JoinColumn(name = "user_account_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private UserAccount userAccount;
+    @Transient
+    private int jobPostId;
 
     public JobPostActivity() {
     }

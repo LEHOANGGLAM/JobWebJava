@@ -16,11 +16,13 @@ public interface AppliService {
 
     boolean addAppli(JobPostActivity appli);
 
-     boolean updAppli(JobPostActivity appli);
+    boolean updAppli(JobPostActivity appli);
 
     List<JobPostActivity> getAppliByUserId(int id);
 
     JobPostActivity isApplied(int uId, int jId);
-    
-     boolean updateIsSave(JobPostActivity appli);
+
+    boolean updateIsSave(JobPostActivity appli);
+
+    List<Object[]> CountAppliedByComId(int id);
 }

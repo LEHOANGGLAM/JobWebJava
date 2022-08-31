@@ -65,10 +65,11 @@ public class AppliRepositoryImpl implements AppliRepository {
     public boolean updateIsSave(JobPostActivity appli) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
-            if(appli.getIsSave() == 1)
+            if (appli.getIsSave() == 1) {
                 appli.setIsSave(0);
-            else if(appli.getIsSave() == 0 || appli.getIsSave() == null)
+            } else if (appli.getIsSave() == 0 || appli.getIsSave() == null) {
                 appli.setIsSave(1);
+            }
             session.save(appli);
             return true;
         } catch (HibernateException e) {
@@ -121,5 +122,31 @@ public class AppliRepositoryImpl implements AppliRepository {
             return null;
         }
 
+    }
+
+    @Override
+    public List<Object[]> CountAppliedByComId(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        
+       
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+
+        Root<JobPostActivity> jARoot = q.from(JobPostActivity.class);
+        Root<JobPost> jRoot = q.from(JobPost.class);
+        
+        q.where(b.equal(jARoot.get("jobPost"), jRoot.get("id")),
+                b.equal(jRoot.get("companyId"), id),
+                b.equal(jARoot.get("isSave"),-1));
+        q.multiselect(jARoot.get("jobPost"),b.count(jARoot.get("jobPost")));
+        q.groupBy(jARoot.get("jobPost"));
+        Query query = session.createQuery(q);
+
+        List<Object[]> kq = query.getResultList();
+
+//        kq.forEach(k -> {
+//            System.out.printf("%d - id ,%d - number\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", k[0], k[1]);
+//        });
+        return kq;
     }
 }

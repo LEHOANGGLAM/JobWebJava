@@ -14,18 +14,19 @@ import java.util.Map;
  */
 public interface JobReposiroty {
 
-    List<Object[]> getJobs(Map<String, String> params, int page);
+    List<JobPost> getJobs(Map<String, String> params, int page);
 
     int countJobPosts();
 
     JobPost getJobById(int id);
 
     // int countJobPosts();
-    List<Object[]> getJobsByComid(int comId, int page);
+    List<JobPost> getJobsByComid(int comId);
 
-    List<JobPost> getJobsAppliedOrSaved(int uId, int isSave);
+    List<JobPost> getJobsAppliedOrSaved (int uId, int isSave);
 
-    boolean addOrUpdateJobPost(JobPost j);
+    boolean addJobPost(JobPost j);
+    boolean updateJobPost(JobPost j);
 
     boolean deleteJobPost(int id);
 }

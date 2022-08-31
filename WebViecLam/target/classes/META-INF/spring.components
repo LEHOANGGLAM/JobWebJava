@@ -4,6 +4,7 @@ com.mycompany.configs.TilesConfig=org.springframework.stereotype.Component
 com.mycompany.configs.WebAppContextConfig=org.springframework.stereotype.Component
 com.mycompany.controllers.ApiAccountController=org.springframework.stereotype.Component
 com.mycompany.controllers.ApiCompanyController=org.springframework.stereotype.Component
+com.mycompany.controllers.ApiJobPostController=org.springframework.stereotype.Component
 com.mycompany.controllers.CateAdminController=org.springframework.stereotype.Component
 com.mycompany.controllers.CompanyAdminController=org.springframework.stereotype.Component
 com.mycompany.controllers.CompanyController=org.springframework.stereotype.Component

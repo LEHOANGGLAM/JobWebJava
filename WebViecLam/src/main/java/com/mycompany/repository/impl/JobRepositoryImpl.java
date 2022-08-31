@@ -11,6 +11,7 @@ import com.mycompany.pojo.Location;
 import com.mycompany.pojo.Street;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.JobReposiroty;
+import com.mycompany.service.LocationService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,13 +44,15 @@ public class JobRepositoryImpl implements JobReposiroty {
     private LocalSessionFactoryBean sessionFactory;
     @Autowired
     private Environment env;
+    @Autowired
+    private LocationService jobLocaService;
 
     @Override
-    public List<Object[]> getJobs(Map<String, String> params, int page) {
+    public List<JobPost> getJobs(Map<String, String> params, int page) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        CriteriaQuery<JobPost> q = b.createQuery(JobPost.class);
 
         Root<JobPost> jRoot = q.from(JobPost.class);
         Root<Street> sRoot = q.from(Street.class);
@@ -57,9 +60,8 @@ public class JobRepositoryImpl implements JobReposiroty {
 
         q.where(b.equal(jRoot.get("jobStreetId"), sRoot.get("id")),
                 b.equal(jRoot.get("companyId"), cRoot.get("id")));
-
-        q = q.multiselect(
-               jRoot,cRoot,sRoot
+        q = q.select(
+                jRoot
         );
         if (params != null) {
             List<Predicate> predicates = new ArrayList<>();
@@ -74,15 +76,14 @@ public class JobRepositoryImpl implements JobReposiroty {
                 Predicate p = b.equal(jRoot.get("jobTypeId"), Integer.parseInt(jobTypeId));
                 predicates.add(p);
             }
-//
+
 //            String jobLocationId = params.get("cityId");
 //            if (jobLocationId != null && !jobLocationId.isEmpty()) {
-//                Predicate p = b.equal(jRoot.get("jobStreetId"), Integer.parseInt(jobLocationId));
+//                Predicate p = b.equal(sRoot.get("cityId"), this.jobLocaService.getCityById(Integer.parseInt(jobLocationId)));
 //                predicates.add(p);
+//
 //            }
-
-          
-            //q.where(predicates.toArray(Predicate[]::new));
+            q.where(predicates.toArray(Predicate[]::new));
         }
 
         q.groupBy(jRoot.get("id"));
@@ -97,7 +98,7 @@ public class JobRepositoryImpl implements JobReposiroty {
             query.setMaxResults(size);
         }
 
-        List<Object[]> kq = query.getResultList();
+        List<JobPost> kq = query.getResultList();
 
 //        kq.forEach(k -> {
 //            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
@@ -107,37 +108,25 @@ public class JobRepositoryImpl implements JobReposiroty {
     }
 
     @Override
-    public List<Object[]> getJobsByComid(int comId, int page) {
+    public List<JobPost> getJobsByComid(int comId) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        CriteriaQuery<JobPost> q = b.createQuery(JobPost.class);
 
         Root<JobPost> jRoot = q.from(JobPost.class);
-        Root<Street> sRoot = q.from(Street.class);
-        Root<Company> cRoot = q.from(Company.class);
 
-       q.where(b.equal(jRoot.get("jobStreetId"), sRoot.get("id")),
-                b.equal(jRoot.get("companyId"), cRoot.get("id")),
-                 b.equal(jRoot.get("companyId"), comId));
-              
-
-       q = q.multiselect(
-               jRoot,cRoot,sRoot
+        q.where(
+                b.equal(jRoot.get("companyId"), comId));
+        q = q.select(
+                jRoot
         );
         q.groupBy(jRoot.get("id"));
         q.orderBy(b.desc(jRoot.get("id")));
 
         Query query = session.createQuery(q);
 
-        if (page > 0) {
-            int size = Integer.parseInt(env.getProperty("page.size").toString());
-            int start = (page - 1) * size;
-            query.setFirstResult(start);
-            query.setMaxResults(size);
-        }
-
-        List<Object[]> kq = query.getResultList();
+        List<JobPost> kq = query.getResultList();
 
 //        kq.forEach(k -> {
 //            System.out.printf("%s - name, %s - city\n ", k[7], k[6]);
@@ -190,10 +179,22 @@ public class JobRepositoryImpl implements JobReposiroty {
     }
 
     @Override
-    public boolean addOrUpdateJobPost(JobPost j) {
+    public boolean addJobPost(JobPost j) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
             session.save(j);
+            return true;
+        } catch (HibernateException e) {
+            System.err.println(e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateJobPost(JobPost j) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.update(j);
             return true;
         } catch (HibernateException e) {
             System.err.println(e.getMessage());

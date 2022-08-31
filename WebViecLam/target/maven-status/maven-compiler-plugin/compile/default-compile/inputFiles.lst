@@ -24,6 +24,7 @@ C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controller
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\CompanyRepositoryImpl.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\CateRepository.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\DispatcherServletInit.java
+C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\ApiJobPostController.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\formatters\StreetFormatter.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\CateService.java
 C:\MyFolder\NetBean\JobWebJava\WebViecLam\src\main\java\com\mycompany\handlers\LogoutHandler.java

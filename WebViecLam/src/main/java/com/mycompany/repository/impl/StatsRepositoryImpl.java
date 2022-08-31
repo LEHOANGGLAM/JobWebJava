@@ -45,12 +45,14 @@ public class StatsRepositoryImpl implements StatsRepository {
 
         if (quarter == 0) {
             q.multiselect(jRoot.get("jobTypeId"), b.count(jARoot.get("jobPost"))).where(b.equal(jARoot.get("jobPost"), jRoot.get("id")),
-                    b.equal(b.function("YEAR", Integer.class, jARoot.get("applyDate")), year));
+                    b.equal(b.function("YEAR", Integer.class, jARoot.get("applyDate")), year),
+                    b.equal(jARoot.get("isSave"), -1));
 
         } else {
             q.multiselect(jRoot.get("jobTypeId"), b.count(jARoot.get("jobPost"))).where(b.equal(jARoot.get("jobPost"), jRoot.get("id")),
                     b.equal(b.function("QUARTER", Integer.class, jARoot.get("applyDate")), quarter),
-                    b.equal(b.function("YEAR", Integer.class, jARoot.get("applyDate")), year));
+                    b.equal(b.function("YEAR", Integer.class, jARoot.get("applyDate")), year),
+                    b.equal(jARoot.get("isSave"), -1));
         }
 
         q.groupBy(jRoot.get("jobTypeId"));
@@ -60,5 +62,4 @@ public class StatsRepositoryImpl implements StatsRepository {
         return cList;
     }
 
-  
 }
