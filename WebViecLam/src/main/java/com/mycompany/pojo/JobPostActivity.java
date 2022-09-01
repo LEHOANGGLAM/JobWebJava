@@ -57,10 +57,10 @@ public class JobPostActivity implements Serializable {
     @Column(name = "is_save")
     private Integer isSave;
     @JoinColumn(name = "job_post_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne
     private JobPost jobPost;
     @JoinColumn(name = "user_account_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne
     private UserAccount userAccount;
     @Transient
     private int jobPostId;

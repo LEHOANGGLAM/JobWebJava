@@ -216,4 +216,30 @@ public class JobRepositoryImpl implements JobReposiroty {
         }
 
     }
+
+    @Override
+    public List<Object[]> getJobsByComIdAndCountApplied(int comId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+
+        Root<JobPostActivity> jARoot = q.from(JobPostActivity.class);
+        Root<JobPost> jRoot = q.from(JobPost.class);
+
+        q.where(b.equal(jARoot.get("jobPost"), jRoot.get("id")),
+                b.equal(jRoot.get("companyId"), comId),
+                b.equal(jARoot.get("isSave"), -1));
+        q.multiselect(jRoot, b.count(jARoot.get("jobPost")));
+        q.groupBy(jRoot.get("id"));
+        Query query = session.createQuery(q);
+
+        List<Object[]> kq = query.getResultList();
+
+//        kq.forEach(k -> {
+//            System.out.printf("%d - id ,%d - number\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", k[0], k[1]);
+//        });
+        return kq;
+    }
+
 }

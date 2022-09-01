@@ -116,7 +116,49 @@ function deleteJobPost(endpoint, id, obj) {
 }
 
 
-function loadJobPostManager(endpoint) {
+function loadJobPostManagerApplied(endpoint) {
+    fetch(endpoint).then(function (res) {
+        return res.json();
+    }).then(function (data) {
+        console.info(data);
+        let msg = "";
+        for (let i = 0; i < data.length; i++)
+            msg += `
+     
+              
+                            <tr id="row${data[i][0].id}">
+                                <th class="company-title">${data[i][0].id}</th>
+                                <th class="company-title">${data[i][0].jobTitle}</th>
+                                <th id="number${data[i][0].id}">${data[i][1]}</th>
+                                <th class="date">${data[i][0].jobNature}</th>
+                                <th class="company-title">${data[i][0].streetName}, ${data[i][0].city}</th>
+                                <th>  <button class="btn head-btn2 btn-topcv-primary btn-theme" 
+                                             onClick="parent.location='candidateList/${data[i][0].id}'" >Watch</button></th>
+                                <th>  <button class="btn head-btn2 btn-topcv-primary btn-theme" 
+                                             onClick="parent.location='postJob/${data[i][0].id}'"  >Edit</button></th>
+
+
+                                <th> 
+                                   
+                                       <div class="spinner-border text-success" style="display:none" id="load${data[i][0].id}"></div>
+                                        <button class="btn head-btn2 btn-topcv-primary btn-theme" 
+                                                onclick="deleteJobPost('${endpoint + '/' + data[i][0].id}', ${data[i][0].id}, this)">
+                                        Delete</button>
+                                </th>
+                                 
+
+                            </tr>
+
+        `
+
+        let d = document.getElementById("mainId");
+        d.innerHTML = msg;
+
+
+    })
+}
+
+function loadJobPostManagerNoAppiled(endpoint) {
     fetch(endpoint).then(function (res) {
         return res.json();
     }).then(function (data) {
@@ -129,7 +171,7 @@ function loadJobPostManager(endpoint) {
                             <tr id="row${data[i].id}">
                                 <th class="company-title">${data[i].id}</th>
                                 <th class="company-title">${data[i].jobTitle}</th>
-                                <th class="status"></th>
+                              
                                 <th class="date">${data[i].jobNature}</th>
                                 <th class="company-title">${data[i].streetName}, ${data[i].city}</th>
                                 <th>  <button class="btn head-btn2 btn-topcv-primary btn-theme" 
@@ -151,7 +193,7 @@ function loadJobPostManager(endpoint) {
 
         `
 
-        let d = document.getElementById("mainId");
+        let d = document.getElementById("mainId2");
         d.innerHTML = msg;
 
 

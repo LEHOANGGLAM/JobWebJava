@@ -138,8 +138,8 @@ public class AppliRepositoryImpl implements AppliRepository {
         q.where(b.equal(jARoot.get("jobPost"), jRoot.get("id")),
                 b.equal(jRoot.get("companyId"), id),
                 b.equal(jARoot.get("isSave"),-1));
-        q.multiselect(jARoot.get("jobPost"),b.count(jARoot.get("jobPost")));
-        q.groupBy(jARoot.get("jobPost"));
+        q.multiselect(jRoot.get("id"),b.count(jARoot.get("jobPost")));
+        q.groupBy(jRoot.get("id"));
         Query query = session.createQuery(q);
 
         List<Object[]> kq = query.getResultList();

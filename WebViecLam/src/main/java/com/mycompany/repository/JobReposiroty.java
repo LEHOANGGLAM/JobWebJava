@@ -5,6 +5,7 @@
 package com.mycompany.repository;
 
 import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.UserAccount;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +24,15 @@ public interface JobReposiroty {
     // int countJobPosts();
     List<JobPost> getJobsByComid(int comId);
 
-    List<JobPost> getJobsAppliedOrSaved (int uId, int isSave);
+    List<JobPost> getJobsAppliedOrSaved(int uId, int isSave);
 
     boolean addJobPost(JobPost j);
+
     boolean updateJobPost(JobPost j);
 
     boolean deleteJobPost(int id);
+
+    List<Object[]> getJobsByComIdAndCountApplied(int comId);
+
+ 
 }
