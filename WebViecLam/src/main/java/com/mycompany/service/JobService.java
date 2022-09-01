@@ -5,6 +5,7 @@
 package com.mycompany.service;
 
 import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.UserAccount;
 import java.util.List;
 import java.util.Map;
 
@@ -28,5 +29,9 @@ public interface JobService {
 
     boolean updateJobPost(JobPost j);
 
+    List<Object[]> getJobsByComIdAndCountApplied(int comId);
+
     boolean deleteJobPost(int id);
+
+
 }

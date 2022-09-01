@@ -1,72 +1,80 @@
 <%-- 
-    Document   : candidateList
-    Created on : Aug 29, 2022, 1:21:15 AM
-    Author     : dell
+    Document   : 
+    Created on : Jul 24, 2022, 3:25:42 PM
+    Author     : admin
 --%>
-
 <%@include file="../../taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
-
-<section class="featured-job-area">
+<!-- Job List Area Start -->
+<div class="job-listing-area pt-120 pb-120">
     <div class="container">
-
         <div class="row">
-            <div class="col-lg-12">
-                <div class="section-tittle text-center">
-                    <c:if test="${j  != null}">
-                        <h2 style="padding-top: 50px">Applicants ${j.jobTitle} - ${j.id}</h2>
-                    </c:if>
-                    <c:if test="${j == null}">
-                        <h2 style="padding-top: 50px">Applicants</h2>
-                    </c:if>
+            <!-- Left content -->
+            
+            <%@include file="_filterCandidate.jsp"%>
+            <!-- Right content -->
+            <div class="col-xl-9 col-lg-9 col-md-8">
+                <!-- Featured_job_start -->
+                <section class="featured-job-area">
+                    <div class="container">
+                        <!-- Count of Job list Start -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="count-job mb-35">    
 
+<!--                                
+                                    </div>
+                                    <!--  Select job items End-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Count of Job list End -->
+                        <%@include file="_candidateList.jsp"%>
+                    </div>
+                </section>
+                <!-- Featured_job_end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Job List Area End -->
+<!--Pagination Start  -->
+<div class="pagination-area pb-115 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="single-wrap d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">
+                         
+
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
-        <c:if test="${u.size() == 0}">
-            <p>
-                <em style="font-size: 50px;">No job found</em>
-            </p>
-        </c:if>
-        <!-- single-job-content -->
-        <c:forEach items="${u}" var="u" varStatus="loop">
-
-            <div class="single-job-items mb-30">
-                <div class="job-items">
-                    <div class="company-img">
-                        <a href="">  <img class="img-fluid" src="<c:url value=" ${u.lastName} "/>" alt="avatar"/></a>
-                    </div>
-                    <div class="job-tittle job-tittle2">
-
-                        <a href="">
-                            <h4>${u.firstName} ${u.lastName} </h4>
-                        </a>
-                        <ul>
-                            <li> ${u.lastName} </li>
-                            <li><i class="fas fa-map-marker-alt"></i> ${u.lastName} ,  ${u.lastName} </li>
-                            <li> ${u.lastName} </li>                                                                               
-                        </ul>
-                    </div>
-                </div>
-                <sec:authorize access="isAuthenticated()">
-                    <div class="items-link items-link2 f-right">
-                        <a href=" ${u.lastName} ">Watch</a>
-
-                    </div>
-                </sec:authorize>
-                <sec:authorize access="!isAuthenticated()">
-                    <div class="items-link items-link2 f-right">
-                        <a href="${pageContext.request.contextPath}/login" >Login to Watch More</a>
-
-                    </div>
-                </sec:authorize>
-
-            </div>
-
-
-        </c:forEach>
     </div>
-</section>
+</div>
+<!--Pagination End  -->
+ 
 
+
+<script>
+    function addOrUpdateUrlParam(name, value)
+    {
+        var href = window.location.href;
+        var regex = new RegExp("[&\\?]" + name + "=");
+        if (regex.test(href))
+        {
+            regex = new RegExp("([&\\?])" + name + "=\\d+");
+            window.location.href = href.replace(regex, "$1" + name + "=" + value);
+        } else
+        {
+            if (href.indexOf("?") > -1)
+                window.location.href = href + "&" + name + "=" + value;
+            else
+                window.location.href = href + "?" + name + "=" + value;
+        }
+    }
+</script>

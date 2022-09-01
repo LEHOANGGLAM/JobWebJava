@@ -47,9 +47,17 @@ public class ApiJobPostController {
     @Autowired
     private AppliService appliService;
 
+    @GetMapping("/applied")
+    public ResponseEntity<List<Object[]>> getApplied(HttpSession session) {
+
+        UserAccount user = (UserAccount) session.getAttribute("currentUser");
+        int comId = this.companyService.getCompanyByUserId(user.getId()).getId();
+
+        return new ResponseEntity<>(this.jobService.getJobsByComIdAndCountApplied(comId), HttpStatus.OK);
+    }
+
     @GetMapping("/jobposts")
     public ResponseEntity<List<JobPost>> getJobPosts(HttpSession session) {
-
         UserAccount user = (UserAccount) session.getAttribute("currentUser");
         int comId = this.companyService.getCompanyByUserId(user.getId()).getId();
 

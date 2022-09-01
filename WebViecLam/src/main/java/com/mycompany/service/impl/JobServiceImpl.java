@@ -63,4 +63,9 @@ public class JobServiceImpl implements JobService {
     public boolean updateJobPost(JobPost j) {
         return this.jobReposiroty.updateJobPost(j);
     }
+
+    @Override
+    public List<Object[]> getJobsByComIdAndCountApplied(int comId) {
+        return this.jobReposiroty.getJobsByComIdAndCountApplied(comId);
+    }
 }

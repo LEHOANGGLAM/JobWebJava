@@ -119,29 +119,6 @@ public class EmployerController {
         model.addAttribute("errMsg", "Action Sucessful");
 
     }
-//
-//    @PutMapping("/postJob/${jId}")
-//    public String updateApplication(
-//            @PathVariable(value = "jId") int jId,
-//            @ModelAttribute(value = "j") JobPost j,
-//            HttpSession session,
-//            Model model) {
-//       
-//        try {
-//            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-//            Date d = f.parse(j.getDateString());
-//            j.setExpirationDate(d);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(EmployerController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        j.setJobTypeId(this.jobTypeService.getJobTypeById(j.getTypeId()));
-//        j.setJobStreetId(this.locationService.getStreetById(j.getStreetId()));
-//
-//        this.jobService.updateJobPost(j);
-//
-//        return "redirect:/postJob";
-//    }
 
     @RequestMapping("/postJob/{jId}")
     public String EditJob(
@@ -171,12 +148,12 @@ public class EmployerController {
             @PathVariable(value = "jId") int jId,
             HttpSession session,
             Model model) {
-
-        model.addAttribute("u", this.userService.getUsers());
+        
         JobPost j = this.jobService.getJobById(jId);
+        model.addAttribute("u", this.userService.getUserAppliedByJobPostId(jId));
 
         model.addAttribute("j", j);
-        return "candidateList";
+        return "_candidateList";
     }
 
     @GetMapping("/candidateList")
@@ -185,7 +162,7 @@ public class EmployerController {
             Model model) {
 
         model.addAttribute("u", this.userService.getUsers());
-       
+
         return "candidateList";
     }
 }

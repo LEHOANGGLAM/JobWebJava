@@ -31,27 +31,29 @@ public class UserServiceImpl implements UserService {
     private UserRepository UserRepository;
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
-    
+
     @Override
     public boolean addUser(UserAccount user) {
 
         String pass = user.getPassword();
         user.setPassword(this.passwordEncoder.encode(pass));
         //user.setUserTypeId(user.getUserTypeId().setId(2));
-        
+
         return this.UserRepository.addUser(user);
     }
+
     @Override
     public List<UserAccount> getUsers() {
         return this.UserRepository.getUsers();
     }
+
     @Override
-    public UserAccount getUserById(int id){
-         return this.UserRepository.getUserById(id);
+    public UserAccount getUserById(int id) {
+        return this.UserRepository.getUserById(id);
     }
-    
+
     @Override
-     public boolean deleteUser(int id) {
+    public boolean deleteUser(int id) {
         return this.UserRepository.deleteUser(id);
     }
 
@@ -66,7 +68,6 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("User does not exist!");
         }
-     
 
         Set<GrantedAuthority> auth = new HashSet<>();
         auth.add(new SimpleGrantedAuthority(String.valueOf(user.getUserTypeId())));
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updateConfirmUser(int id, int isComfirm) {
-         return this.UserRepository.updateConfirmUser(id,isComfirm);
+        return this.UserRepository.updateConfirmUser(id, isComfirm);
     }
 
     @Override
@@ -89,4 +90,8 @@ public class UserServiceImpl implements UserService {
         return this.UserRepository.updateUser(user);
     }
 
+    @Override
+    public List<UserAccount> getUserAppliedByJobPostId(int id) {
+        return this.UserRepository.getUserAppliedByJobPostId(id);
+    }
 }

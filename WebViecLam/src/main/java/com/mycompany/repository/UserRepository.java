@@ -16,12 +16,20 @@ import org.springframework.security.core.userdetails.User;
 public interface UserRepository {
 
     boolean addUser(UserAccount user);
+
     UserAccount getInfo(int id);
+
     UserAccount getUserByUsername(String username);
 
     boolean deleteUser(int id);
+
     List<UserAccount> getUsers();
+
     UserAccount getUserById(int id);
+
     boolean updateConfirmUser(int id, int isComfirm);
+
     boolean updateUser(UserAccount user);
+
+    List<UserAccount> getUserAppliedByJobPostId(int id);
 }
