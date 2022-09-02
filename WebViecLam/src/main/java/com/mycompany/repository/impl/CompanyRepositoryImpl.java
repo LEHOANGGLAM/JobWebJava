@@ -203,4 +203,18 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
         return q.getResultList();
     }
+
+    @Override
+    public boolean addComment(Comment com) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        try {
+
+            session.save(com);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

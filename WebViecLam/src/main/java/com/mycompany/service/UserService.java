@@ -5,6 +5,7 @@
 package com.mycompany.service;
 
 import com.mycompany.pojo.UserAccount;
+import com.mycompany.pojo.UserType;
 import java.util.List;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,4 +33,5 @@ public interface UserService extends UserDetailsService {
     boolean updateUser(UserAccount user);
 
     List<UserAccount> getUserAppliedByJobPostId(int id);
+
 }

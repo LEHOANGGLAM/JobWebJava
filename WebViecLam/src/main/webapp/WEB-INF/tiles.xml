@@ -97,7 +97,18 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="register" extends="loginBase">
         <put-attribute name="title" value="Đăng ký" />
         <put-attribute name="content"
-                       value="/WEB-INF/jsp/register.jsp" />
+                       value="/WEB-INF/jsp/registerEmployee.jsp" />
+    </definition>
+    
+    <definition name="registerHirer" extends="loginBase">
+        <put-attribute name="title" value="Đăng ký người tuyển dụng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/registerHirer.jsp" />
+    </definition>
+    <definition name="registerCompany" extends="loginBase">
+        <put-attribute name="title" value="Đăng ký công ty" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/registerCompany.jsp" />
     </definition>
     
     

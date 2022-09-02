@@ -27,6 +27,8 @@ public interface CompanyRepository {
     Company getComById(int id);
 
     List<Comment> getComments(int companyId);
+    
+    boolean addComment(Comment com);
 
     List<Company> getCompanyList(Map<String, String> params, int page);
 

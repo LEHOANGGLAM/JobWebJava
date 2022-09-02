@@ -23,7 +23,9 @@ public interface CompanyService {
     boolean deleteCompany(int id);
 
     boolean addOrUpdateCompany(Company com);
-
+    
+    boolean addComment(Comment com);
+    
     Company getComById(int id);
     
     List<Comment> getComments(int Id);

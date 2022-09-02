@@ -74,4 +74,9 @@ public class CompanyServiceImpl implements CompanyService {
     public Company getCompanyByUserId(int id) {
         return this.companyRepository.getCompanyByUserId(id);
     }
+
+    @Override
+    public boolean addComment(Comment com) {
+        return this.companyRepository.addComment(com);
+    }
 }

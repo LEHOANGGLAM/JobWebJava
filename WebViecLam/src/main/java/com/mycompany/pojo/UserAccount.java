@@ -50,47 +50,11 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "UserAccount.findByIsComfirm", query = "SELECT u FROM UserAccount u WHERE u.isComfirm = :isComfirm"),
     @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName"),
     @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName"),
-    @NamedQuery(name = "UserAccount.findByCV", query = "SELECT u FROM UserAccount u WHERE u.cv = :cv")})
+    @NamedQuery(name = "UserAccount.findByAboutMe", query = "SELECT u FROM UserAccount u WHERE u.aboutMe = :aboutMe"),
+    @NamedQuery(name = "UserAccount.findByCv", query = "SELECT u FROM UserAccount u WHERE u.cv = :cv")})
 public class UserAccount implements Serializable {
 
-    /**
-     * @return the cv
-     */
-    public String getCv() {
-        return cv;
-    }
-
-    /**
-     * @param cv the cv to set
-     */
-    public void setCv(String cv) {
-        this.cv = cv;
-    }
-
-    @Size(max = 200)
-    @Column(name = "about_me")
-    private String aboutMe;
-
-    /**
-     * @return the file
-     */
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
-
     private static final long serialVersionUID = 1L;
-
-    public static final int USER = 2;
-    public static final int ADMIN = 1;
-    public static final int RECRUITER = 3;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -129,6 +93,10 @@ public class UserAccount implements Serializable {
     @Size(max = 45)
     @Column(name = "last_name")
     private String lastName;
+    @Size(max = 200)
+    @Column(name = "about_me")
+    private String aboutMe;
+    @Size(max = 200)
     @Column(name = "cv")
     private String cv;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userAccount")
@@ -144,13 +112,33 @@ public class UserAccount implements Serializable {
     @ManyToOne
     @JsonIgnore
     private UserType userTypeId;
-
-    @Transient
-    private MultipartFile file;
-
+    
     @Transient
     private String confirmedPassword;
+    
+    @Transient
+    private int userType; 
+    
+    @Transient
+    private String dateString;
+    
+    @Transient
+    private MultipartFile file;
+    
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
 
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+    
     public UserAccount() {
     }
 
@@ -254,6 +242,22 @@ public class UserAccount implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+    public String getCv() {
+        return cv;
+    }
+
+    public void setCv(String cv) {
+        this.cv = cv;
+    }
+
     @XmlTransient
     public Collection<JobPostActivity> getJobPostActivityCollection() {
         return jobPostActivityCollection;
@@ -314,14 +318,6 @@ public class UserAccount implements Serializable {
         return "com.mycompany.pojo.UserAccount[ id=" + id + " ]";
     }
 
-    public String getAboutMe() {
-        return aboutMe;
-    }
-
-    public void setAboutMe(String aboutMe) {
-        this.aboutMe = aboutMe;
-    }
-
     /**
      * @return the confirmedPassword
      */
@@ -336,4 +332,32 @@ public class UserAccount implements Serializable {
         this.confirmedPassword = confirmedPassword;
     }
 
+    /**
+     * @return the userType
+     */
+    public int getUserType() {
+        return userType;
+    }
+
+    /**
+     * @param userType the userType to set
+     */
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    /**
+     * @return the dateString
+     */
+    public String getDateString() {
+        return dateString;
+    }
+
+    /**
+     * @param dateString the dateString to set
+     */
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+    
 }

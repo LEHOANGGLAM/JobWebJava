@@ -83,17 +83,21 @@ public class Company implements Serializable {
     @Column(name = "company_size")
     private String companySize;
     @OneToMany(mappedBy = "companyId")
-  
+    @JsonIgnore
     private Collection<Street> streetCollection;
     @OneToMany(mappedBy = "companyId")
+    @JsonIgnore
     private Collection<JobPost> jobPostCollection;
     @OneToMany(mappedBy = "companyId", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Collection<Comment> commentCollection;
     @JoinColumn(name = "business_type_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private BusinessType businessTypeId;
     @JoinColumn(name = "user_account_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private UserAccount userAccountId;
 
     public Company() {
