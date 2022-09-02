@@ -26,11 +26,10 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author dell
+ * @author PC
  */
 @Entity
 @Table(name = "job_post")
@@ -47,39 +46,10 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "JobPost.findByJobMinSalary", query = "SELECT j FROM JobPost j WHERE j.jobMinSalary = :jobMinSalary"),
     @NamedQuery(name = "JobPost.findByJobMaxSalary", query = "SELECT j FROM JobPost j WHERE j.jobMaxSalary = :jobMaxSalary"),
     @NamedQuery(name = "JobPost.findByYearExperRequire", query = "SELECT j FROM JobPost j WHERE j.yearExperRequire = :yearExperRequire"),
-
     @NamedQuery(name = "JobPost.findByJobNature", query = "SELECT j FROM JobPost j WHERE j.jobNature = :jobNature"),
     @NamedQuery(name = "JobPost.findByVacancy", query = "SELECT j FROM JobPost j WHERE j.vacancy = :vacancy"),
     @NamedQuery(name = "JobPost.findByIndividualRight", query = "SELECT j FROM JobPost j WHERE j.individualRight = :individualRight")})
 public class JobPost implements Serializable {
-
-    /**
-     * @return the streetId
-     */
-    public int getStreetId() {
-        return streetId;
-    }
-
-    /**
-     * @param streetId the streetId to set
-     */
-    public void setStreetId(int streetId) {
-        this.streetId = streetId;
-    }
-
-    /**
-     * @return the typeId
-     */
-    public int getTypeId() {
-        return typeId;
-    }
-
-    /**
-     * @param typeId the typeId to set
-     */
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,7 +80,6 @@ public class JobPost implements Serializable {
     private Integer jobMaxSalary;
     @Column(name = "year_exper_require")
     private Integer yearExperRequire;
-
     @Size(max = 45)
     @Column(name = "job_nature")
     private String jobNature;
@@ -130,11 +99,9 @@ public class JobPost implements Serializable {
     @JoinColumn(name = "job_street_id", referencedColumnName = "id")
     @ManyToOne
     private Street jobStreetId;
+    
     @Transient
     private int streetId;
-    @Transient
-    private int typeId;
-
     public JobPost() {
     }
 
@@ -304,4 +271,18 @@ public class JobPost implements Serializable {
         return "com.mycompany.pojo.JobPost[ id=" + id + " ]";
     }
 
+    /**
+     * @return the streetId
+     */
+    public int getStreetId() {
+        return streetId;
+    }
+
+    /**
+     * @param streetId the streetId to set
+     */
+    public void setStreetId(int streetId) {
+        this.streetId = streetId;
+    }
+    
 }

@@ -49,7 +49,6 @@ public class JobPostActivity implements Serializable {
     private UserAccount userAccount;
 
     public JobPostActivity() {
-      
     }
 
     public JobPostActivity(JobPostActivityPK jobPostActivityPK) {

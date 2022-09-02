@@ -12,6 +12,7 @@ import com.mycompany.pojo.New1;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.service.UserService;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,20 +60,13 @@ public class MyProfileController {
 //        return "myProfile";
 //    }
     
-    @PutMapping("/myProfile/{uId}")
+    @PostMapping("/myProfile/{uId}")
     public String updateProfile(HttpSession session, 
             @PathVariable(value = "uId") int uId,
-            @ModelAttribute(value = "u") UserAccount u) {
+            @ModelAttribute(value = "u") UserAccount u,
+            Model model) {
             
-          UserAccount user = userService.getUserById(uId);
-          
-        
-          user.setFirstName(u.getFirstName());
-          user.setLastName(u.getLastName());
-          user.setContactNumber(u.getContactNumber());
-          user.setEmail(u.getEmail());
-          
-          this.userService.updateUser(user);
+         
 //        try {
 //            Map r = this.cloudinary.uploader().upload(params.getFile().getBytes(),
 //                    ObjectUtils.asMap("resource_type", "auto"));
@@ -81,6 +75,16 @@ public class MyProfileController {
 //        } catch (IOException ex) {
 //            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+          UserAccount user = this.userService.getUserById(uId);
+          
+         
+          user.setFirstName(u.getFirstName());
+          user.setLastName(u.getLastName());
+          user.setEmail(u.getEmail());
+          user.setContactNumber(u.getContactNumber());
+          user.setAboutMe(u.getAboutMe());
+        
+          this.userService.addUser(user);
 
         return "myProfile";
     }

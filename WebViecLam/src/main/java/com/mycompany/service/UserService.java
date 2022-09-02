@@ -5,6 +5,7 @@
 package com.mycompany.service;
 
 import com.mycompany.pojo.UserAccount;
+import com.mycompany.pojo.UserType;
 import java.util.List;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,4 +23,6 @@ public interface UserService extends UserDetailsService {
       boolean updateConfirmUser(int id, int isComfirm);
       UserAccount getInfo(int id);
       boolean updateUser(UserAccount user);
+
+ 
 }

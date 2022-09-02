@@ -54,7 +54,7 @@ public class Comment implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private UserAccount userId;
-    
+
     public Comment() {
     }
 

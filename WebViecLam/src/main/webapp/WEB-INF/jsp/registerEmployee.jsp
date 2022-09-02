@@ -18,7 +18,7 @@
         <meta name="keywords" content="Colorlib Templates">
 
         <!-- Title Page-->
-        <title>Au Register Forms by Colorlib</title>
+        <title>Employee Register</title>
 
         <!-- Icons font CSS-->
         <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -31,15 +31,56 @@
         <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
         <!-- Main CSS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link href="css/main.css" rel="stylesheet" media="all">
+        <script>
+            $(document).ready(function () {
+                $("#myModal").modal('show');
+            });
+        </script>
+        <style>
+            #outer
+            {
+                width:100%;
+                text-align: center;
+            }
+            .inner
+            {
+                display: inline-block;
+            }
+        </style>
     </head>
 
+
+
+
+
     <body>
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title">Who are you ?</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">                        
+                        <div class="header-btn d-none f-right d-lg-block">
+                            <a href="<c:url value="/register"/>" class="btn head-btn1 text-primary inner" data-dismiss="modal">You are a Employee</a>
+
+                            <a href="<c:url value="/registerHirer"/>" class="btn head-btn2 text-primary inner">Your are an Hirer</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
             <div class="wrapper wrapper--w790">
                 <div class="card card-5">
                     <div class="card-heading">
-                        <h2 class="title">Event Registration Form</h2>
+                        <h2 class="title">Employee Registration Form</h2>
                     </div>
                     <div class="card-body">
                         <c:if   test="${errMsg != null}">
@@ -105,7 +146,7 @@
                                 <div class="name">Date of Birth</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        
+                                        <form:input id="dateOfBirth" class="input--style-5" type="date" name="dateOfBirth" path="dateString"/>
                                     </div>
                                 </div>
                             </div>
@@ -121,20 +162,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="name">Who are you ?</div>
-                                <div class="value">
-                                    <div class="input-group">
-                                        <div class="rs-select2 js-select-simple select--no-search">
-                                            <form:select path="userTypeId">
-                                                <form:option value="2" label ="Employee"/>
-                                                <form:option value="3" label="Hirer"/>
-                                            </form:select>
-                                            <div class="select-dropdown"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="form-row p-t-20">
                                 <label class="label label--block">Choose your gender?</label>
                                 <div class="p-t-15">

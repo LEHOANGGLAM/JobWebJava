@@ -6,6 +6,7 @@ C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\m
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Street.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\LocationRepository.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\JobDetailController.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\formatters\JobPostFormatter.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobType.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\AppliServiceImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\handlers\LoginHandler.java
@@ -13,6 +14,7 @@ C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\m
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\SecurityWebApplicationInitializer.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\UserAccountController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\JobTypeService.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\UserTypeService.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\JobTypeRepositoryImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\UserService.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\CompanyRepositoryImpl.java
@@ -28,6 +30,7 @@ C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\m
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\JobPostActivity.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\CompanyService.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CateAdminController.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\UserTypeRepositoryImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\UserAccount.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\StatsRepository.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobReposiroty.java
@@ -41,6 +44,7 @@ C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\m
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\New1.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\ApiCompanyController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\MyProfileController.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\UserTypeRepository.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\UserRepository.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\JobTypeRepository.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\impl\StatsRepositoryImpl.java
@@ -48,6 +52,7 @@ C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\m
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\CateServiceImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\WebAppContextConfig.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CompanyAdminController.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\RegisterHirerController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\UserServiceImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\DefaultPageController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\EmployerController.java
@@ -65,6 +70,8 @@ C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\m
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\SpringSecurityConfig.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\TilesConfig.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\LoginAdminController.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\formatters\StreetFormatter.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\UserTypeServiceImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\CompanyServiceImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Company.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\ApiAccountController.java

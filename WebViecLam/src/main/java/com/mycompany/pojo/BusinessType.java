@@ -4,6 +4,7 @@
  */
 package com.mycompany.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -42,6 +43,7 @@ public class BusinessType implements Serializable {
     @Column(name = "business_type_name")
     private String businessTypeName;
     @OneToMany(mappedBy = "businessTypeId")
+    @JsonIgnore
     private Collection<Company> companyCollection;
 
     public BusinessType() {
