@@ -143,7 +143,7 @@ public class EmployerController {
         return "jobPostManager";
     }
 
-    @GetMapping("/candidateList/{jId}")
+    @RequestMapping("/candidateList/{jId}")
     public String candidateListByJobPost(
             @PathVariable(value = "jId") int jId,
             HttpSession session,

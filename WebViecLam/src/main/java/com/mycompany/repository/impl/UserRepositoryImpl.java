@@ -157,9 +157,9 @@ public class UserRepositoryImpl implements UserRepository {
 
         List<UserAccount> kq = query.getResultList();
 
-//        kq.forEach(k -> {
-//            System.out.printf("%d - id ,%d - number\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", k[0], k[1]);
-//        });
+        kq.forEach(k -> {
+            System.out.printf("%d - id ,\n", k.getId());
+        });
         return kq;
     }
 }
