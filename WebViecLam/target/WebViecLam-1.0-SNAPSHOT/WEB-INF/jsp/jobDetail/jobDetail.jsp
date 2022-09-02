@@ -198,9 +198,7 @@
                     
                                             <div style="margin-top: 8px; border: 1px dashed #ccc; padding: 5px 10px;">
                     
-                    <c:if test="${errMsg!=null}">
-                        <div class="notification notice margin-bottom-25">${errMsg}</div>
-                    </c:if>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn head-btn2" data-dismiss="modal" id="close">Close</button>

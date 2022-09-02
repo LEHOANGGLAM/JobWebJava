@@ -59,6 +59,7 @@ com\mycompany\pojo\Comment_.class
 com\mycompany\controllers\RegisterController.class
 com\mycompany\pojo\New1.class
 com\mycompany\configs\SecurityWebApplicationInitializer.class
+com\mycompany\controllers\ApiJobPostController.class
 com\mycompany\repository\impl\JobTypeRepositoryImpl.class
 com\mycompany\controllers\JobListController.class
 com\mycompany\repository\CateRepository.class

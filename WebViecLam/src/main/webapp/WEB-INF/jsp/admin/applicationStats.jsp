@@ -39,6 +39,7 @@
                     </thead>
                     <tbody >
                         <c:forEach items="${appStats}" var="a" varStatus="loop">
+
                             <tr>
                                 <th class="company-title">${a[0].getId()}</th>
                                 <th class="status">${a[0].getJobType()}</th>
@@ -46,6 +47,7 @@
 
 
                             </tr>
+
                         </c:forEach>
                     </tbody> 
                 </table>

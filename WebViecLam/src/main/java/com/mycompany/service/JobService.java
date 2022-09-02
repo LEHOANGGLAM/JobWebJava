@@ -5,6 +5,7 @@
 package com.mycompany.service;
 
 import com.mycompany.pojo.JobPost;
+import com.mycompany.pojo.UserAccount;
 import java.util.List;
 import java.util.Map;
 
@@ -14,17 +15,23 @@ import java.util.Map;
  */
 public interface JobService {
 
-    List<Object[]> getJobs(Map<String, String> params, int page);
+    List<JobPost> getJobs(Map<String, String> params, int page);
 
     int countJobPosts();
 
     JobPost getJobById(int id);
 
-    List<Object[]> getJobsByComid(int comId, int page);
+    List<JobPost> getJobsByComid(int comId);
 
     List<JobPost> getJobsAppliedOrSaved(int uId, int isSave);
 
-    boolean addOrUpdateJobPost(JobPost j);
+    boolean addJobPost(JobPost j);
+
+    boolean updateJobPost(JobPost j);
+
+    List<Object[]> getJobsByComIdAndCountApplied(int comId);
 
     boolean deleteJobPost(int id);
+
+
 }

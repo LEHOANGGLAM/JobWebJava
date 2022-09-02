@@ -5,6 +5,7 @@
 package com.mycompany.repository.impl;
 
 import com.mycompany.pojo.Company;
+import com.mycompany.pojo.JobPostActivity;
 import com.mycompany.pojo.UserAccount;
 import com.mycompany.repository.UserRepository;
 import java.util.List;
@@ -109,8 +110,7 @@ public class UserRepositoryImpl implements UserRepository {
             return false;
         }
     }
-    
-    
+
     @Override
     public UserAccount getInfo(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
@@ -120,10 +120,11 @@ public class UserRepositoryImpl implements UserRepository {
         Root root = q.from(UserAccount.class);
         q.select(root);
         q.where(b.equal(root.get("id"), id));
-        
+
         Query query = session.createQuery(q);
         return (UserAccount) query.getSingleResult();
     }
+
     @Override
     public boolean updateUser(UserAccount u) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
@@ -137,4 +138,28 @@ public class UserRepositoryImpl implements UserRepository {
 
     }
 
+    @Override
+    public List<UserAccount> getUserAppliedByJobPostId(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<UserAccount> q = b.createQuery(UserAccount.class);
+
+        Root<JobPostActivity> jARoot = q.from(JobPostActivity.class);
+        Root<UserAccount> uRoot = q.from(UserAccount.class);
+
+        q.where(b.equal(jARoot.get("userAccount"), uRoot.get("id")),
+                b.equal(jARoot.get("jobPost"), id)
+        );
+        q.select(uRoot);
+
+        Query query = session.createQuery(q);
+
+        List<UserAccount> kq = query.getResultList();
+
+//        kq.forEach(k -> {
+//            System.out.printf("%d - id ,%d - number\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", k[0], k[1]);
+//        });
+        return kq;
+    }
 }

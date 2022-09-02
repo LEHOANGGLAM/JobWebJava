@@ -52,8 +52,8 @@ public class CompanyController {
         model.addAttribute("c", this.companyService.getComById(cId));
         model.addAttribute("l", this.locationService.getLocaByComId(cId));
 
-        int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("jobposts", this.jobService.getJobsByComid(cId, page));
+     
+        model.addAttribute("jobposts", this.jobService.getJobsByComid(cId));
         model.addAttribute("comment", this.companyService.getComments(cId));
         return "companyDetail";
     }

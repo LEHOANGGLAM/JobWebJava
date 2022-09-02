@@ -50,23 +50,26 @@ public class MyProfileController {
 
     @GetMapping("/myProfile/{uId}")
     public String getInfo(@PathVariable(value = "uId") int uId, Model model, Authentication a) {
-        
+
         model.addAttribute("u", this.userService.getUserById(uId));
         return "myProfile";
     }
-    
+
 //    @GetMapping("/myProfile")
 //    public String myProfile() {
 //        return "myProfile";
 //    }
+
     
-    @PostMapping("/myProfile/{uId}")
+    @PutMapping("/myProfile/{uId}")
     public String updateProfile(HttpSession session, 
             @PathVariable(value = "uId") int uId,
             @ModelAttribute(value = "u") UserAccount u,
             Model model) {
             
          
+
+    
 //        try {
 //            Map r = this.cloudinary.uploader().upload(params.getFile().getBytes(),
 //                    ObjectUtils.asMap("resource_type", "auto"));
@@ -87,6 +90,13 @@ public class MyProfileController {
           this.userService.addUser(user);
 
         return "myProfile";
+    }
+
+    @RequestMapping("/userDetail/{uId}")
+    public String userDetail(@PathVariable(value = "uId") int uId, Model model, Authentication a) {
+
+        model.addAttribute("u", this.userService.getUserById(uId));
+        return "userDetail";
     }
 
 }

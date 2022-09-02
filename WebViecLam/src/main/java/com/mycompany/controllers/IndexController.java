@@ -50,7 +50,7 @@ public class IndexController {
         model.addAttribute("cateChild", this.cateService.getCateChild());
         model.addAttribute("currentUser", session.getAttribute("currentUser"));
         model.addAttribute("d", new Date());
-        model.addAttribute("err", null);
+      
     }
 
     @RequestMapping("/")
