@@ -61,7 +61,7 @@ public class MyProfileController {
 //    }
 
     
-    @PutMapping("/myProfile/{uId}")
+    @PostMapping("/myProfile/{uId}")
     public String updateProfile(HttpSession session, 
             @PathVariable(value = "uId") int uId,
             @ModelAttribute(value = "u") UserAccount u,
@@ -78,7 +78,7 @@ public class MyProfileController {
 //        } catch (IOException ex) {
 //            Logger.getLogger(MyProfileController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-          UserAccount user = this.userService.getUserById(uId);
+          UserAccount user = (UserAccount) session.getAttribute("currentUser");
           
          
           user.setFirstName(u.getFirstName());
@@ -87,7 +87,7 @@ public class MyProfileController {
           user.setContactNumber(u.getContactNumber());
           user.setAboutMe(u.getAboutMe());
         
-          this.userService.addUser(user);
+          this.userService.updateUser(user);
 
         return "myProfile";
     }

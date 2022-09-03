@@ -368,5 +368,6 @@ public class JobPost implements Serializable {
         return "com.mycompany.pojo.JobPost[ id=" + id + " ]";
     }
 
+
     
 }

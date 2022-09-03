@@ -34,7 +34,7 @@
                         <h4 class="gray">Profile Details</h4>
                         <c:url value="/myProfile" var="action"/>
 
-                        <form:form method="put" enctype='multipart/form-data' modelAttribute="u" id="edit_user" action="${action}">
+                        <form:form method="post" enctype='multipart/form-data' modelAttribute="u" id="edit_user" action="${action}">
                             <div class="dashboard-list-box-static">
 
 
@@ -46,8 +46,8 @@
 
                                         <img class="profile-pic" src="https://workscout.in/wp-content/uploads/2022/01/user-profile-avatar-590x590-1.jpg" alt="" />
                                         <div class="upload-button"></div>
-                                        
-                                        
+
+
                                     </div>	
 
                                     <div class="clearfix"></div>
@@ -55,7 +55,7 @@
 
                                     <label for="first-name">First Name</label>
                                     <form:input class="text-input" name="first-name" type="text" id="first-name" value="${u.firstName}" path="firstName" />
-
+                                    .
                                     <label for="last-name">Last Name</label>
                                     <form:input class="text-input" name="last-name" type="text" id="last-name" value="${u.lastName}" path="lastName"/>
 
@@ -67,7 +67,7 @@
 
                                     <label for="description">About me</label>
                                     <form:textarea name="description" id="description" cols="30" rows="10" path="aboutMe"/>
-                                                                        
+
                                     <button type="submit" form="edit_user"  class="btn head-btn2">Save Changes</button>
 
 
@@ -77,9 +77,10 @@
 
 
                             </div>
-                        </div>
+                        </form:form>
                     </div>
-                </form:form>
+                </div>
+
                 <!-- Change Password -->
                 <div class="col-lg-6 col-md-12">
                     <div class="dashboard-list-box margin-top-0">
@@ -96,20 +97,7 @@
                                     </div>
                                 </div>
 
-                                <form name="resetpasswordform" action="" method="post">
-                                    <label>Current Password</label>
-                                    <input type="password" name="current_pass">
-
-                                    <label for="pass1">New Password</label>
-                                    <input name="pass1" type="password">
-
-                                    <label for="pass2">Confirm New Password</label>
-                                    <input name="pass2" type="password">
-
-                                    <input type="submit" name="submit" id="submit" class="margin-top-20 button" value="Save Changes" />
-
-                                    <input type="hidden" name="workscout_core-password-change" value="1" />
-                                </form>
+                               
 
 
                             </div>
