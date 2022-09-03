@@ -96,14 +96,13 @@
                                         <div class="col-3">
                                             <div class="input-group-desc">
                                                 <form:input id="first-name" class="input--style-5" type="text" name="first_name" path="firstName"/>
-                                                <label class="label--desc">first name</label>
-
+                                                <label class="label--desc">First Name</label>
                                             </div>
                                         </div>
                                         <div class="col-9">
                                             <div class="input-group-desc">
                                                 <form:input id="last-name" class="input--style-5" type="text" name="last_name" path="lastName"/>
-                                                <label class="label--desc">last name</label>
+                                                <label class="label--desc">Last Name</label>
                                             </div>
                                         </div>
                                     </div>
