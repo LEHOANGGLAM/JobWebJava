@@ -21,9 +21,8 @@
             </div>
         </div>
 
-        <div class="notification notice margin-bottom-25">User can be edited or removed below,
-            after update reload to make sure everything is correct.</div>
-            <c:if test="${errMsg!=null}">
+        <div class="notification notice margin-bottom-25">User can be edited or removed below, after update reload to make sure everything is correct.</div>
+        <c:if test="${errMsg!=null}">
             <div class="notification notice margin-bottom-25">${errMsg}</div>
         </c:if>
         <div class="dashboard-list-box margin-top-30" id="job-manager-job-dashboard">
@@ -34,8 +33,8 @@
                             <th class="company-title">Username</th>
                             <th class="status">Name </th>
                             <th class="date">Date Of Birth</th>
-                            <th></th> 
-                            <th></th> 
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="mainId">
@@ -43,7 +42,7 @@
                     </tbody> 
                 </table>
                 <a class="btn btn-topcv-primary btn-theme" style="margin-top: 20px" href="<c:url value="/admin/addUserAdmin"/>">
-                   Add New Account
+                    Add New Account
                 </a>
             </div>
         </div>
