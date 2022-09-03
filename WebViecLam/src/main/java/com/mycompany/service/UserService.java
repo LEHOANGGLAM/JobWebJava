@@ -34,4 +34,5 @@ public interface UserService extends UserDetailsService {
 
     List<UserAccount> getUserAppliedByJobPostId(int id);
 
-}
+    List<UserAccount> getUsersAdmin();
+    }

@@ -36,7 +36,15 @@
             <div class="single-job-items mb-30">
                 <div class="job-items">
                     <div class="company-img">
-                        <a href="">  <img class="img-fluid" src="<c:url value=" ${u.lastName} "/>" alt="avatar"/></a>
+
+
+                        <a href="">   <c:if test="${u.userImage == null || u.userImage.isEmpty()}">
+                                <c:url value="/img/default_ava.jpg" var="imgLink"/>
+                                <img class = "ava" style=""src="${imgLink}" class="" alt="null">
+                            </c:if>
+                            <c:if test="${u.userImage != null && !u.userImage.isEmpty()}">
+                                <img class="img-fluid" style=""src="${u.userImage}"alt="">
+                            </c:if></a>
                     </div>
                     <div class="job-tittle job-tittle2">
 
@@ -44,9 +52,9 @@
                             <h4>${u.firstName} ${u.lastName} </h4>
                         </a>
                         <ul>
-                            <li> ${u.lastName} </li>
-                            <li><i class="fas fa-map-marker-alt"></i> ${u.lastName} ,  ${u.lastName} </li>
-                            <li> ${u.lastName} </li>                                                                               
+                            <li> <a href="${u.cv}">  Watch my CV</a></li>
+                            <li> Date Of Birth: ${u.dateOfBirth}  </li>
+                            <li> ${u.email} </li>                                                                               
                         </ul>
                     </div>
                 </div>

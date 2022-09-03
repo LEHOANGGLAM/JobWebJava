@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <!-- Left content -->
-            
+
             <%@include file="_filterCandidate.jsp"%>
             <!-- Right content -->
             <div class="col-xl-9 col-lg-9 col-md-8">
@@ -23,7 +23,22 @@
                             <div class="col-lg-12">
                                 <div class="count-job mb-35">    
 
-<!--                                
+                                    <span> <fmt:formatNumber type = "number" 
+                                                      maxIntegerDigits = "6" value = "${comCounter}" /> Candicate found</span>
+                                    <!-- Select job items start -->
+                                    <div class="select-job-items">
+                                        <!--onsubmit="return addOrUpdateUrlParam('kw',this.value)"-->
+                                        <form class="navbar-form navbar-left" action="${window.location.href}">
+                                            <div class="input-group">
+                                                <input name="kw" type="text"  
+                                                       class="form-control" placeholder="Search By Name...">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit">
+                                                        <i class="flaticon-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                     <!--  Select job items End-->
                                 </div>
@@ -47,7 +62,7 @@
                 <div class="single-wrap d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">
-                         
+
 
                         </ul>
                     </nav>
@@ -57,7 +72,7 @@
     </div>
 </div>
 <!--Pagination End  -->
- 
+
 
 
 <script>

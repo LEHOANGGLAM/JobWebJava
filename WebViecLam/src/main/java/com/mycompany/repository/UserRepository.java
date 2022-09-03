@@ -32,4 +32,6 @@ public interface UserRepository {
     boolean updateUser(UserAccount user);
 
     List<UserAccount> getUserAppliedByJobPostId(int id);
+
+    List<UserAccount> getUsersAdmin();
 }

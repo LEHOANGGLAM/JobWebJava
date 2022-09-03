@@ -28,9 +28,9 @@
 
 
                                         <sec:authorize access="!isAuthenticated()">
-                                               <li><a href="<c:url value="/about"/>">About Us</a></li>     
-                                                 <li><a href="<c:url value="/contact"/>">Contact Us</a></li>     
-                                        </sec:authorize>
+                                            <li><a href="<c:url value="/about"/>">About Us</a></li>     
+                                            <li><a href="<c:url value="/contact"/>">Contact Us</a></li>     
+                                            </sec:authorize>
                                         <!--                                            JOBSEEKER---------------->
                                         <c:if test="${currentUser.getUserTypeId().getId() == 2}">
                                             <c:forEach items="${cate}" var="cate" varStatus="loop">
@@ -72,7 +72,7 @@
                                                                     <c:forEach items="${cateChild}" var="cateChild">
                                                                         <c:if test="${cateChild.parentCateId == cate.id}">    
 
-                                                                               <li><a href="${pageContext.request.contextPath}/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
+                                                                            <li><a href="${pageContext.request.contextPath}/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
 
                                                                         </c:if>
                                                                     </c:forEach>
@@ -89,8 +89,9 @@
                                         <c:if test="${currentUser.getUserTypeId().getId() == 1}">
                                             <c:forEach items="${cate}" var="cate" varStatus="loop">
                                                 <c:if test="${(cate.userTypeId.getId() == 1) && cate.parentCateId == 0}">
-                                                    <li><a href="${pageContext.request.contextPath}/admin/${cate.linkCate}">${cate.categoryName}</a>
+                                                    <li>
 
+                                                        <a href="${pageContext.request.contextPath}/admin/${cate.linkCate}">${cate.categoryName}</a>
 
                                                         <c:forEach items="${cateChild}" var="a">
                                                             <c:if test="${a.parentCateId == cate.id}"> 
@@ -99,7 +100,7 @@
                                                                     <c:forEach items="${cateChild}" var="cateChild">
                                                                         <c:if test="${cateChild.parentCateId == cate.id}">    
 
-                                                                              <li><a href="${pageContext.request.contextPath}/admin/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
+                                                                            <li><a href="${pageContext.request.contextPath}/admin/${cateChild.linkCate}">${cateChild.categoryName}</a></li>                                                       
 
                                                                         </c:if>
                                                                     </c:forEach>
@@ -107,10 +108,18 @@
 
                                                             </c:if>
                                                         </c:forEach>
+
                                                     </li>
                                                 </c:if>
+
                                             </c:forEach>
+                                            <c:if test="${currentUser.id == 2}">    
+
+                                                <li><a href="${pageContext.request.contextPath}/admin/userManager">User Manager</a></li>                                                       
+
+                                            </c:if>
                                         </c:if>
+
                                     </ul>
                                 </nav>
                             </div>          

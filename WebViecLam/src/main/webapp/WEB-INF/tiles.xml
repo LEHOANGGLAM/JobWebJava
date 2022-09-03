@@ -136,10 +136,20 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/admin/news.jsp" />
     </definition>
+    <definition name="addUserAdmin" extends="adminBase">
+        <put-attribute name="title" value="Admin Page" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin/addUserAdmin.jsp" />
+    </definition>
     <definition name="applicationStats" extends="adminBase">
         <put-attribute name="title" value="Admin Page" />
         <put-attribute name="content"
                        value="/WEB-INF/jsp/admin/applicationStats.jsp" />
+    </definition>
+    <definition name="userManager" extends="adminBase">
+        <put-attribute name="title" value="Admin Page" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin/userManager.jsp" />
     </definition>
   
     

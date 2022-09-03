@@ -50,6 +50,8 @@ function loadAdminCompany(endpoint) {
     })
 }
 
+
+
 function updateAcc(accId) {
 
     fetch("api/accounts", {
@@ -201,3 +203,56 @@ function loadJobPostManagerNoAppiled(endpoint) {
 }
 //
 // ${new Date(data[i][3]).toLocaleDateString()} - (MM/dd/yyyy)
+
+
+
+function loadUserAdmin(endpoint) {
+    fetch(endpoint).then(function (res) {
+        return res.json();
+    }).then(function (data) {
+        console.info(data);
+        let msg = "";
+        for (let i = 0; i < data.length; i++)
+            msg += `
+     
+                <tr id="row${data[i].id}">
+                    <td class="company-title">${data[i].username}</td>
+                    <td> ${data[i].firstName} ${data[i].lastName}</td>
+       
+                       
+                    <td class="date">    ${new Date(data[i].dateOfBirth).toLocaleDateString()} - (MM/dd/yyyy)</td>
+               
+                    <td class="action">
+                        <div class="spinner-border text-success" style="display:none" id="load${data[i].id}"></div>
+                        <a class="btn btn-danger" href="">Change Password</a>
+                    </td>
+        <td class="action">
+                        <div class="spinner-border text-success" style="display:none" id="load${data[i].id}"></div>
+                        <button class="btn btn-danger" onclick="deleteUser('${endpoint + '/' + data[i].id}', ${data[i].id}, this)">Delete</button>
+                    </td>
+                </tr>
+        `
+
+        let d = document.getElementById("mainId");
+        d.innerHTML = msg;
+
+
+    })
+}
+function deleteUser(endpoint, id, obj) {
+  
+    obj.style.display = "none";
+
+    fetch(endpoint, {
+        method: "delete"
+    }).then(function (res) {
+        if (res.status === 204)
+        {
+            let r = document.getElementById("row" + id);
+            r.style.display = "none";
+        }
+
+    }).catch(function (err) {
+        console.error(err)
+    })
+}

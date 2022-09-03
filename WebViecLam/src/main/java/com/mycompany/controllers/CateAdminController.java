@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ControllerAdvice
 @RequestMapping("/admin")
 public class CateAdminController {
+
     @Autowired
     private CateService cateService;
 
@@ -39,4 +40,15 @@ public class CateAdminController {
         return "category";
     }
 
+    @GetMapping("/userManager")
+    public String userManager(Model model) {
+        //model.addAttribute("cate", new Category());
+        return "userManager";
+    }
+
+    @GetMapping("/addUserAdmin")
+    public String addUserAdmin(Model model) {
+        //model.addAttribute("cate", new Category());
+        return "addUserAdmin";
+    }
 }
