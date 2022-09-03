@@ -368,18 +368,5 @@ public class JobPost implements Serializable {
         return "com.mycompany.pojo.JobPost[ id=" + id + " ]";
     }
 
-    /**
-     * @return the streetId
-     */
-    public int getStreetId() {
-        return streetId;
-    }
-
-    /**
-     * @param streetId the streetId to set
-     */
-    public void setStreetId(int streetId) {
-        this.streetId = streetId;
-    }
     
 }

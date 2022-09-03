@@ -94,4 +94,9 @@ public class UserServiceImpl implements UserService {
     public List<UserAccount> getUserAppliedByJobPostId(int id) {
         return this.UserRepository.getUserAppliedByJobPostId(id);
     }
+
+    @Override
+    public List<UserAccount> getUsersAdmin() {
+        return this.UserRepository.getUsersAdmin();
+    }
 }

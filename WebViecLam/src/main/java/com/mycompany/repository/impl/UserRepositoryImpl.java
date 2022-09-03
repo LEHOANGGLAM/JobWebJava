@@ -57,6 +57,17 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public List<UserAccount> getUsersAdmin() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<UserAccount> q = b.createQuery(UserAccount.class);
+        Root root = q.from(UserAccount.class);
+        q.select(root).where(b.equal(root.get("userTypeId"), 1)).groupBy(root.get("id"));
+        Query query = s.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
     public UserAccount getUserById(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
 

@@ -38,6 +38,17 @@ public class ApiAccountController {
         return new ResponseEntity<>(this.userService.getUsers(), HttpStatus.OK);
     }
 
+    @GetMapping("/accountsAdmin")
+    public ResponseEntity<List<UserAccount>> getAccountsAdmin() {
+        return new ResponseEntity<>(this.userService.getUsersAdmin(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/accountsAdmin/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAccountAdmin(@PathVariable(value = "id") int id) {
+        this.userService.deleteUser(id);
+    }
+
     @DeleteMapping("/accounts/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAccount(@PathVariable(value = "id") int id) {
@@ -47,23 +58,17 @@ public class ApiAccountController {
     @PutMapping("/accounts")
     public int updateAcc(@RequestBody UserAccount params, HttpSession session) {
 
-      
-       UserAccount account = userService.getUserById(params.getId());
+        UserAccount account = userService.getUserById(params.getId());
         int isComfirm = account.getIsComfirm();
         if (isComfirm == 1) {
             isComfirm = 0;
         } else {
             isComfirm = 1;
         }
-      
-      
-      
-      
-      
-       // session.setAttribute("acc", account);
-         this.userService.updateConfirmUser(params.getId(),isComfirm);
-        return isComfirm; 
+
+        // session.setAttribute("acc", account);
+        this.userService.updateConfirmUser(params.getId(), isComfirm);
+        return isComfirm;
     }
-    
-    
+
 }
