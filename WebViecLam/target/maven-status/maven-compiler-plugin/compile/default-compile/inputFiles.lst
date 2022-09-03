@@ -1,4 +1,3 @@
-
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\LoginController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\pojo\Comment.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\repository\CompanyRepository.java
@@ -54,6 +53,7 @@ C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\m
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\configs\WebAppContextConfig.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\CompanyAdminController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\RegisterHirerController.java
+C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\ApiJobPostController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\service\impl\UserServiceImpl.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\DefaultPageController.java
 C:\Users\PC\Documents\NetBeansProjects\JobWebJava\WebViecLam\src\main\java\com\mycompany\controllers\EmployerController.java

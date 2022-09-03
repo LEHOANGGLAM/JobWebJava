@@ -371,15 +371,6 @@ public class JobPost implements Serializable {
     /**
      * @return the streetId
      */
-    public int getStreetId() {
-        return streetId;
-    }
-
-    /**
-     * @param streetId the streetId to set
-     */
-    public void setStreetId(int streetId) {
-        this.streetId = streetId;
-    }
+    
     
 }

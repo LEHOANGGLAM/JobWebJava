@@ -87,7 +87,7 @@ public class RegisterHirerController {
                 Company comp = new Company();
                 comp.setUserAccountId(user);
                 comp.setCompanyName(name);
-//                comp.setBusinessTypeId(this.userTypeService.getBusinessTypeById(typeid));
+                comp.setBusinessTypeId(this.userTypeService.getBusinessTypeById(typeid));
                 comp.setCompanyEmail(email);
 
                 this.companyService.addOrUpdateCompany(comp);
