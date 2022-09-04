@@ -75,7 +75,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/employerPage/jobPostManager.jsp" />
     </definition>
-    
+    <definition name="chat" extends="baseLayout">
+        <put-attribute name="title" value="Chat Online" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/chat.jsp" />
+    </definition>
     
     <!--    LAYOUT LOGIN PAGE-->
     <definition name="loginBase"
@@ -110,6 +114,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/registerCompany.jsp" />
     </definition>
+    
     
     
     
