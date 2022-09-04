@@ -79,13 +79,16 @@ public class CompanyController {
     public String addComment(Model model, 
             @ModelAttribute(value = "comment") Comment com, 
             @PathVariable(value = "cId") int cId, 
-            HttpSession session){
+            HttpSession session,
+            @RequestParam(value="rating" ,required=false) String rating){
         
+        Integer r = Integer.valueOf(rating);
         UserAccount user = (UserAccount) session.getAttribute("currentUser");
         Company company = this.companyService.getComById(cId);
         com.setCreatedDate(new Date());
         com.setCompanyId(company);
         com.setUserId(user);
+        
         
         this.companyService.addComment(com);
         

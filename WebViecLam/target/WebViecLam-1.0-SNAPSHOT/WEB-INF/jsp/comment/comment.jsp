@@ -84,6 +84,55 @@
                                             <ul class="media-date text-uppercase reviews list-inline">
                                                 ${comment.createdDate}
                                             </ul>
+                                            <br>
+                                            <div class="rating"> 
+                                                <input type="radio" name="rating" value="5" id="5" <c:choose>
+                                                           <c:when test="${comment.rating=='5'}">
+                                                               checked
+
+                                                           </c:when>    
+                                                           <c:otherwise>
+                                                               disabled
+                                                           </c:otherwise>
+                                                       </c:choose>><label for="5">☆</label>
+                                                <input type="radio" name="rating" value="4" id="4"  <c:choose>
+                                                           <c:when test="${comment.rating=='4'}">
+                                                               checked
+
+                                                           </c:when>    
+                                                           <c:otherwise>
+                                                               disabled
+                                                           </c:otherwise>
+                                                       </c:choose>><label for="4">☆</label> 
+                                                <input type="radio" name="rating" value="3" id="3"  <c:choose>
+                                                           <c:when test="${comment.rating=='3'}">
+                                                               checked
+
+                                                           </c:when>    
+                                                           <c:otherwise>
+                                                               disabled
+                                                           </c:otherwise>
+                                                       </c:choose>><label for="3">☆</label>
+                                                <input type="radio" name="rating" value="2" id="2"  <c:choose>
+                                                           <c:when test="${comment.rating=='2'}">
+                                                               checked
+
+                                                           </c:when>    
+                                                           <c:otherwise>
+                                                               disabled
+                                                           </c:otherwise>
+                                                       </c:choose>><label for="2">☆</label>
+                                                <input type="radio" name="rating" value="1" id="1"  <c:choose>
+                                                           <c:when test="${comment.rating=='1'}">
+                                                               checked
+
+                                                           </c:when>    
+                                                           <c:otherwise>
+                                                               disabled
+                                                           </c:otherwise>
+                                                       </c:choose>><label for="1">☆</label>
+                                            </div>
+                                            <br>
                                             <p class="media-comment">
                                                 ${comment.content}
                                             </p>
@@ -99,6 +148,7 @@
 
                     <div class="tab-pane" id="add-comment">
                         <form <form method="post" action="${action}" modelAttribute="comment" id="algin-form"> 
+                            <label for="comment" class="col-sm-2 control-label">Rating:</label>
                             <div class="rating"> 
                                 <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
                                 <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
@@ -108,13 +158,13 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label">Comment</label>
+                                <label for="comment" class="col-sm-2 control-label">Comment</label>
                                 <div class="col-sm-10">
                                     <textarea name="content" id="content" cols="30" rows="10" path="content"></textarea>
                                 </div>
                             </div>
                             <br>
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">                    
                                     <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit comment</button>
